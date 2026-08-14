@@ -1,0 +1,417 @@
+
+  #section1 {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    isolation: isolate;
+
+    padding-top: var(--dc-pt);
+    padding-bottom: var(--dc-pb);
+    padding-left: var(--dc-pl);
+    padding-right: var(--dc-pr);
+
+    background: var(--dc-bg);
+    color: var(--dc-text);
+    font-family: Montserrat, Arial, sans-serif;
+  }
+
+  #section1 *,
+  #section1 *::before,
+  #section1 *::after {
+    box-sizing: border-box;
+  }
+
+  #section1 .dream-contact__background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  #section1 .dream-contact__background::after {
+    content: none;
+  }
+
+  #section1 .dream-contact__background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 1.0;
+  }
+
+  #section1 .dream-contact__webgl {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    opacity: 0.9;
+  }
+
+  #section1 .dream-contact__vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 50% 42%, rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, .16) 58%, rgba(0, 0, 0, .72) 100%);
+  }
+
+  #section1 .dream-contact__inner {
+    position: relative;
+    z-index: 3;
+
+    width: 100%;
+    max-width: var(--dc-max);
+    min-height:400px;
+    margin-inline: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #section1 .dream-contact__content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-inline: auto;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  #section1 .dream-contact__eyebrow {
+    margin: 0 0 21px;
+    color: var(--dc-accent);
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+  }
+
+  #section1 .dream-contact__heading {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    color: var(--dc-text);
+    font-size: clamp(34px, 4.4vw, 64px);
+    line-height: 1.04;
+    letter-spacing: -.045em;
+    font-weight: 800;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  #section1 .dream-contact__highlight {
+    color: var(--dc-accent);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  #section1 .dream-contact__description {
+    width: 100%;
+    max-width: 100%;
+    margin: 29px auto 0;
+    color: var(--dc-muted);
+    font-size: clamp(13px, 1.25vw, 18px);
+    line-height: 1.55;
+    letter-spacing: .01em;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  #section1 .dream-contact__description p {
+    margin: 0;
+    white-space: inherit;
+  }
+
+  #section1 .dream-contact__features {
+    margin-top: 39px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(22px, 3vw, 48px);
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #section1 .dream-contact__feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    text-align: center;
+  }
+
+  #section1 .dream-contact__feature-icon {
+    width: 33px;
+    height: 33px;
+    color: var(--dc-accent);
+    margin-top: 1px;
+  }
+
+  #section1 .dream-contact__feature-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  #section1 .dream-contact__feature-title {
+    margin: 0;
+    color: var(--dc-text);
+    font-size: 15px;
+    line-height: 1.45;
+    font-weight: 800;
+  }
+
+  #section1 .dream-contact__feature-text {
+    margin-top: 9px;
+    color: var(--dc-muted);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  #section1 .dream-contact__feature-text p {
+    margin: 0;
+  }
+
+  #section1 .dream-contact__feature-pagination {
+    display: none;
+  }
+
+  #section1 .dream-contact__feature-dot {
+    appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 999px;
+    background: var(--dc-muted);
+    opacity: .35;
+    cursor: pointer;
+    transition:
+      width .25s ease,
+      opacity .25s ease,
+      background-color .25s ease;
+  }
+
+  #section1 .dream-contact__feature-dot.is-active {
+    width: 22px;
+    background: var(--dc-accent);
+    opacity: 1;
+  }
+
+  /* =========================================================
+     REFERENCE SPACING — TABLET
+     Mirrors the first section: 16px side spacing at <= 989px.
+     ========================================================= */
+  @media screen and (max-width: 989px) {
+    #section1 {
+      padding-top: var(--dc-tablet-pt);
+      padding-bottom: var(--dc-tablet-pb);
+      padding-left: var(--dc-tablet-pl);
+      padding-right: var(--dc-tablet-pr);
+    }
+
+    #section1 .dream-contact__inner {
+      max-width: var(--dc-mobile-max);
+    }
+  }
+
+  @media screen and (max-width: 1100px) {
+    #section1 .dream-contact__inner {
+      justify-content: center;
+    }
+
+    #section1 .dream-contact__features {
+      gap: 20px;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    #section1 .dream-contact__inner {
+      min-height: auto;
+    }
+
+    #section1 .dream-contact__heading {
+      max-width: 100%;
+      font-size: clamp(32px, 4.6vw, 48px);
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    #section1 .dream-contact__inner {
+      gap: 30px;
+    }
+
+    #section1 .dream-contact__eyebrow {
+      margin-bottom: 16px;
+      font-size: 12px;
+    }
+
+    #section1 .dream-contact__heading {
+      max-width: 100%;
+      font-size: clamp(28px, 7.8vw, 44px);
+      line-height: 1.04;
+      letter-spacing: -.04em;
+      white-space: normal;
+    }
+
+    #section1 .dream-contact__description {
+      margin-top: 23px;
+      font-size: 16px;
+      line-height: 1.7;
+      white-space: normal;
+    }
+
+    #section1 .dream-contact__description p {
+      white-space: normal;
+    }
+
+    #section1 .dream-contact__features {
+      display: flex;
+      width: 100%;
+      gap: 0;
+      margin-top: 33px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    #section1 .dream-contact__features::-webkit-scrollbar {
+      display: none;
+    }
+
+    #section1 .dream-contact__feature {
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+      gap: 10px;
+      padding-inline: 8px;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    #section1 .dream-contact__feature-icon {
+      width: 34px;
+      height: 34px;
+    }
+
+    #section1 .dream-contact__feature-title {
+      font-size: 17px;
+      line-height: 1.4;
+    }
+
+    #section1 .dream-contact__feature-text {
+      margin-top: 5px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    #section1 .dream-contact__feature-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 20px;
+    }
+
+  }
+
+  /* =========================================================
+     REFERENCE SPACING — SMALL MOBILE
+     Mirrors the first section: 14px side spacing at <= 640px.
+     ========================================================= */
+  @media screen and (max-width: 640px) {
+    #section1 {
+      padding-top: var(--dc-mobile-pt);
+      padding-bottom: var(--dc-mobile-pb);
+      padding-left: var(--dc-mobile-pl);
+      padding-right: var(--dc-mobile-pr);
+    }
+  }
+
+  @media screen and (max-width: 420px) {
+    #section1 .dream-contact__heading {
+      font-size: clamp(27px, 8.6vw, 36px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #section1 .dream-contact__features {
+      scroll-behavior: auto;
+    }
+
+    #section1 .dream-contact__feature-dot {
+      transition: none;
+    }
+  }
+
+  /* Desktop-only feature-row refinement */
+  @media screen and (min-width: 901px) {
+    #section1 .dream-contact__features {
+      max-width: 820px;
+      width: 100%;
+      gap: clamp(16px, 2vw, 30px);
+    }
+
+    #section1 .dream-contact__feature {
+      gap: 10px;
+    }
+
+    #section1 .dream-contact__feature-icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    #section1 .dream-contact__feature-title {
+      font-size: 15px;
+      line-height: 1.35;
+      white-space: nowrap;
+      word-break: normal;
+      overflow-wrap: normal;
+    }
+  }
+
+  @media screen and (min-width: 901px) and (max-width: 1100px) {
+    #section1 .dream-contact__features {
+      gap: 14px;
+      max-width: 100%;
+    }
+
+    #section1 .dream-contact__feature {
+      gap: 8px;
+    }
+
+    #section1 .dream-contact__feature-icon {
+      width: 27px;
+      height: 27px;
+    }
+
+    #section1 .dream-contact__feature-title {
+      font-size: 14px;
+    }
+
+    #section1 .dream-contact__feature-text {
+      font-size: 12px;
+      line-height: 1.55;
+    }
+  }
+
+

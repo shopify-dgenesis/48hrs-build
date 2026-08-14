@@ -1,0 +1,810 @@
+
+  /* =========================================================
+     STICKY SHOPIFY SECTION WRAPPER
+
+     This is the important part.
+
+     We apply sticky to Shopify's generated outer section,
+     rather than the inner header. This allows the header
+     to stay fixed while the rest of the page scrolls.
+     ========================================================= */
+
+  #shopify-section-sections--21367313334350__nehemiah_header_FWDbLd {
+    
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0px;
+    
+
+    z-index: 50;
+  }
+
+
+  /* =========================================================
+     HEADER ROOT
+     ========================================================= */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd {
+    --launch-bg: #030a0e;
+    --launch-accent: #b9f234;
+
+    --header-text: #f4f7f1;
+    --header-muted: #b5c1c5;
+    --header-border: #243239;
+    --header-button-text: #0b1407;
+
+    --header-container: 1180px;
+
+    position: relative;
+
+    width: 100%;
+
+    z-index: 1;
+
+    color: var(--header-text);
+
+    font-family: "Montserrat", Arial, sans-serif;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd *,
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd *::before,
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd *::after {
+    box-sizing: border-box;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd button {
+    font: inherit;
+  }
+
+
+  /* =========================================================
+     HEADER SHELL
+     ========================================================= */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__shell {
+    position: relative;
+
+    width: 100%;
+
+    border-bottom: 0;
+
+    background: var(--launch-bg);
+
+    background:
+      
+        radial-gradient(
+          circle at 18% 25%,
+          color-mix(
+            in srgb,
+            var(--launch-accent) 7%,
+            transparent
+          ),
+          transparent 35%
+        ),
+      
+
+      color-mix(
+        in srgb,
+        var(--launch-bg)
+        92%,
+        transparent
+      );
+
+    
+      -webkit-backdrop-filter:
+        blur(14px);
+
+      backdrop-filter:
+        blur(14px);
+    
+
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+
+  /* =========================================================
+     SHADOW WHEN SCROLLED
+     ========================================================= */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__shell.is-scrolled {
+    box-shadow: none;
+
+    border-bottom-color: transparent;
+  }
+
+
+  /* =========================================================
+     CONTAINER
+     ========================================================= */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__container {
+    width: min(
+      var(--header-container),
+      calc(
+        100% -
+        44px
+      )
+    );
+
+    min-height:
+      82px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(150px, 1fr)
+      auto
+      minmax(150px, 1fr);
+
+    align-items: center;
+
+    gap: 32px;
+  }
+
+
+  /* =========================================================
+     BRAND
+     ========================================================= */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__brand {
+    justify-self: start;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
+
+    color: var(--header-text);
+  }
+
+
+  /* Logo */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__logo {
+    display: block;
+
+    width: auto;
+
+    max-width:
+      160px;
+
+    height: auto;
+
+    object-fit: contain;
+  }
+
+
+  /* =========================================================
+     FALLBACK BRAND ICON
+     ========================================================= */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__brand-icon {
+    position: relative;
+
+    flex:
+      0 0
+      28px;
+
+    width:
+      28px;
+
+    height:
+      28px;
+
+    border:
+      1px solid
+      color-mix(
+        in srgb,
+        var(--launch-accent) 65%,
+        transparent
+      );
+
+    border-radius: 50%;
+
+    background:
+      color-mix(
+        in srgb,
+        var(--launch-accent) 7%,
+        transparent
+      );
+
+    box-shadow:
+      0 0 18px
+      color-mix(
+        in srgb,
+        var(--launch-accent) 7%,
+        transparent
+      );
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__brand-icon::before {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--launch-accent);
+
+    transform:
+      translate(-50%, -50%);
+
+    box-shadow:
+      0 0 10px
+      color-mix(
+        in srgb,
+        var(--launch-accent) 60%,
+        transparent
+      );
+  }
+
+
+  /* =========================================================
+     BRAND TEXT
+     ========================================================= */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__brand-text {
+    display: inline-block;
+
+    white-space: nowrap;
+
+    color: var(--header-text);
+
+    font-size:
+      17px;
+
+    line-height: 1;
+
+    font-weight:
+      700;
+
+    letter-spacing:
+      0.08em;
+  }
+
+
+  /* =========================================================
+     DESKTOP NAVIGATION
+     ========================================================= */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__nav {
+    justify-self: center;
+
+    display: flex;
+    align-items: center;
+
+    gap:
+      32px;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__nav-link {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 42px;
+
+    color: var(--header-muted);
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+    transition:
+      color 0.25s ease;
+  }
+
+
+  /* Nav underline */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__nav-link::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 6px;
+
+    height: 1px;
+
+    background:
+      var(--launch-accent);
+
+    transform:
+      scaleX(0);
+
+    transform-origin: center;
+
+    transition:
+      transform 0.25s ease;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__nav-link:hover,
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__nav-link:focus-visible {
+    color:
+      var(--header-text);
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__nav-link:hover::after,
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__nav-link:focus-visible::after {
+    transform:
+      scaleX(1);
+  }
+
+
+  /* =========================================================
+     DESKTOP CTA
+     ========================================================= */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__actions {
+    justify-self: end;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    min-height:
+      46px;
+
+    padding:
+      0
+      20px;
+
+    border:
+      1px solid
+      color-mix(
+        in srgb,
+        var(--launch-accent) 85%,
+        transparent
+      );
+
+    border-radius:
+      10px;
+
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(
+          in srgb,
+          var(--launch-accent) 88%,
+          white
+        ),
+        var(--launch-accent)
+      );
+
+    color:
+      var(--header-button-text);
+
+    font-size:
+      12px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    box-shadow:
+      0 8px 24px
+      color-mix(
+        in srgb,
+        var(--launch-accent) 9%,
+        transparent
+      );
+
+    transition:
+      transform 0.25s ease,
+      filter 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__cta:hover {
+    color:
+      var(--header-button-text);
+
+    transform:
+      translateY(-1px);
+
+    filter:
+      brightness(1.04);
+
+    box-shadow:
+      0 12px 30px
+      color-mix(
+        in srgb,
+        var(--launch-accent) 14%,
+        transparent
+      );
+  }
+
+
+  /* CTA Arrow */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__cta-arrow {
+    display: inline-block;
+
+    transition:
+      transform 0.25s ease;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd
+  .nehemiah-header__cta:hover
+  .nehemiah-header__cta-arrow {
+    transform:
+      translateX(4px);
+  }
+
+
+  /* =========================================================
+     MOBILE HAMBURGER
+     ========================================================= */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-toggle {
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    border:
+      1px solid
+      var(--header-border);
+
+    border-radius: 10px;
+
+    background:
+      color-mix(
+        in srgb,
+        var(--launch-bg) 88%,
+        transparent
+      );
+
+    color:
+      var(--header-text);
+
+    cursor: pointer;
+  }
+
+
+  /* Hamburger lines */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__hamburger {
+    position: relative;
+
+    width: 19px;
+    height: 14px;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__hamburger span {
+    position: absolute;
+
+    left: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 1.5px;
+
+    border-radius: 10px;
+
+    background:
+      currentColor;
+
+    transition:
+      top 0.25s ease,
+      transform 0.25s ease,
+      opacity 0.25s ease;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__hamburger span:nth-child(1) {
+    top: 0;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__hamburger span:nth-child(2) {
+    top: 6px;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__hamburger span:nth-child(3) {
+    top: 12px;
+  }
+
+
+  /* Hamburger open */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd
+  .nehemiah-header__mobile-toggle[aria-expanded="true"]
+  .nehemiah-header__hamburger span:nth-child(1) {
+    top: 6px;
+
+    transform:
+      rotate(45deg);
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd
+  .nehemiah-header__mobile-toggle[aria-expanded="true"]
+  .nehemiah-header__hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd
+  .nehemiah-header__mobile-toggle[aria-expanded="true"]
+  .nehemiah-header__hamburger span:nth-child(3) {
+    top: 6px;
+
+    transform:
+      rotate(-45deg);
+  }
+
+
+  /* =========================================================
+     MOBILE MENU PANEL
+     ========================================================= */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-panel {
+    display: none;
+
+    width: 100%;
+
+    border-top:
+      1px solid
+      color-mix(
+        in srgb,
+        var(--header-border) 75%,
+        transparent
+      );
+
+    background:
+      color-mix(
+        in srgb,
+        var(--launch-bg) 97%,
+        transparent
+      );
+
+    
+      -webkit-backdrop-filter:
+        blur(14px);
+
+      backdrop-filter:
+        blur(14px);
+    
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-panel.is-open {
+    display: block;
+  }
+
+
+  /* Mobile menu inner */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-inner {
+    width: min(
+      var(--header-container),
+      calc(
+        100% -
+        32px
+      )
+    );
+
+    margin: 0 auto;
+
+    padding:
+      16px
+      0
+      24px;
+  }
+
+
+  /* =========================================================
+     MOBILE NAV
+     ========================================================= */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-nav {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 54px;
+
+    border-bottom:
+      1px solid
+      color-mix(
+        in srgb,
+        var(--header-border) 55%,
+        transparent
+      );
+
+    color:
+      var(--header-text);
+
+    font-size:
+      14px;
+
+    line-height: 1.3;
+
+    font-weight: 600;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-link::after {
+    content: "→";
+
+    color:
+      var(--launch-accent);
+
+    font-size: 16px;
+  }
+
+
+  /* =========================================================
+     MOBILE CTA
+     ========================================================= */
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    min-height:
+      54px;
+
+    margin-top:
+      20px;
+
+    border: 0;
+
+    border-radius:
+      10px;
+
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(
+          in srgb,
+          var(--launch-accent) 88%,
+          white
+        ),
+        var(--launch-accent)
+      );
+
+    color:
+      var(--header-button-text);
+
+    font-size:
+      13px;
+
+    line-height: 1;
+
+    font-weight: 700;
+  }
+
+
+  /* =========================================================
+     TABLET / MOBILE
+     ========================================================= */
+
+  @media screen and (max-width: 989px) {
+
+    #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__container {
+      width:
+        calc(
+          100% -
+          32px
+        );
+
+      min-height:
+        72px;
+
+      grid-template-columns:
+        1fr auto;
+
+      gap: 20px;
+    }
+
+    #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__nav,
+    #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__actions {
+      display: none;
+    }
+
+    #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-toggle {
+      display: inline-flex;
+
+      justify-self: end;
+    }
+
+    #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__brand-text {
+      font-size:
+        15px;
+    }
+
+    #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__logo {
+      max-width:
+        135px;
+    }
+
+  }
+
+
+  /* =========================================================
+     SMALL MOBILE
+     ========================================================= */
+
+  @media screen and (max-width: 480px) {
+
+    #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__brand {
+      gap: 8px;
+    }
+
+    #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__brand-icon {
+      flex-basis: 24px;
+
+      width: 24px;
+      height: 24px;
+    }
+
+    #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-toggle {
+      width: 42px;
+      height: 42px;
+    }
+
+  }
+
+
+  /* =========================================================
+     REDUCED MOTION
+     ========================================================= */
+
+  @media (prefers-reduced-motion: reduce) {
+
+    #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd *,
+    #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd *::before,
+    #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd *::after {
+      transition-duration:
+        0.01ms !important;
+    }
+
+  }
+

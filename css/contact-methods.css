@@ -1,0 +1,340 @@
+
+  #section3 {
+    --ts-bg: #050c13;
+    --ts-card-bg: #07111b;
+    --ts-border: #1d2a36;
+    --ts-text: #ffffff;
+    --ts-muted: #98a3b3;
+    --ts-accent: #b9f234;
+    --ts-max-width: 1300px;
+
+    background: var(--ts-bg);
+    padding-top: 0px;
+    padding-bottom: 40px;
+    font-family: Montserrat, Arial, sans-serif;
+    overflow: visible;
+  }
+
+  #section3 * {
+    box-sizing: border-box;
+  }
+
+  #section3 .reach-strip-section__inner {
+    width: min(
+      var(--ts-max-width),
+      calc(100% - 44px)
+    );
+    margin-inline: auto;
+  }
+
+  #section3 .reach-strip-card {
+    position: relative;
+    width: 100%;
+    background: var(--ts-card-bg);
+    border: 1px solid var(--ts-border);
+    border-radius: 14px;
+    padding: 24px 30px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.01), 0 12px 34px rgba(0,0,0,.18);
+  }
+
+  #section3 .reach-strip-card__eyebrow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    max-width: calc(100% - 40px);
+    padding: 0 22px;
+    background: var(--ts-bg);
+    color: var(--ts-accent);
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  #section3 .reach-strip-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  #section3 .reach-strip-item {
+    min-width: 0;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 5px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #section3 .reach-strip-item--link:hover {
+    background: color-mix(in srgb, var(--ts-accent) 5%, transparent);
+  }
+
+  #section3 .reach-strip-item--link:focus-visible {
+    outline: 2px solid var(--ts-accent);
+    outline-offset: -3px;
+  }
+
+  #section3 .reach-strip-item:first-child {
+    padding-left: 0;
+  }
+
+  #section3 .reach-strip-item:last-child {
+    padding-right: 0;
+  }
+
+  #section3 .reach-strip-item + .reach-strip-item {
+    border-left: 1px solid var(--ts-border);
+  }
+
+  #section3 .reach-strip-item__icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    color: var(--ts-accent);
+    display: grid;
+    place-items: center;
+  }
+
+  #section3 .reach-strip-item__icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  #section3 .reach-strip-item__content {
+    min-width: 0;
+  }
+
+
+  #section3 .reach-strip-item__value {
+    color: var(--ts-text);
+    font-size: 20px;
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: -.025em;
+  }
+
+
+  #section3 .reach-strip-item__label {
+    margin-top: 4px;
+    color: var(--ts-muted);
+    font-size: 12px;
+    line-height: 1.35;
+    font-weight: 600;
+  }
+
+  #section3 .reach-strip-item__label--second {
+    margin-top: 3px;
+  }
+
+
+  /* =========================================================
+     UNIFORM SECTION SPACING — TABLET
+     Matches the Process Scroll reference container.
+     ========================================================= */
+  @media screen and (max-width: 989px) {
+    #section3 {
+      padding-top: 12px;
+      padding-bottom: 32px;
+    }
+
+    #section3 .reach-strip-section__inner {
+      width: min(
+        calc(100% - 32px),
+        var(--ts-max-width)
+      );
+    }
+  }
+
+  @media screen and (max-width: 1100px) {
+    #section3 .reach-strip-card {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    #section3 .reach-strip-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #section3 .reach-strip-item {
+      padding: 16px 18px;
+    }
+
+    #section3 .reach-strip-item:first-child,
+    #section3 .reach-strip-item:nth-child(3) {
+      padding-left: 0;
+    }
+
+    #section3 .reach-strip-item:nth-child(2),
+    #section3 .reach-strip-item:nth-child(4) {
+      padding-right: 0;
+    }
+
+    #section3 .reach-strip-item:nth-child(3) {
+      border-left: 0;
+    }
+
+    #section3 .reach-strip-item:nth-child(n+3) {
+      border-top: 1px solid var(--ts-border);
+    }
+  }
+
+
+  @media screen and (max-width: 749px) {
+
+    #section3 .reach-strip-card {
+      width: 100%;
+      padding: 22px 12px 8px;
+      border-radius: 14px;
+      overflow: visible;
+    }
+
+    #section3 .reach-strip-card__eyebrow {
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: max-content;
+      max-width: calc(100% - 28px);
+      padding: 2px 10px;
+      background: var(--ts-bg);
+      color: var(--ts-accent);
+      font-size: 11px;
+      line-height: 1.2;
+      letter-spacing: .08em;
+      white-space: nowrap;
+      overflow: visible;
+    }
+
+    #section3 .reach-strip-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 100%;
+      align-items: stretch;
+    }
+
+    #section3 .reach-strip-item,
+    #section3 .reach-strip-item:first-child,
+    #section3 .reach-strip-item:nth-child(2),
+    #section3 .reach-strip-item:nth-child(3),
+    #section3 .reach-strip-item:nth-child(4),
+    #section3 .reach-strip-item:last-child {
+      width: 100%;
+      min-width: 0;
+      min-height: 86px;
+      padding: 15px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 11px;
+      border: 0;
+      overflow: hidden;
+    }
+
+    #section3 .reach-strip-item:nth-child(even) {
+      border-left: 1px solid var(--ts-border);
+    }
+
+    #section3 .reach-strip-item:nth-child(n+3) {
+      border-top: 1px solid var(--ts-border);
+    }
+
+    #section3 .reach-strip-item__icon {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+    }
+
+    #section3 .reach-strip-item__content {
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    #section3 .reach-strip-item__value {
+      font-size: 20px;
+      line-height: 1.15;
+      overflow-wrap: anywhere;
+    }
+
+    #section3 .reach-strip-item__label {
+      margin-top: 4px;
+      font-size: 12px;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    #section3 .reach-strip-item__label--second {
+      margin-top: 2px;
+    }
+  }
+
+
+  /* =========================================================
+     UNIFORM SECTION SPACING — SMALL MOBILE
+     14px left/right gutter, matching the reference section.
+     ========================================================= */
+  @media screen and (max-width: 640px) {
+    #section3 .reach-strip-section__inner {
+      width: calc(100% - 28px);
+    }
+  }
+
+  @media screen and (max-width: 390px) {
+    #section3 .reach-strip-card__eyebrow {
+      width: calc(100% - 28px);
+      max-width: calc(100% - 28px);
+      padding: 2px 8px;
+      white-space: normal;
+      text-align: center;
+      line-height: 1.25;
+    }
+
+    #section3 .reach-strip-card {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    #section3 .reach-strip-card__eyebrow {
+      max-width: calc(100% - 18px);
+      padding-left: 7px;
+      padding-right: 7px;
+      font-size: 9px;
+      letter-spacing: .055em;
+    }
+
+    #section3 .reach-strip-item,
+    #section3 .reach-strip-item:first-child,
+    #section3 .reach-strip-item:nth-child(2),
+    #section3 .reach-strip-item:nth-child(3),
+    #section3 .reach-strip-item:nth-child(4),
+    #section3 .reach-strip-item:last-child {
+      min-height: 82px;
+      padding: 13px 9px;
+      gap: 8px;
+    }
+
+    #section3 .reach-strip-item__icon {
+      width: 24px;
+      height: 24px;
+      flex-basis: 24px;
+    }
+
+    #section3 .reach-strip-item__value {
+      font-size: 15px;
+    }
+
+    #section3 .reach-strip-item__label {
+      font-size: 10px;
+    }
+  }
+
+
