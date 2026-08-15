@@ -346,6 +346,26 @@ const resendGet = (path) => fetch('https://api.resend.com' + path, {
   headers: { authorization: `Bearer ${CONFIG.resendKey}` },
 });
 
+/* "Name <a@b.com>" -> "a@b.com" */
+const bareAddress = (value) => {
+  const angled = String(value || '').match(/<([^>]+)>/);
+  return (angled ? angled[1] : String(value || '')).trim().toLowerCase();
+};
+const addressDomain = (value) => {
+  const bare = bareAddress(value);
+  const at = bare.lastIndexOf('@');
+  return at === -1 ? '' : bare.slice(at + 1);
+};
+
+/* Forwarding to the domain we receive for delivers straight back into this
+   webhook, and every hop is a new email_id so de-duplication cannot stop it.
+   Refuse the configuration outright rather than let it run away. */
+function inboundLoopRisk() {
+  const receivingDomain = addressDomain(CONFIG.forwardFrom);
+  if (!receivingDomain) return [];
+  return CONFIG.forwardTo.filter(target => addressDomain(target) === receivingDomain);
+}
+
 async function collectAttachments(email) {
   const list = Array.isArray(email.attachments) ? email.attachments : [];
   const out = [];
@@ -387,6 +407,12 @@ async function handleInbound(req, res) {
     console.error('[inbound] not configured (need RESEND_API_KEY, RESEND_WEBHOOK_SECRET, FORWARD_TO)');
     return json(503, { ok: false, error: 'Inbound forwarding is not configured.' });
   }
+  const loops = inboundLoopRisk();
+  if (loops.length) {
+    console.error(`[inbound] refusing to forward: FORWARD_TO (${loops.join(', ')}) is on the same`
+      + ` domain we receive for — that would loop. Point it at an external mailbox.`);
+    return json(503, { ok: false, error: 'Inbound forwarding is misconfigured.' });
+  }
 
   // Signature is computed over the exact bytes — never re-serialize first.
   let raw;
@@ -425,6 +451,13 @@ async function handleInbound(req, res) {
     const email = await lookup.json();
 
     const sender = email.from || event.data.from || 'unknown sender';
+
+    // Second line of defence: never forward something we ourselves sent.
+    if (bareAddress(sender) === bareAddress(CONFIG.forwardFrom)) {
+      console.warn(`[inbound] ${emailId} was sent by this server — not forwarding (loop guard)`);
+      return json(200, { ok: true, skipped: 'loop' });
+    }
+
     const recipients = [].concat(email.to || event.data.to || []).join(', ');
     const forWhom = [].concat(email.received_for || event.data.received_for || []).join(', ');
     const subject = email.subject || event.data.subject || '(no subject)';
@@ -620,9 +653,17 @@ server.listen(CONFIG.port, CONFIG.host, () => {
   console.log(`nehemiah server listening on http://${CONFIG.host}:${CONFIG.port}`);
   console.log(`  contact -> ${CONFIG.to.join(', ')}  from ${CONFIG.from}`);
   console.log(`  resend key ${CONFIG.resendKey ? 'loaded' : 'MISSING'}`);
-  console.log(`  inbound  ${CONFIG.webhookSecret && CONFIG.forwardTo.length
-    ? `-> ${CONFIG.forwardTo.join(', ')}`
-    : 'disabled (set RESEND_WEBHOOK_SECRET + FORWARD_TO)'}`);
+  const loops = inboundLoopRisk();
+  if (loops.length) {
+    console.error(`  inbound  MISCONFIGURED — FORWARD_TO (${loops.join(', ')}) is on `
+      + `${addressDomain(CONFIG.forwardFrom)}, the domain Resend receives for.`);
+    console.error(`           Forwarding there loops back into this webhook forever.`);
+    console.error(`           Set FORWARD_TO to an external mailbox (Gmail, Outlook, ...).`);
+  } else {
+    console.log(`  inbound  ${CONFIG.webhookSecret && CONFIG.forwardTo.length
+      ? `-> ${CONFIG.forwardTo.join(', ')}`
+      : 'disabled (set RESEND_WEBHOOK_SECRET + FORWARD_TO)'}`);
+  }
 });
 
 for (const signal of ['SIGINT', 'SIGTERM']) {
