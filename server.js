@@ -226,14 +226,28 @@ function clientIp(req) {
 function readBody(req, limit) {
   return new Promise((resolve, reject) => {
     let size = 0;
+    let overflowed = false;
     const chunks = [];
+
     req.on('data', (chunk) => {
+      // Destroying the socket here would kill the connection before the 413
+      // could be written, leaving the caller with a connection reset instead
+      // of a message explaining what went wrong. Stop buffering and let the
+      // handler answer; nginx buffers the request body ahead of us, so there
+      // is nothing meaningful left to drain.
+      if (overflowed) return;
       size += chunk.length;
-      if (size > limit) { reject(new Error('too large')); req.destroy(); return; }
+      if (size > limit) {
+        overflowed = true;
+        chunks.length = 0;
+        reject(Object.assign(new Error('body too large'), { code: 'BODY_TOO_LARGE' }));
+        return;
+      }
       chunks.push(chunk);
     });
-    req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
-    req.on('error', reject);
+
+    req.on('end', () => { if (!overflowed) resolve(Buffer.concat(chunks).toString('utf8')); });
+    req.on('error', (err) => { if (!overflowed) reject(err); });
   });
 }
 
@@ -430,7 +444,10 @@ function renderIntakeEmail(values, files, meta) {
 async function handleIntake(req, res) {
   const json = (status, body) => {
     const buf = Buffer.from(JSON.stringify(body));
-    res.writeHead(status, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', 'content-length': buf.length });
+    const headers = { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', 'content-length': buf.length };
+    // A rejected upload may still be arriving; close rather than try to reuse.
+    if (status === 413) headers.connection = 'close';
+    res.writeHead(status, headers);
     res.end(buf);
   };
 
