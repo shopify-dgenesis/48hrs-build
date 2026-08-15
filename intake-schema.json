@@ -1,0 +1,382 @@
+[
+  {
+    "step": 1,
+    "title": "Business & primary contact",
+    "fields": [
+      {
+        "name": "intake_field_1",
+        "type": "text",
+        "label": "Brand / Store Name"
+      },
+      {
+        "name": "intake_field_2",
+        "type": "select",
+        "label": "Industry"
+      },
+      {
+        "name": "intake_field_3",
+        "type": "text",
+        "label": "Primary Contact Name"
+      },
+      {
+        "name": "intake_field_4",
+        "type": "email",
+        "label": "Business Email"
+      },
+      {
+        "name": "intake_field_5",
+        "type": "tel",
+        "label": "Phone / WhatsApp"
+      },
+      {
+        "name": "intake_field_6",
+        "type": "select",
+        "label": "Time Zone"
+      },
+      {
+        "name": "approver_template--21367318216782__intake_48h_CXCth3",
+        "type": "radio",
+        "label": "Decision authority",
+        "options": [
+          "I am the final approver",
+          "Another person approves",
+          "Approval is shared"
+        ]
+      }
+    ]
+  },
+  {
+    "step": 2,
+    "title": "Shopify store & project scope",
+    "fields": [
+      {
+        "name": "store_status_template--21367318216782__intake_48h_CXCth3",
+        "type": "radio",
+        "label": "Shopify store status",
+        "options": [
+          "New Shopify store",
+          "Existing Shopify store",
+          "Migrating to Shopify"
+        ]
+      },
+      {
+        "name": "intake_field_7",
+        "type": "text",
+        "label": "Shopify Store URL"
+      },
+      {
+        "name": "intake_field_8",
+        "type": "select",
+        "label": "Number of products at launch"
+      },
+      {
+        "name": "intake_field_9",
+        "type": "text",
+        "label": "Pages required at launch"
+      },
+      {
+        "name": "intake_field_10",
+        "type": "textarea",
+        "label": "Launch-critical features or apps"
+      },
+      {
+        "name": "intake_field_11",
+        "type": "textarea",
+        "label": "Items outside the 48-hour scope"
+      }
+    ]
+  },
+  {
+    "step": 3,
+    "title": "Brand assets & design direction",
+    "fields": [
+      {
+        "name": "logo_template--21367318216782__intake_48h_CXCth3",
+        "type": "radio",
+        "label": "Logo readiness",
+        "options": [
+          "Logo ready",
+          "Text logo for launch",
+          "Logo design required"
+        ]
+      },
+      {
+        "name": "intake_field_12",
+        "type": "file",
+        "label": "Logo Files",
+        "accept": ".svg,.png,.jpg,.jpeg,.webp,.pdf"
+      },
+      {
+        "name": "intake_field_13",
+        "type": "file",
+        "label": "Favicon",
+        "accept": ".ico,.png,.svg,.jpg,.jpeg,.webp"
+      },
+      {
+        "name": "intake_field_14",
+        "type": "file",
+        "label": "Fonts & Brand Guide",
+        "accept": ".pdf,.doc,.docx,.txt,.zip,.otf,.ttf,.woff,.woff2"
+      },
+      {
+        "name": "intake_field_15",
+        "type": "url",
+        "label": "Brand Asset Folder Link"
+      },
+      {
+        "name": "intake_field_16",
+        "type": "text",
+        "label": "Primary Brand Color"
+      },
+      {
+        "name": "intake_field_17",
+        "type": "text",
+        "label": "Accent Brand Color"
+      },
+      {
+        "name": "intake_field_18",
+        "type": "textarea",
+        "label": "Reference websites"
+      },
+      {
+        "name": "intake_field_19",
+        "type": "textarea",
+        "label": "Must-have design elements"
+      },
+      {
+        "name": "intake_field_20",
+        "type": "textarea",
+        "label": "Styles or elements to avoid"
+      }
+    ]
+  },
+  {
+    "step": 4,
+    "title": "Products, images & website content",
+    "fields": [
+      {
+        "name": "intake_field_21",
+        "type": "file",
+        "label": "Product catalog spreadsheet",
+        "accept": ".csv,.xlsx,.xls"
+      },
+      {
+        "name": "intake_field_22",
+        "type": "file",
+        "label": "Product & collection images",
+        "multiple": true,
+        "accept": ".png,.jpg,.jpeg,.webp,.zip"
+      },
+      {
+        "name": "intake_field_23",
+        "type": "file",
+        "label": "Other Pages Content",
+        "accept": ".doc,.docx,.pdf,.txt"
+      },
+      {
+        "name": "main_menu",
+        "type": "textarea",
+        "label": "Main Menu"
+      },
+      {
+        "name": "footer_menu",
+        "type": "textarea",
+        "label": "Footer Menu"
+      },
+      {
+        "name": "collection_structure",
+        "type": "textarea",
+        "label": "Collections & Product Categories"
+      },
+      {
+        "name": "navigation_notes",
+        "type": "textarea",
+        "label": "Additional Navigation Notes"
+      },
+      {
+        "name": "intake_field_24",
+        "type": "file",
+        "label": "Desktop Hero Banner",
+        "accept": ".png,.jpg,.jpeg,.webp,.svg,.mp4,.webm"
+      },
+      {
+        "name": "intake_field_25",
+        "type": "file",
+        "label": "Mobile Hero Banner",
+        "accept": ".png,.jpg,.jpeg,.webp,.svg,.mp4,.webm"
+      },
+      {
+        "name": "intake_field_26",
+        "type": "url",
+        "label": "Hero Banner Folder / File Link"
+      },
+      {
+        "name": "intake_field_27",
+        "type": "text",
+        "label": "Hero Headline"
+      },
+      {
+        "name": "intake_field_28",
+        "type": "text",
+        "label": "Hero CTA Text"
+      },
+      {
+        "name": "intake_field_29",
+        "type": "textarea",
+        "label": "Hero Supporting Text"
+      },
+      {
+        "name": "intake_field_30",
+        "type": "text",
+        "label": "Hero CTA Link / Destination"
+      },
+      {
+        "name": "intake_field_31",
+        "type": "url",
+        "label": "Other Pages Content Link"
+      },
+      {
+        "name": "intake_field_32",
+        "type": "text",
+        "label": "Pages included in the content document"
+      },
+      {
+        "name": "intake_field_33",
+        "type": "textarea",
+        "label": "Featured collections"
+      },
+      {
+        "name": "intake_field_34",
+        "type": "textarea",
+        "label": "Featured products"
+      },
+      {
+        "name": "intake_field_35",
+        "type": "textarea",
+        "label": "Special product requirements"
+      }
+    ]
+  },
+  {
+    "step": 5,
+    "title": "Commerce, domain & launch approval",
+    "fields": [
+      {
+        "name": "intake_field_36",
+        "type": "select",
+        "label": "Primary currency"
+      },
+      {
+        "name": "intake_field_37",
+        "type": "text",
+        "label": "Countries / markets to sell to"
+      },
+      {
+        "name": "intake_field_38",
+        "type": "text",
+        "label": "Payment provider"
+      },
+      {
+        "name": "intake_field_39",
+        "type": "text",
+        "label": "Primary domain"
+      },
+      {
+        "name": "intake_field_40",
+        "type": "textarea",
+        "label": "Shipping rules"
+      },
+      {
+        "name": "intake_field_41",
+        "type": "file",
+        "label": "Legal Pages Content",
+        "accept": ".doc,.docx,.pdf,.txt"
+      },
+      {
+        "name": "domain_provider",
+        "type": "text",
+        "label": "Domain Provider / Registrar"
+      },
+      {
+        "name": "domain_status",
+        "type": "select",
+        "label": "Domain Status"
+      },
+      {
+        "name": "dns_owner",
+        "type": "text",
+        "label": "Who Controls the Domain / DNS?"
+      },
+      {
+        "name": "dns_access",
+        "type": "select",
+        "label": "DNS Access Readiness"
+      },
+      {
+        "name": "sender_email",
+        "type": "email",
+        "label": "Shopify Sender / Notification Email"
+      },
+      {
+        "name": "support_email",
+        "type": "email",
+        "label": "Customer Support Email"
+      },
+      {
+        "name": "domain_notes",
+        "type": "textarea",
+        "label": "Domain / Email Notes"
+      },
+      {
+        "name": "intake_field_42",
+        "type": "url",
+        "label": "Legal Pages Document Link"
+      },
+      {
+        "name": "intake_field_43",
+        "type": "select",
+        "label": "Privacy Policy Status"
+      },
+      {
+        "name": "intake_field_44",
+        "type": "select",
+        "label": "Terms of Service Status"
+      },
+      {
+        "name": "intake_field_45",
+        "type": "select",
+        "label": "Shipping Policy Status"
+      },
+      {
+        "name": "intake_field_46",
+        "type": "select",
+        "label": "Refund / Return Policy Status"
+      },
+      {
+        "name": "intake_field_47",
+        "type": "date",
+        "label": "Target launch date"
+      },
+      {
+        "name": "intake_field_48",
+        "type": "text",
+        "label": "Preferred review window"
+      },
+      {
+        "name": "intake_field_49",
+        "type": "checkbox",
+        "label": "I confirm that the final project scope is approved before Hour 0."
+      },
+      {
+        "name": "intake_field_50",
+        "type": "checkbox",
+        "label": "I confirm that all critical content and product assets are ready or linked."
+      },
+      {
+        "name": "intake_field_51",
+        "type": "checkbox",
+        "label": "I understand the 48-hour clock begins only after required access and materials are verified."
+      }
+    ]
+  }
+]

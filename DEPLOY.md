@@ -159,7 +159,40 @@ If sending ever starts failing, check in this order:
 2. Resend → Domains — still verified?
 3. Resend → API Keys — key still valid and has *Sending access*?
 
-## What the endpoint accepts
+## The intake form (`/form`)
+
+`POST /api/intake` handles the five-step, 65-field build intake, including its
+nine uploads. It has its own endpoint because the contact route caps bodies at
+32 KB — not enough for a single logo.
+
+Field labels come from `intake-schema.json`, which is generated from `form.html`
+so the email reads "Brand / Store Name: Luxeve" rather than "intake_field_1".
+**If you add or rename a field in `form.html`, regenerate that file**, or the new
+field will be dropped from the email — the server only emits fields the schema
+knows about, which is also what stops arbitrary keys being injected.
+
+Limits, all overridable in `.env`:
+
+| Setting | Default | Notes |
+| --- | --- | --- |
+| `INTAKE_MAX_BODY_BYTES` | 30 MB | must stay under nginx `client_max_body_size` |
+| `INTAKE_MAX_ATTACHMENT_BYTES` | 20 MB | Resend caps a send at 40 MB; base64 adds ~33% |
+| `INTAKE_MAX_FILES` | 25 | one input accepts multiple files |
+| `INTAKE_RATE_MAX` | 3 | per IP per rate window |
+
+**nginx must allow the upload size.** The vhost needs `client_max_body_size 32m;`
+— with the old `64k` every upload fails with a 413 before it reaches Node:
+
+```bash
+sudo sed -i 's/client_max_body_size 64k;/client_max_body_size 32m;/' \
+  /etc/nginx/sites-available/build.nehemiahapps.com
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+Oversized submissions get a 413 with a message pointing the customer at the
+form's own Drive-link fields, which exist for exactly this case.
+
+## What the contact endpoint accepts
 
 `POST /api/contact`, JSON body. The server owns the field list, so unknown keys
 are ignored rather than injected into the email.

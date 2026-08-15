@@ -230,7 +230,8 @@ $H2_DIRECTIVE    server_name $DOMAIN;
     ssl_certificate     $SSL_CERT;
     ssl_certificate_key $SSL_KEY;
 
-    client_max_body_size 64k;
+    # The intake form posts its uploads as one JSON body; 64k would 413 a logo.
+    client_max_body_size 32m;
 
     location / {
         proxy_pass         http://127.0.0.1:$PORT;
@@ -249,7 +250,8 @@ server {
     listen [::]:80;
     server_name $DOMAIN;
 
-    client_max_body_size 64k;
+    # The intake form posts its uploads as one JSON body; 64k would 413 a logo.
+    client_max_body_size 32m;
 
     location / {
         proxy_pass         http://127.0.0.1:$PORT;

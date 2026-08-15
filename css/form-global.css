@@ -712,3 +712,48 @@
 @font-face { font-family: Montserrat; src: url('../assets/fonts/montserrat-600.woff2') format('woff2'); font-style: normal; font-weight: 600; font-display: swap; }
 @font-face { font-family: Montserrat; src: url('../assets/fonts/montserrat-700.woff2') format('woff2'); font-style: normal; font-weight: 700; font-display: swap; }
 @font-face { font-family: Montserrat; src: url('../assets/fonts/montserrat-800.woff2') format('woff2'); font-style: normal; font-weight: 800; font-display: swap; }
+
+
+/* =========================================================
+   INTAKE SUBMISSION STATE
+   ========================================================= */
+
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-status {
+  flex-basis: 100%;
+  margin: 14px 0 0;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+.form-status[hidden] {
+  display: none;
+}
+
+.form-status--success {
+  color: #d6f8a4;
+  background: rgba(185, 242, 52, 0.10);
+  border-color: rgba(185, 242, 52, 0.32);
+}
+
+.form-status--error {
+  color: #ffc9c2;
+  background: rgba(255, 96, 78, 0.10);
+  border-color: rgba(255, 96, 78, 0.34);
+}
+
+.b48-btn-primary[disabled] {
+  opacity: 0.65;
+  cursor: progress;
+}

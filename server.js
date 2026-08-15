@@ -42,7 +42,23 @@ const CONFIG = {
   forwardFrom: process.env.FORWARD_FROM || 'Nehemiah Mail <noreply@nehemiahapps.com>',
   // Resend caps a send at 40 MB; base64 inflates by ~33%, so stay well under.
   maxAttachmentBytes: Number(process.env.MAX_ATTACHMENT_BYTES) || 15 * 1024 * 1024,
+
+  // The intake form carries up to 9 uploads, so it needs far more headroom
+  // than the contact form. nginx client_max_body_size must allow this too.
+  intakeMaxBodyBytes: Number(process.env.INTAKE_MAX_BODY_BYTES) || 30 * 1024 * 1024,
+  intakeMaxAttachmentBytes: Number(process.env.INTAKE_MAX_ATTACHMENT_BYTES) || 20 * 1024 * 1024,
+  intakeMaxFiles: Number(process.env.INTAKE_MAX_FILES) || 25,
+  intakeRateMax: Number(process.env.INTAKE_RATE_MAX) || 3,
 };
+
+/* Field labels are derived from form.html so the emailed submission reads like
+   the form the customer actually filled in, not "intake_field_37". */
+let INTAKE_SCHEMA = [];
+try {
+  INTAKE_SCHEMA = JSON.parse(fs.readFileSync(path.join(__dirname, 'intake-schema.json'), 'utf8'));
+} catch (err) {
+  console.warn(`[warn] intake-schema.json could not be read (${err.message}) — /api/intake will return 503.`);
+}
 
 if (!CONFIG.resendKey) {
   console.warn('[warn] RESEND_API_KEY is not set — /api/contact will return 503 until it is.');
@@ -289,6 +305,239 @@ async function handleContact(req, res) {
   } catch (err) {
     console.error('[contact] send failed:', err.message);
     return json(502, { ok: false, error: 'We could not send your message right now. Please email support@nehemiahapps.com directly.' });
+  }
+}
+
+/* ============================================================
+   INTAKE FORM  (POST /api/intake)
+
+   The 48-hour intake is a five-step, 65-field form with up to
+   nine uploads, so it gets its own endpoint: the contact route's
+   32 KB body cap could not hold a single logo.
+   ============================================================ */
+
+const intakeHits = new Map();
+
+function intakeRateLimited(ip) {
+  const now = Date.now();
+  const recent = (intakeHits.get(ip) || []).filter(t => now - t < CONFIG.rateWindowMs);
+  if (recent.length >= CONFIG.intakeRateMax) { intakeHits.set(ip, recent); return true; }
+  recent.push(now);
+  intakeHits.set(ip, recent);
+  return false;
+}
+
+function renderIntakeEmail(values, files, meta) {
+  const sectionsHtml = [];
+  const textParts = [];
+
+  for (const step of INTAKE_SCHEMA) {
+    const rows = [];
+    const lines = [];
+
+    for (const field of step.fields) {
+      const raw = values[field.name];
+      let display;
+
+      if (field.type === 'file') {
+        // Uploads carry no text value — name them against the field they answer,
+        // so the reader can see which upload was the logo and which the favicon.
+        const attached = files.filter(f => f.field === field.name);
+        if (!attached.length) continue;
+        display = attached
+          .map(f => `${f.filename} (${(f.size / 1024).toFixed(0)} KB)`)
+          .join(', ');
+      } else if (field.type === 'checkbox') {
+        if (raw === undefined || raw === null) continue;
+        display = raw ? 'Yes' : 'No';
+      } else {
+        if (raw === undefined || raw === null || raw === '') continue;
+        display = String(raw);
+        if (!display.trim()) continue;
+      }
+
+      lines.push(`${field.label}: ${display}`);
+      const multiline = display.includes('\n');
+      rows.push(`
+        <tr>
+          <td style="padding:10px 16px;border-bottom:1px solid #eef1f3;vertical-align:top;
+                     font:600 12px/1.4 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+                     color:#5b6770;width:220px">${escapeHtml(field.label)}</td>
+          <td style="padding:10px 16px;border-bottom:1px solid #eef1f3;vertical-align:top;
+                     font:400 13px/1.55 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+                     color:#12191d"${multiline ? ' style="white-space:pre-wrap"' : ''}>${
+                       multiline
+                         ? `<div style="white-space:pre-wrap">${escapeHtml(display)}</div>`
+                         : escapeHtml(display)
+                     }</td>
+        </tr>`);
+    }
+
+    if (!rows.length) continue;
+    sectionsHtml.push(`
+      <tr><td style="padding:22px 24px 8px">
+        <div style="font:700 13px/1.3 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+                    color:#0b1418;text-transform:uppercase;letter-spacing:.06em">
+          Step ${step.step} — ${escapeHtml(step.title)}
+        </div>
+      </td></tr>
+      <tr><td style="padding:0 8px">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">${rows.join('')}</table>
+      </td></tr>`);
+    textParts.push(`\n== Step ${step.step} — ${step.title} ==\n` + lines.join('\n'));
+  }
+
+  const attachNote = files.length
+    ? `<p style="margin:0;font:400 12px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#3c4a52">
+         <strong>${files.length} file(s) attached</strong> — ${escapeHtml(files.map(f => f.filename).join(', '))}</p>`
+    : `<p style="margin:0;font:400 12px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#8a949b">No files attached.</p>`;
+
+  const html = `<!doctype html>
+<html><body style="margin:0;padding:24px;background:#f4f6f7">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0"
+         style="max-width:760px;margin:0 auto;background:#fff;border:1px solid #e0e5e8;border-radius:12px;overflow:hidden">
+    <tr><td style="padding:20px 24px;background:#0b1418">
+      <div style="font:700 16px/1.3 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#b9f234">
+        48-Hour Build Intake
+      </div>
+      <div style="font:400 13px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#8fa0a8;margin-top:4px">
+        ${escapeHtml(meta.brand || 'New submission')}
+      </div>
+    </td></tr>
+    ${sectionsHtml.join('')}
+    <tr><td style="padding:16px 24px;background:#fafbfb;border-top:1px solid #eef1f3">${attachNote}</td></tr>
+    <tr><td style="padding:12px 24px 18px;background:#fafbfb;
+                   font:400 12px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#7b8790">
+      Received ${escapeHtml(meta.receivedAt)}<br>IP ${escapeHtml(meta.ip)}
+    </td></tr>
+  </table>
+</body></html>`;
+
+  const text = [
+    '48-HOUR BUILD INTAKE',
+    '====================',
+    meta.brand || '',
+    ...textParts,
+    '',
+    files.length ? `Attachments: ${files.map(f => f.filename).join(', ')}` : 'No files attached.',
+    `Received ${meta.receivedAt}`,
+    `IP ${meta.ip}`,
+  ].join('\n');
+
+  return { html, text };
+}
+
+async function handleIntake(req, res) {
+  const json = (status, body) => {
+    const buf = Buffer.from(JSON.stringify(body));
+    res.writeHead(status, { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', 'content-length': buf.length });
+    res.end(buf);
+  };
+
+  if (req.method !== 'POST') return json(405, { ok: false, error: 'Method not allowed.' });
+  if (!CONFIG.resendKey) return json(503, { ok: false, error: 'Email is not configured yet.' });
+  if (!INTAKE_SCHEMA.length) return json(503, { ok: false, error: 'Intake form is not configured.' });
+
+  const ip = clientIp(req);
+  if (intakeRateLimited(ip)) {
+    return json(429, { ok: false, error: 'Too many submissions. Please try again later.' });
+  }
+
+  let payload;
+  try {
+    payload = JSON.parse(await readBody(req, CONFIG.intakeMaxBodyBytes));
+  } catch (err) {
+    return json(413, { ok: false, error: 'Your submission is too large. Please use the folder-link fields for big files.' });
+  }
+  if (!payload || typeof payload !== 'object') return json(400, { ok: false, error: 'Could not read submission.' });
+
+  if (typeof payload.website === 'string' && payload.website.trim()) {
+    console.log(`[intake] honeypot tripped from ${ip}`);
+    return json(200, { ok: true });
+  }
+
+  const submitted = payload.fields && typeof payload.fields === 'object' ? payload.fields : {};
+
+  // Keep only fields the schema knows about, so nothing arbitrary reaches the email.
+  const known = new Map();
+  for (const step of INTAKE_SCHEMA) for (const f of step.fields) known.set(f.name, f);
+
+  const values = {};
+  for (const [name, field] of known) {
+    const raw = submitted[name];
+    if (raw === undefined || raw === null) continue;
+    if (field.type === 'checkbox') { values[name] = Boolean(raw); continue; }
+    const str = String(raw).trim().replace(/\r\n/g, '\n');
+    if (str) values[name] = str.slice(0, 5000);
+  }
+
+  // Minimum viable submission: we must be able to identify and reply to them.
+  const brand = values['intake_field_1'];
+  const contact = values['intake_field_3'];
+  const email = values['intake_field_4'];
+  if (!brand || !contact || !email) {
+    return json(400, { ok: false, error: 'Brand name, contact name and business email are required.' });
+  }
+  if (!EMAIL_RE.test(email)) return json(400, { ok: false, error: 'Please enter a valid business email.' });
+
+  // Attachments
+  const incoming = Array.isArray(payload.files) ? payload.files : [];
+  if (incoming.length > CONFIG.intakeMaxFiles) {
+    return json(400, { ok: false, error: `Too many files (max ${CONFIG.intakeMaxFiles}).` });
+  }
+  const files = [];
+  let total = 0;
+  for (const item of incoming) {
+    if (!item || typeof item.content !== 'string' || !known.has(item.field)) continue;
+    let buf;
+    try { buf = Buffer.from(item.content, 'base64'); } catch { continue; }
+    if (!buf.length) continue;
+    total += buf.length;
+    if (total > CONFIG.intakeMaxAttachmentBytes) {
+      return json(413, {
+        ok: false,
+        error: `Attachments exceed ${Math.round(CONFIG.intakeMaxAttachmentBytes / 1024 / 1024)} MB. Please share large files using the folder-link fields instead.`,
+      });
+    }
+    files.push({
+      field: item.field,
+      filename: String(item.filename || 'attachment').slice(0, 120).replace(/[\r\n"]/g, ''),
+      size: buf.length,
+      content: buf.toString('base64'),
+    });
+  }
+
+  const meta = { brand, receivedAt: new Date().toUTCString(), ip };
+  const { html, text } = renderIntakeEmail(values, files, meta);
+
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { authorization: `Bearer ${CONFIG.resendKey}`, 'content-type': 'application/json' },
+      body: JSON.stringify({
+        from: CONFIG.from,
+        to: CONFIG.to,
+        reply_to: email,
+        subject: `New 48-hour intake — ${brand} (${contact})`,
+        html,
+        text,
+        attachments: files.length
+          ? files.map(f => ({ filename: f.filename, content: f.content }))
+          : undefined,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('[intake] resend rejected:', response.status, await response.text().catch(() => ''));
+      return json(502, { ok: false, error: 'We could not submit your intake right now. Please email support@nehemiahapps.com.' });
+    }
+    const { id } = await response.json().catch(() => ({}));
+    console.log(`[intake] sent "${brand}" from ${email} (${ip}) files=${files.length}`
+      + ` ${(total / 1024 / 1024).toFixed(1)}MB id=${id || 'n/a'}`);
+    return json(200, { ok: true });
+  } catch (err) {
+    console.error('[intake] send failed:', err.message);
+    return json(502, { ok: false, error: 'We could not submit your intake right now. Please email support@nehemiahapps.com.' });
   }
 }
 
@@ -625,6 +874,15 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (urlPath === '/api/intake') {
+    handleIntake(req, res).catch((err) => {
+      console.error('[intake] unhandled:', err);
+      res.writeHead(500, { 'content-type': 'application/json' });
+      res.end('{"ok":false,"error":"Server error."}');
+    });
+    return;
+  }
+
   if (urlPath === '/api/inbound') {
     handleInbound(req, res).catch((err) => {
       console.error('[inbound] unhandled:', err);
@@ -653,6 +911,9 @@ server.listen(CONFIG.port, CONFIG.host, () => {
   console.log(`nehemiah server listening on http://${CONFIG.host}:${CONFIG.port}`);
   console.log(`  contact -> ${CONFIG.to.join(', ')}  from ${CONFIG.from}`);
   console.log(`  resend key ${CONFIG.resendKey ? 'loaded' : 'MISSING'}`);
+  console.log(`  intake   ${INTAKE_SCHEMA.length
+    ? `${INTAKE_SCHEMA.reduce((n, s) => n + s.fields.length, 0)} fields across ${INTAKE_SCHEMA.length} steps`
+    : 'DISABLED (intake-schema.json missing)'}`);
   const loops = inboundLoopRisk();
   if (loops.length) {
     console.error(`  inbound  MISCONFIGURED — FORWARD_TO (${loops.join(', ')}) is on `

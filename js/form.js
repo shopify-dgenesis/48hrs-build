@@ -498,11 +498,136 @@
       current++;
       render(true);
     } else {
-      nextBtn.textContent = 'Form ready for submission ✓';
-      nextBtn.disabled = true;
-      nextBtn.setAttribute('aria-disabled', 'true');
+      submitIntake();
     }
   });
+
+  /* ============================================================
+     SUBMISSION
+     Sends every step's answers plus the uploads to /api/intake.
+     ============================================================ */
+
+  const MAX_UPLOAD_BYTES = 20 * 1024 * 1024;
+
+  let status = root.querySelector('[data-intake-status]');
+  if (!status) {
+    status = document.createElement('p');
+    status.className = 'form-status';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    status.dataset.intakeStatus = 'true';
+    status.hidden = true;
+    const actions = root.querySelector('.b48-actions');
+    if (actions) actions.append(status);
+    else form.append(status);
+  }
+
+  const showStatus = (tone, text) => {
+    status.className = 'form-status form-status--' + tone;
+    status.textContent = text;
+    status.hidden = false;
+  };
+
+  const readFile = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      // strip the "data:<mime>;base64," prefix
+      const result = String(reader.result || '');
+      resolve(result.slice(result.indexOf(',') + 1));
+    };
+    reader.onerror = () => reject(new Error('Could not read ' + file.name));
+    reader.readAsDataURL(file);
+  });
+
+  function collectFields() {
+    const fields = {};
+    [...form.elements].forEach(el => {
+      if (!el.name || el.type === 'button' || el.type === 'submit' || el.type === 'file') return;
+
+      if (el.type === 'radio') {
+        if (!el.checked) return;
+        // These radios carry no value attribute; the visible title is the answer.
+        const title = el.parentElement && el.parentElement.querySelector('.b48-choice-title');
+        fields[el.name] = title ? title.textContent.replace(/\s+/g, ' ').trim() : 'Selected';
+        return;
+      }
+      if (el.type === 'checkbox') { fields[el.name] = el.checked; return; }
+      fields[el.name] = el.value;
+    });
+    return fields;
+  }
+
+  async function collectFiles() {
+    const files = [];
+    let total = 0;
+    const inputs = [...form.querySelectorAll('input[type="file"]')];
+
+    for (const input of inputs) {
+      if (!input.name || !input.files || !input.files.length) continue;
+      for (const file of input.files) {
+        total += file.size;
+        if (total > MAX_UPLOAD_BYTES) {
+          throw new Error(
+            'Your uploads add up to more than 20 MB. Please remove the largest files and share them '
+            + 'using the folder-link fields instead.'
+          );
+        }
+        files.push({ field: input.name, filename: file.name, content: await readFile(file) });
+      }
+    }
+    return files;
+  }
+
+  async function submitIntake() {
+    if (nextBtn.dataset.sending === 'true') return;
+    nextBtn.dataset.sending = 'true';
+    nextBtn.disabled = true;
+    status.hidden = true;
+
+    try {
+      const fields = collectFields();
+      nextBtn.textContent = 'Preparing files…';
+      const files = await collectFiles();
+
+      nextBtn.textContent = 'Submitting…';
+      const response = await fetch('/api/intake', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          fields,
+          files,
+          website: '',
+          page: location.pathname
+        })
+      });
+
+      let result = {};
+      try { result = await response.json(); } catch (_) { /* non-JSON error page */ }
+
+      if (response.ok && result.ok) {
+        nextBtn.textContent = 'Submitted ✓';
+        nextBtn.setAttribute('aria-disabled', 'true');
+        showStatus('success',
+          'Intake received. We’ll review it, flag any blockers, and confirm your Hour 0 start time by email.');
+        try {
+          localStorage.removeItem('nehemiah-48hr-intake-fields-v2');
+          localStorage.removeItem('nehemiah-48hr-intake-step');
+        } catch (_) {}
+        status.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
+
+      showStatus('error', result.error || 'Something went wrong. Please try again.');
+      nextBtn.textContent = labels[4];
+      nextBtn.disabled = false;
+    } catch (error) {
+      showStatus('error', error.message || 'Network error — please check your connection and try again.');
+      nextBtn.textContent = labels[4];
+      nextBtn.disabled = false;
+    } finally {
+      nextBtn.dataset.sending = 'false';
+    }
+  }
 
   backBtn.addEventListener('click', () => {
     if (current > 1) {
