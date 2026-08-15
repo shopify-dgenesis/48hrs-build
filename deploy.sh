@@ -259,19 +259,36 @@ echo "  nginx reloaded (other sites unaffected)"
 say "Verifying"
 SCHEME=$([[ "$USE_TLS" == "1" ]] && echo https || echo http)
 
-code="$(curl -sS -o /dev/null -w '%{http_code}' -m 15 "$SCHEME://$DOMAIN/" || echo 000)"
+# `systemctl reload nginx` returns before the new workers have taken over, so a
+# single immediate probe can still be answered by the old config. Poll instead.
+probe() {
+  local url="$1" want="$2" code=000
+  for _ in $(seq 1 12); do
+    code="$(curl -sS -o /dev/null -w '%{http_code}' -m 10 "$url" 2>/dev/null || echo 000)"
+    [[ "$code" == "$want" ]] && break
+    sleep 1
+  done
+  printf '%s' "$code"
+}
+
+code="$(probe "$SCHEME://$DOMAIN/" 200)"
 echo "  GET $SCHEME://$DOMAIN/          -> $code"
-code_contact="$(curl -sS -o /dev/null -w '%{http_code}' -m 15 "$SCHEME://$DOMAIN/contact" || echo 000)"
+code_contact="$(probe "$SCHEME://$DOMAIN/contact" 200)"
 echo "  GET $SCHEME://$DOMAIN/contact   -> $code_contact"
-api="$(curl -sS -o /dev/null -w '%{http_code}' -m 15 -X GET "$SCHEME://$DOMAIN/api/contact" || echo 000)"
+api="$(probe "$SCHEME://$DOMAIN/api/contact" 405)"
 echo "  GET $SCHEME://$DOMAIN/api/contact -> $api (405 expected: it is POST-only)"
 
 echo
 if [[ "$code" == "200" && "$code_contact" == "200" ]]; then
   say "Deployed. $SCHEME://$DOMAIN is live."
+  if [[ "$USE_TLS" != "1" ]]; then
+    warn "HTTP only. Issue a certificate next — it edits just this vhost:"
+    warn "  sudo certbot --nginx -d $DOMAIN --redirect"
+  fi
 else
   warn "Deployed, but the checks above did not both return 200. Inspect with:"
   warn "  journalctl -u $SERVICE -n 50 --no-pager"
+  warn "  curl -sI -H 'Host: $DOMAIN' http://127.0.0.1/"
 fi
 
 cat <<NOTES
