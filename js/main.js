@@ -47,6 +47,20 @@
       let lastDraw = -34;
       let scrolling = false;
       let scrollTimer = 0;
+      let onScreen = true;
+
+      /* The flow field only exists behind the launch surface, so there is no
+         reason to keep painting it once that surface is scrolled out of view. */
+      const stopLoop = () => {
+        if (!frame) return;
+        cancelAnimationFrame(frame);
+        frame = 0;
+      };
+
+      const startLoop = () => {
+        if (frame || !onScreen || document.hidden) return;
+        frame = requestAnimationFrame(draw);
+      };
 
       const resize = () => {
         width = launchSurface.clientWidth;
@@ -87,8 +101,10 @@
       };
 
       const draw = (time = 0) => {
+        frame = 0;
+        if (!onScreen || document.hidden) return;
         if (scrolling || (!reducedMotion && time - lastDraw < 16.67)) {
-          frame = requestAnimationFrame(draw);
+          startLoop();
           return;
         }
         lastDraw = time;
@@ -144,7 +160,7 @@
           context.fill();
         });
 
-        if (!reducedMotion) frame = requestAnimationFrame(draw);
+        if (!reducedMotion) startLoop();
       };
 
       const updatePointer = (x, y) => {
@@ -164,7 +180,17 @@
           resizeFrame = requestAnimationFrame(resize);
         });
         layoutObserver.observe(launchSurface);
-        layoutObserver.observe(document.querySelector('#MainContent'));
+        const mainContent = document.querySelector('#MainContent');
+        if (mainContent) layoutObserver.observe(mainContent);
+      }
+
+      if ('IntersectionObserver' in window) {
+        const visibilityObserver = new IntersectionObserver(entries => {
+          onScreen = entries.some(entry => entry.isIntersecting);
+          if (onScreen) startLoop();
+          else stopLoop();
+        }, { rootMargin: '150px 0px' });
+        visibilityObserver.observe(canvas);
       }
       window.addEventListener('scroll', () => {
         scrolling = true;
@@ -178,12 +204,8 @@
       }, { passive: true });
       document.addEventListener('visibilitychange', () => {
         if (reducedMotion) return;
-        if (document.hidden && frame) {
-          cancelAnimationFrame(frame);
-          frame = 0;
-        } else if (!document.hidden && !frame) {
-          frame = requestAnimationFrame(draw);
-        }
+        if (document.hidden) stopLoop();
+        else startLoop();
       });
 
       const revealSections = Array.from(

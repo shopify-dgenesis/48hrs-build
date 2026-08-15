@@ -385,21 +385,9 @@
       });
     });
 
-    if (form) {
-      form.addEventListener('submit', (event) => {
-        
-          if (timeInput && !timeInput.value) {
-            event.preventDefault();
-            const firstTime = timeButtons[0];
-            if (firstTime) {
-              firstTime.focus();
-              firstTime.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-            alert('Please select a preferred consultation time.');
-          }
-        
-      });
-    }
+    /* Submission itself is handled by the contact delivery module below, which
+       validates the time slot inline instead of through a blocking alert. */
+    void form;
   })();
 
 ;(()=>{const b=document.querySelector('.mockup-back-to-top');if(b){const u=()=>b.classList.toggle('is-visible',scrollY>300);b.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));addEventListener('scroll',u,{passive:true});u()}document.querySelectorAll('[data-placeholder-form]').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();let m=f.querySelector('[data-standalone-status]');if(!m){m=document.createElement('p');m.dataset.standaloneStatus='true';m.style.cssText='color:#b9f234;font-size:12px;margin:12px 0 0';f.append(m)}m.textContent='Form delivery will be connected when the backend is ready.'}))})();
@@ -479,4 +467,131 @@
   addEventListener('resize', resizeCanvas, { passive: true });
   document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(animationFrame); else animationFrame = requestAnimationFrame(animateBackground); });
   resizeCanvas(); animationFrame = requestAnimationFrame(animateBackground);
+})();
+
+
+/* ============================================================
+   CONTACT DELIVERY
+   Posts both forms to /api/contact, which relays them to
+   support@nehemiahapps.com through Resend. Field names stay in
+   their original Shopify shape and are mapped here.
+   ============================================================ */
+
+(() => {
+  const ENDPOINT = '/api/contact';
+
+  const FIELD_MAP = {
+    consultation: {
+      name: 'contact[name]',
+      email: 'contact[email]',
+      business: 'contact[Store / Business Name]',
+      date: 'contact[Preferred date]',
+      time: 'contact[Consultation time]'
+    },
+    message: {
+      name: 'contact[name]',
+      email: 'contact[email]',
+      business: 'contact[Business / Store Name]',
+      message: 'contact[body]'
+    }
+  };
+
+  const DONE = {
+    consultation: 'Booking received. We\u2019ll confirm your consultation by email shortly.',
+    message: 'Message sent. We\u2019ll get back to you as soon as possible.'
+  };
+
+  document.querySelectorAll('[data-contact-form]').forEach((form) => {
+    const kind = form.dataset.contactForm;
+    const map = FIELD_MAP[kind];
+    if (!map || form.dataset.contactReady === 'true') return;
+    form.dataset.contactReady = 'true';
+
+    const button = form.querySelector('[type="submit"]');
+    const buttonMarkup = button ? button.innerHTML : '';
+
+    const status = document.createElement('p');
+    status.className = 'form-status';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    status.hidden = true;
+    if (button) button.insertAdjacentElement('afterend', status);
+    else form.append(status);
+
+    const show = (tone, text) => {
+      status.className = 'form-status form-status--' + tone;
+      status.textContent = text;
+      status.hidden = false;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (form.dataset.sending === 'true') return;
+
+      // The time slot lives in a hidden input driven by the button grid, so
+      // the browser's own validation cannot catch a missing selection.
+      if (kind === 'consultation') {
+        const timeInput = form.querySelector('[data-selected-time]');
+        if (timeInput && !timeInput.value) {
+          const first = form.querySelector('.consultation-time');
+          show('error', 'Please choose a preferred consultation time.');
+          if (first) {
+            first.focus();
+            first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          return;
+        }
+      }
+
+      if (typeof form.reportValidity === 'function' && !form.reportValidity()) return;
+
+      const data = new FormData(form);
+      const payload = {
+        form: kind,
+        page: location.pathname || '/contact',
+        website: String(data.get('website') || '')
+      };
+      Object.keys(map).forEach((key) => {
+        payload[key] = String(data.get(map[key]) || '').trim();
+      });
+
+      form.dataset.sending = 'true';
+      status.hidden = true;
+      if (button) {
+        button.disabled = true;
+        button.innerHTML = '<span>Sending\u2026</span>';
+      }
+
+      try {
+        const response = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        let result = {};
+        try { result = await response.json(); } catch (_) { /* non-JSON error page */ }
+
+        if (response.ok && result.ok) {
+          show('success', DONE[kind]);
+          form.reset();
+          form.querySelectorAll('.consultation-time.is-selected').forEach((slot) => {
+            slot.classList.remove('is-selected');
+            slot.setAttribute('aria-checked', 'false');
+          });
+          status.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          show('error', result.error || 'Something went wrong. Please try again.');
+        }
+      } catch (_) {
+        show('error', 'Network error \u2014 please check your connection and try again.');
+      } finally {
+        form.dataset.sending = 'false';
+        if (button) {
+          button.disabled = false;
+          button.innerHTML = buttonMarkup;
+        }
+      }
+    });
+  });
 })();
