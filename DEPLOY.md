@@ -84,10 +84,73 @@ sudo nginx -t && sudo systemctl reload nginx
 sudo systemctl disable --now nehemiah-build
 ```
 
+## Receiving mail (inbound forwarding)
+
+Resend Inbound is **not a mailbox** — there is no IMAP and no inbox UI. It parses
+received mail and POSTs an `email.received` event to a webhook, and it has no
+built-in forwarding. So `POST /api/inbound` does the forwarding: it verifies the
+signature, pulls the full message from `GET /emails/receiving/{id}`, and re-sends
+it to `FORWARD_TO`.
+
+`Reply-To` is set to whoever originally wrote in, so replying from your inbox
+answers the customer — not our own `noreply` address.
+
+### Setup
+
+1. **Resend → Domains → `nehemiahapps.com` → enable receiving.** It shows an MX
+   record. The root domain already points its MX at Resend, so nothing needs to
+   change there.
+
+   If you ever move the root MX to a real mailbox provider, move receiving to a
+   subdomain (`inbound.nehemiahapps.com`) instead — Resend's MX must be the
+   lowest-priority record for whatever domain it serves, so the two cannot share
+   a domain.
+
+2. **Resend → Webhooks → Add endpoint**
+
+   ```
+   https://build.nehemiahapps.com/api/inbound
+   ```
+
+   Subscribe to `email.received`. Copy the signing secret (`whsec_…`).
+
+   The endpoint must be HTTPS and publicly reachable, so run certbot first.
+
+3. **Add the secret and destination to `.env`:**
+
+   ```bash
+   sudo nano /var/www/48hrs-build/.env
+   #   RESEND_WEBHOOK_SECRET=whsec_...
+   #   FORWARD_TO=your-real-inbox@gmail.com
+   sudo systemctl restart nehemiah-build
+   ```
+
+   On boot the log line `inbound -> your-real-inbox@gmail.com` confirms it is
+   armed; `inbound disabled` means a variable is missing.
+
+4. **Test** by emailing `support@nehemiahapps.com` from any outside address. Watch
+   `journalctl -u nehemiah-build -f` for `[inbound] forwarded "..."`.
+
+### Notes
+
+- Unsigned or replayed requests are rejected with 401; the signature is checked
+  against the raw body with HMAC-SHA256, and timestamps older than 5 minutes are
+  refused.
+- Deliveries are de-duplicated by `email_id`, so Resend's retries cannot forward
+  the same message twice.
+- A failed forward returns 502 on purpose, so Resend retries rather than dropping
+  the mail.
+- Attachment forwarding is implemented but has not been exercised against real
+  inbound mail yet — check the log the first time someone sends one.
+
 ## Resend
 
 `nehemiahapps.com` is **verified** in Resend (region `ap-northeast-1`), and both
 forms have been confirmed delivering end-to-end.
+
+The domain has **no SPF record**. Sending works because DKIM
+(`resend._domainkey`) is verified, but adding SPF improves inbox placement. Use
+the exact value Resend shows under Domains.
 
 If sending ever starts failing, check in this order:
 

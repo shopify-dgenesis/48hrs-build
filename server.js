@@ -33,6 +33,15 @@ const CONFIG = {
   maxBodyBytes: 32 * 1024,
   rateMax: Number(process.env.RATE_MAX) || 5,
   rateWindowMs: Number(process.env.RATE_WINDOW_MS) || 10 * 60 * 1000,
+
+  // Inbound forwarding: Resend receives mail for the domain and POSTs an
+  // email.received event here; we fetch the content and re-send it to a
+  // mailbox a human actually reads. Resend has no built-in forwarding.
+  webhookSecret: process.env.RESEND_WEBHOOK_SECRET || '',
+  forwardTo: (process.env.FORWARD_TO || '').split(',').map(s => s.trim()).filter(Boolean),
+  forwardFrom: process.env.FORWARD_FROM || 'Nehemiah Mail <noreply@nehemiahapps.com>',
+  // Resend caps a send at 40 MB; base64 inflates by ~33%, so stay well under.
+  maxAttachmentBytes: Number(process.env.MAX_ATTACHMENT_BYTES) || 15 * 1024 * 1024,
 };
 
 if (!CONFIG.resendKey) {
@@ -284,6 +293,194 @@ async function handleContact(req, res) {
 }
 
 /* ============================================================
+   INBOUND FORWARDING  (POST /api/inbound)
+
+   Resend Inbound is a pipeline, not a mailbox: it parses received
+   mail and POSTs an `email.received` event carrying metadata only.
+   This handler verifies the signature, pulls the full message from
+   GET /emails/receiving/{id}, and re-sends it to FORWARD_TO.
+   ============================================================ */
+
+/* Svix signing, implemented directly so the server stays dependency-free.
+   HMAC-SHA256 over "<id>.<timestamp>.<raw body>", key = base64-decoded
+   secret after the whsec_ prefix. */
+function verifyWebhook(secret, headers, rawBody) {
+  const id = headers['svix-id'];
+  const timestamp = headers['svix-timestamp'];
+  const signatures = headers['svix-signature'];
+  if (!id || !timestamp || !signatures) return false;
+
+  // Reject replays of an old capture.
+  const age = Math.abs(Date.now() / 1000 - Number(timestamp));
+  if (!Number.isFinite(age) || age > 300) return false;
+
+  const key = Buffer.from(secret.replace(/^whsec_/, ''), 'base64');
+  const expected = crypto.createHmac('sha256', key)
+    .update(`${id}.${timestamp}.${rawBody}`)
+    .digest('base64');
+  const expectedBuf = Buffer.from(expected);
+
+  // Header holds space-delimited "v1,<sig>" pairs; any match is valid.
+  for (const entry of String(signatures).split(' ')) {
+    const [version, signature] = entry.split(',');
+    if (version !== 'v1' || !signature) continue;
+    const candidate = Buffer.from(signature);
+    if (candidate.length === expectedBuf.length && crypto.timingSafeEqual(candidate, expectedBuf)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// Svix retries on any non-2xx, so remember what we already forwarded.
+const forwarded = new Map();
+const alreadyForwarded = (id) => {
+  const now = Date.now();
+  for (const [key, at] of forwarded) if (now - at > 24 * 60 * 60 * 1000) forwarded.delete(key);
+  if (forwarded.has(id)) return true;
+  forwarded.set(id, now);
+  return false;
+};
+
+const resendGet = (path) => fetch('https://api.resend.com' + path, {
+  headers: { authorization: `Bearer ${CONFIG.resendKey}` },
+});
+
+async function collectAttachments(email) {
+  const list = Array.isArray(email.attachments) ? email.attachments : [];
+  const out = [];
+  let total = 0;
+
+  for (const item of list) {
+    // The download URL field has moved around; accept whichever is present.
+    const url = item.url || item.download_url || item.href;
+    if (!url) {
+      console.warn(`[inbound] attachment "${item.filename}" has no download URL — skipped`);
+      continue;
+    }
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const buf = Buffer.from(await res.arrayBuffer());
+      if (total + buf.length > CONFIG.maxAttachmentBytes) {
+        console.warn(`[inbound] attachment "${item.filename}" skipped — would exceed size cap`);
+        continue;
+      }
+      total += buf.length;
+      out.push({ filename: item.filename || 'attachment', content: buf.toString('base64') });
+    } catch (err) {
+      console.warn(`[inbound] attachment "${item.filename}" failed: ${err.message}`);
+    }
+  }
+  return out;
+}
+
+async function handleInbound(req, res) {
+  const json = (status, body) => {
+    const buf = Buffer.from(JSON.stringify(body));
+    res.writeHead(status, { 'content-type': 'application/json', 'cache-control': 'no-store', 'content-length': buf.length });
+    res.end(buf);
+  };
+
+  if (req.method !== 'POST') return json(405, { ok: false, error: 'Method not allowed.' });
+  if (!CONFIG.resendKey || !CONFIG.webhookSecret || !CONFIG.forwardTo.length) {
+    console.error('[inbound] not configured (need RESEND_API_KEY, RESEND_WEBHOOK_SECRET, FORWARD_TO)');
+    return json(503, { ok: false, error: 'Inbound forwarding is not configured.' });
+  }
+
+  // Signature is computed over the exact bytes — never re-serialize first.
+  let raw;
+  try {
+    raw = await readBody(req, 512 * 1024);
+  } catch {
+    return json(400, { ok: false, error: 'Body too large.' });
+  }
+
+  if (!verifyWebhook(CONFIG.webhookSecret, req.headers, raw)) {
+    console.warn(`[inbound] rejected: bad signature from ${clientIp(req)}`);
+    return json(401, { ok: false, error: 'Invalid signature.' });
+  }
+
+  let event;
+  try { event = JSON.parse(raw); } catch { return json(400, { ok: false, error: 'Bad JSON.' }); }
+
+  if (event?.type !== 'email.received') {
+    return json(200, { ok: true, ignored: event?.type || 'unknown' });
+  }
+
+  const emailId = event.data?.email_id;
+  if (!emailId) return json(400, { ok: false, error: 'Missing email_id.' });
+  if (alreadyForwarded(emailId)) {
+    console.log(`[inbound] ${emailId} already forwarded — ignoring retry`);
+    return json(200, { ok: true, duplicate: true });
+  }
+
+  try {
+    const lookup = await resendGet(`/emails/receiving/${emailId}`);
+    if (!lookup.ok) {
+      forwarded.delete(emailId); // let Svix retry
+      console.error(`[inbound] fetch ${emailId} failed: ${lookup.status} ${await lookup.text().catch(() => '')}`);
+      return json(502, { ok: false, error: 'Could not fetch the received email.' });
+    }
+    const email = await lookup.json();
+
+    const sender = email.from || event.data.from || 'unknown sender';
+    const recipients = [].concat(email.to || event.data.to || []).join(', ');
+    const forWhom = [].concat(email.received_for || event.data.received_for || []).join(', ');
+    const subject = email.subject || event.data.subject || '(no subject)';
+
+    const banner =
+      `Forwarded by nehemiahapps.com\n` +
+      `From: ${sender}\n` +
+      `To: ${recipients}${forWhom ? `\nReceived for: ${forWhom}` : ''}\n` +
+      `Date: ${email.created_at || event.data.created_at || ''}\n`;
+
+    const bannerHtml =
+      `<div style="margin:0 0 16px;padding:10px 14px;border-left:3px solid #b9f234;background:#f5f7f2;` +
+      `font:13px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#3c4a52">` +
+      `<strong>Forwarded by nehemiahapps.com</strong><br>` +
+      `From: ${escapeHtml(sender)}<br>To: ${escapeHtml(recipients)}` +
+      (forWhom ? `<br>Received for: ${escapeHtml(forWhom)}` : '') +
+      `</div>`;
+
+    const attachments = await collectAttachments(email);
+
+    const payload = {
+      from: CONFIG.forwardFrom,
+      to: CONFIG.forwardTo,
+      subject,
+      // Reply goes to whoever actually wrote in, not to our own noreply address.
+      reply_to: sender,
+      html: email.html ? bannerHtml + email.html : undefined,
+      text: email.text ? banner + '\n' + email.text : undefined,
+    };
+    if (!payload.html && !payload.text) payload.text = banner + '\n(no body content)';
+    if (attachments.length) payload.attachments = attachments;
+
+    const sendRes = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { authorization: `Bearer ${CONFIG.resendKey}`, 'content-type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    if (!sendRes.ok) {
+      forwarded.delete(emailId);
+      console.error(`[inbound] forward failed: ${sendRes.status} ${await sendRes.text().catch(() => '')}`);
+      return json(502, { ok: false, error: 'Forward failed.' });
+    }
+
+    const { id } = await sendRes.json().catch(() => ({}));
+    console.log(`[inbound] forwarded "${subject}" from ${sender} -> ${CONFIG.forwardTo.join(', ')}`
+      + `${attachments.length ? ` (${attachments.length} attachment(s))` : ''} id=${id || 'n/a'}`);
+    return json(200, { ok: true });
+  } catch (err) {
+    forwarded.delete(emailId);
+    console.error('[inbound] error:', err.message);
+    return json(502, { ok: false, error: 'Forward failed.' });
+  }
+}
+
+/* ============================================================
    STATIC FILES
    ============================================================ */
 
@@ -395,6 +592,15 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (urlPath === '/api/inbound') {
+    handleInbound(req, res).catch((err) => {
+      console.error('[inbound] unhandled:', err);
+      res.writeHead(500, { 'content-type': 'application/json' });
+      res.end('{"ok":false,"error":"Server error."}');
+    });
+    return;
+  }
+
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     res.writeHead(405, { 'content-type': 'text/plain' });
     return res.end('Method not allowed');
@@ -414,6 +620,9 @@ server.listen(CONFIG.port, CONFIG.host, () => {
   console.log(`nehemiah server listening on http://${CONFIG.host}:${CONFIG.port}`);
   console.log(`  contact -> ${CONFIG.to.join(', ')}  from ${CONFIG.from}`);
   console.log(`  resend key ${CONFIG.resendKey ? 'loaded' : 'MISSING'}`);
+  console.log(`  inbound  ${CONFIG.webhookSecret && CONFIG.forwardTo.length
+    ? `-> ${CONFIG.forwardTo.join(', ')}`
+    : 'disabled (set RESEND_WEBHOOK_SECRET + FORWARD_TO)'}`);
 });
 
 for (const signal of ['SIGINT', 'SIGTERM']) {
