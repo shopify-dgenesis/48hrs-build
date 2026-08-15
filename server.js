@@ -443,12 +443,17 @@ async function handleIntake(req, res) {
     return json(429, { ok: false, error: 'Too many submissions. Please try again later.' });
   }
 
-  let payload;
+  // Read and parse separately: one catch for both made every malformed body
+  // report as "too large", which is a misleading thing to tell a customer.
+  let raw;
   try {
-    payload = JSON.parse(await readBody(req, CONFIG.intakeMaxBodyBytes));
-  } catch (err) {
+    raw = await readBody(req, CONFIG.intakeMaxBodyBytes);
+  } catch {
     return json(413, { ok: false, error: 'Your submission is too large. Please use the folder-link fields for big files.' });
   }
+
+  let payload;
+  try { payload = JSON.parse(raw); } catch { payload = null; }
   if (!payload || typeof payload !== 'object') return json(400, { ok: false, error: 'Could not read submission.' });
 
   if (typeof payload.website === 'string' && payload.website.trim()) {
