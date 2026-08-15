@@ -48,8 +48,32 @@ if [[ ! -f "$APP_DIR/.env" ]]; then
        nano $APP_DIR/.env      # paste RESEND_API_KEY
        chmod 600 $APP_DIR/.env"
 fi
-grep -q '^RESEND_API_KEY=re_' "$APP_DIR/.env" || die ".env has no valid RESEND_API_KEY (expected it to start with re_)."
-echo "  .env present with a Resend key"
+KEY="$(sed -n 's/^RESEND_API_KEY=//p' "$APP_DIR/.env" | head -1 | tr -d '\r"'"'"' ')"
+[[ -n "$KEY" ]] || die ".env has no RESEND_API_KEY."
+[[ "$KEY" == re_* ]] || die "RESEND_API_KEY does not look like a Resend key (should start with re_)."
+# "re_xxxxxxxx..." from .env.example satisfies a prefix check but is not a key.
+case "$KEY" in
+  *xxxxxxxx*|*XXXXXXXX*) die "RESEND_API_KEY is still the placeholder from .env.example.
+       Paste the real key:  sudo nano $APP_DIR/.env" ;;
+esac
+
+# A prefix is not proof. Ask Resend whether the key actually works.
+KEY_HTTP="$(curl -sS -o /dev/null -w '%{http_code}' -m 15 \
+  -H "Authorization: Bearer $KEY" https://api.resend.com/domains || echo 000)"
+case "$KEY_HTTP" in
+  200)     echo "  .env present, Resend key validated against the API" ;;
+  401|403) die "Resend rejected this API key (HTTP $KEY_HTTP). Check it at https://resend.com/api-keys" ;;
+  000)     warn "could not reach Resend to validate the key — continuing, but verify sending afterwards" ;;
+  *)       warn "unexpected response validating the key (HTTP $KEY_HTTP) — continuing" ;;
+esac
+
+# Inbound forwarding is optional, but half-configured is a silent failure.
+if grep -q '^RESEND_WEBHOOK_SECRET=whsec_' "$APP_DIR/.env" 2>/dev/null; then
+  grep -q '^FORWARD_TO=..*@' "$APP_DIR/.env" \
+    || warn "RESEND_WEBHOOK_SECRET is set but FORWARD_TO is missing — inbound forwarding will stay disabled."
+  grep -q '^RESEND_WEBHOOK_SECRET=whsec_xxxx' "$APP_DIR/.env" \
+    && warn "RESEND_WEBHOOK_SECRET is still the placeholder — inbound forwarding will reject every delivery."
+fi
 
 # The port must be free, and must not be one another app already uses.
 if ss -ltn "sport = :$PORT" | grep -q LISTEN; then
