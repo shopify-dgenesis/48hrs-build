@@ -114,9 +114,15 @@ fi
 # App files
 # ----------------------------------------------------------------
 say "Preparing $APP_DIR"
-chmod 600 "$APP_DIR/.env"
-chown -R "$RUN_USER:$RUN_USER" "$APP_DIR"
-echo "  owned by $RUN_USER, .env locked to 600"
+# The service only ever reads these files, so root keeps ownership and the
+# service account gets group read. Handing the repo to www-data would make
+# every later `sudo git pull` fail with "dubious ownership".
+chown -R root:"$RUN_USER" "$APP_DIR"
+chmod -R a+rX "$APP_DIR"
+# .env holds the API key: readable by the service, invisible to everyone else.
+chown root:"$RUN_USER" "$APP_DIR/.env"
+chmod 640 "$APP_DIR/.env"
+echo "  root-owned, group $RUN_USER can read; .env is 640"
 
 # ----------------------------------------------------------------
 # systemd unit (ours alone)
@@ -139,7 +145,7 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=$APP_DIR
+# No ReadWritePaths: the app serves files and calls an API, it never writes.
 
 [Install]
 WantedBy=multi-user.target
