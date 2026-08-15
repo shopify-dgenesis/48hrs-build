@@ -169,6 +169,19 @@ say "Writing nginx vhost for $DOMAIN"
 
 VHOST="/etc/nginx/sites-available/$DOMAIN"
 
+# `http2 on;` only exists from nginx 1.25.1; before that HTTP/2 is a listen
+# flag. Using the wrong form fails `nginx -t` outright.
+NGINX_VER="$(nginx -v 2>&1 | grep -oP '\d+\.\d+\.\d+' || echo 0.0.0)"
+if [[ "$(printf '%s\n1.25.1\n' "$NGINX_VER" | sort -V | head -1)" == "1.25.1" ]]; then
+  H2_LISTEN=""
+  H2_DIRECTIVE="    http2 on;
+"
+else
+  H2_LISTEN=" http2"
+  H2_DIRECTIVE=""
+fi
+echo "  nginx $NGINX_VER — HTTP/2 via ${H2_LISTEN:-http2 directive}"
+
 {
   if [[ "$USE_TLS" == "1" ]]; then
     cat <<CONF
@@ -180,10 +193,9 @@ server {
 }
 
 server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
-    http2 on;
-    server_name $DOMAIN;
+    listen 443 ssl$H2_LISTEN;
+    listen [::]:443 ssl$H2_LISTEN;
+$H2_DIRECTIVE    server_name $DOMAIN;
 
     ssl_certificate     $SSL_CERT;
     ssl_certificate_key $SSL_KEY;
