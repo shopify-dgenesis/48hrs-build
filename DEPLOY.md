@@ -62,6 +62,22 @@ Note that `css/*.min.css` and `js/*.min.js` are committed build outputs. If you
 edit a source file under `css/` or `js/`, regenerate the matching bundle before
 deploying, or the change will not appear on the site.
 
+## Testing before you deploy
+
+```bash
+cd tests && npm install && npm test
+```
+
+87 checks across four suites, run on your own machine — they boot `server.js` on
+a loopback port and stub the Resend API, so nothing is sent and no key is
+needed. Two of them drive the real pages in Chromium. See
+[tests/README.md](tests/README.md).
+
+The dependencies live in `tests/package.json` rather than the repo root, so the
+deployed tree still needs no `npm install` — the server itself has no
+dependencies. `tests/` gets pulled onto the VPS with everything else and is
+simply never run there.
+
 ## Operating it
 
 ```bash

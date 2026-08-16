@@ -1,0 +1,13 @@
+{
+  "name": "48hrs-build-tests",
+  "private": true,
+  "type": "module",
+  "description": "Test suites for server.js. Kept in its own package so the repo root stays dependency-free — server.js runs on plain Node with no node_modules.",
+  "scripts": {
+    "test": "node run-all.mjs",
+    "postinstall": "playwright install chromium"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}
