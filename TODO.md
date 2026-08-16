@@ -8,43 +8,32 @@ the only piece nobody has tested end to end yet.
 | | |
 | --- | --- |
 | Live at | https://build.nehemiahapps.com |
-| Deployed commit | `cc9c99c` — **behind**, re-confirmed live on 16 Aug |
-| Undeployed | `2d2a41a` (the 413 fix) and everything after it |
-| Tests passing | 87, all green against `main` — `cd tests && npm test` |
+| Deployed commit | `d4f487b` — deployed 16 Aug, 413 fix verified live |
+| Undeployed | `8bd0dc9` — tests only, nothing the server runs |
+| Tests passing | 87, all green — `cd tests && npm test` |
 
 ---
 
-## Start here — in this order
+## Start here
 
-Each step depends on the one before it.
+Step 1 is done. **Do step 3 before step 2** — if `CONTACT_TO` is wrong, the
+intake test in step 2 will look like it worked while the email goes nowhere.
 
-### 1. Deploy the last fix — NOT DEPLOYED
+### 1. Deploy the last fix — DONE 16 Aug
 
-`2d2a41a` is pushed but the server still runs `cc9c99c`. It fixes oversized
-uploads returning a raw connection reset instead of a readable error — exactly
-the failure the intake form is most likely to hit.
+`2d2a41a` is live. `git pull` fast-forwarded `cc9c99c..d4f487b` and the service
+restarted at 05:06:32.
 
-Confirmed still undeployed on 16 Aug: posting an oversized body to the live
-contact endpoint answered **502**, which is what the old `req.destroy()` looks
-like once nginx sees the upstream vanish.
+Verified rather than assumed: an oversized body posted to the live contact
+endpoint now answers **400** with
+`{"ok":false,"error":"Could not read submission."}`. Before the deploy the same
+request answered **502** — the old `req.destroy()` as nginx sees it once the
+upstream vanishes.
 
-```bash
-cd /var/www/48hrs-build && sudo git pull
-sudo systemctl restart nehemiah-build
-sudo journalctl -u nehemiah-build -n 8 --no-pager
-```
-
-Startup should print all three:
-
-```
-resend key loaded
-intake   65 fields across 5 steps
-inbound  -> nehemiahapps@gmail.com
-```
-
-Then prove the fix is actually in effect. `/api/contact` caps bodies at 32 KB
-and shares the same `readBody`, so this exercises the fix without touching the
-intake rate limit or sending anything:
+Re-run that probe any time. `/api/contact` caps bodies at 32 KB and shares the
+same `readBody`, so it exercises the fix without touching the intake rate limit
+or sending anything (the body never parses). It does cost one of the five
+contact submissions allowed per 10 minutes.
 
 ```bash
 python3 -c "print('{\"form\":\"message\",\"name\":\"x\",\"email\":\"x@y.com\",\"message\":\"' + 'A'*200000 + '\"}')" \
@@ -52,14 +41,8 @@ python3 -c "print('{\"form\":\"message\",\"name\":\"x\",\"email\":\"x@y.com\",\"
     -w '\n%{http_code}\n' https://build.nehemiahapps.com/api/contact
 ```
 
-- **400** `{"ok":false,"error":"Could not read submission."}` — fixed, deployed
-- **502** — still the old code
-
-It costs one of the five contact submissions allowed per 10 minutes and sends
-no email (the body never parses).
-
-- [ ] Deployed and all three lines present
-- [ ] Probe returns 400, not 502
+- [x] Deployed
+- [x] Probe returns 400, not 502
 
 ### 2. Submit the intake form yourself — UNTESTED IN THE WILD
 
@@ -74,13 +57,57 @@ Check that:
 - [ ] Fields read as labels (`Brand / Store Name`) not `intake_field_1`
 - [ ] Each upload is named against its own field (`Logo Files: logo.svg (12 KB)`)
 
-### 3. Check the 15:44 submission — MAY BE A REAL CUSTOMER
+### 3. Confirm contact submissions actually reach Gmail — CHECK THIS FIRST
 
-The log shows a contact submission from `dagikot182@joystill.com` at 15:44:03.
-If that wasn't you testing, it's a real inquiry waiting for a reply.
+The deploy log shows this pair, five seconds apart:
 
-- [ ] Confirmed it reached your Gmail (also proves the direct-copy path works
-      for someone who isn't us)
+```
+Aug 15 16:10:26  [contact] sent Contact Message from dagikot182@joystill.com
+                           (136.158.123.111) id=73fd30b7-…
+Aug 15 16:10:31  [inbound] f4f86359-… was sent by this server
+                           — not forwarding (loop guard)
+```
+
+That is the contact email landing at `support@nehemiahapps.com`, coming back in
+through the inbound webhook, and being refused by the loop guard — correctly,
+since the guard compares the sender against `FORWARD_FROM` and both default to
+`noreply@nehemiahapps.com`.
+
+**So the support@ copy is a dead end by design.** Submissions only reach you if
+your Gmail is listed in `CONTACT_TO` as well. If it isn't, every inquiry is
+swallowed silently — the endpoint answers `200`, Resend accepts the send, and
+nothing ever arrives. **This applies to the intake form too**: both endpoints
+send to `CONTACT_TO`.
+
+The startup log already says where mail goes — the `-n 8` after the restart cut
+this line off:
+
+```bash
+sudo journalctl -u nehemiah-build -n 30 --no-pager | grep 'contact ->'
+```
+
+If that names only `support@nehemiahapps.com`, nothing is reaching you. Fix it
+in `.env` — the field is comma-separated, so keeping support@ alongside is fine
+and the loop guard will go on quietly dropping that copy:
+
+```bash
+sudo nano /var/www/48hrs-build/.env
+#   CONTACT_TO=nehemiahapps@gmail.com,support@nehemiahapps.com
+sudo systemctl restart nehemiah-build
+```
+
+- [ ] `contact ->` names a mailbox you actually read
+- [ ] A test submission arrives in Gmail
+
+#### The 15:44 submission — probably you
+
+`dagikot182@joystill.com` looks like a test rather than a customer: the same IP
+`136.158.123.111` had sent an unsigned request to `/api/inbound` six minutes
+earlier (`16:04:36 [inbound] rejected: bad signature`), and customers do not
+poke webhook endpoints. The address is also disposable-mail shaped. Worth a
+glance, but do not expect a reply to be owed.
+
+- [ ] Glanced at it, no reply owed
 
 ---
 
@@ -185,7 +212,7 @@ All overridable in `.env`. Rate limits are per IP per 10 minutes.
 | --- | --- |
 | Page weight | 11.5 MB → 770 KB; WebP images, subsetted WOFF2, one CSS bundle per page |
 | HTTPS | Let's Encrypt, auto-renewing, HTTP redirects to HTTPS |
-| Contact + consultation | → Resend → your Gmail directly, Reply-To is the customer |
+| Contact + consultation | → Resend, Reply-To is the customer — **where it lands is step 3** |
 | Intake form | → Resend with attachments, labelled and grouped by step |
 | Inbound mail | support@ → Resend Inbound → webhook → Gmail |
 | Replying | Gmail sends as support@nehemiahapps.com via smtp.resend.com |
