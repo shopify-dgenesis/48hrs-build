@@ -6,7 +6,7 @@
     --ts-text: #ffffff;
     --ts-muted: #98a3b3;
     --ts-accent: #b9f234;
-    --ts-max-width: 1300px;
+    --ts-max-width: 950px;
 
     background: var(--ts-bg);
     padding-top: 0px;
@@ -58,7 +58,7 @@
 
   #section3 .reach-strip-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: stretch;
   }
 
