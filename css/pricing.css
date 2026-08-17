@@ -12,7 +12,7 @@
     padding-top: var(--pricing-padding-top);
     padding-bottom: var(--pricing-padding-bottom);
 
-    background:
+    /* background:
       radial-gradient(
         800px 420px at 50% 35%,
         color-mix(
@@ -22,7 +22,8 @@
         ),
         transparent 70%
       ),
-      var(--pricing-bg);
+      var(--pricing-bg); */
+      background: var(--pp-bg);
 
     color: var(--pricing-text);
 
