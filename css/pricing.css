@@ -980,11 +980,11 @@ font-family: 'Montserrat', Arial, sans-serif;
     #pricingpackage .pricing-packages__grid--3 {
       display: flex;
 
-      width: 100%;
+      width: 90%;
 
       max-width: none;
 
-      margin: 0;
+      margin: auto;
 
       gap: 15px;
 
