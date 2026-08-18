@@ -277,8 +277,8 @@
   min-height: 62px;
   margin: 0;
   color: var(--cost-muted);
-  font-size: 10px;
-  line-height: 1.7;
+  font-size: 11px;
+  line-height: 1.5;
 }
 
 .breakdown-grid strong {
@@ -591,6 +591,13 @@
   font-size: 22px;
   font-weight: 800;
   letter-spacing: .1em;
+}
+
+.footer-brand img {
+  display: block;
+  width: 92px;
+  height: 72px;
+  object-fit: contain;
 }
 
 .cost-footer p {

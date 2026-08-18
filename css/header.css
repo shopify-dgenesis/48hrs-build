@@ -577,3 +577,17 @@
   }
 
 }
+
+/* Shared Nehemiah logo */
+#nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__brand-icon,
+#nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__brand-text {
+  display: none;
+}
+
+#nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__brand::before {
+  content: "";
+  display: block;
+  width: 68px;
+  height: 56px;
+  background: url('../assets/images/nehemiah-logo.png') center / contain no-repeat;
+}
