@@ -190,6 +190,7 @@ body {
   font-size: 17px;
   line-height: 1.5;
   font-weight: 400;
+      font-family: var(--font-body-family);
 }
 
 .package-card li:before {
@@ -211,8 +212,7 @@ body {
   background: var(--pp-lime);
   color: #0b1607;
   text-decoration: none;
-  font-size: 12px;
-  font-weight: 700
+  font-weight: 600;
 }
 
 .package-button.secondary {
@@ -416,6 +416,7 @@ details p {
   margin: 0;
   padding: 0 25px 14px 0;
   color: var(--pp-muted);
+      font-family: var(--font-body-family);
 }
 
 .question-columns aside h3 {
