@@ -1,906 +1,372 @@
-
-
-  /* =========================================================
+/* =========================================================
      INCLUDED FEATURES
-     ========================================================= */
+     ========================================================= */ #whatsincluded {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  padding-top: var(--included-padding-top);
+  padding-bottom: var(--included-padding-bottom);
+  overflow: hidden;
+  color: var(--included-text);
+  font-family: inherit;
+  background: radial-gradient( 60rem 35rem at 75% 3%, rgba(185, 242, 52, .085), transparent 60%), radial-gradient( 52rem 30rem at 10% 30%, rgba(37, 99, 255, .05), transparent 60%), linear-gradient( 180deg, var(--included-bg-top) 0%, var(--included-bg-middle) 35%, var(--included-bg-bottom) 100%);
+}
 
-  #whatsincluded {
-    position: relative;
-    isolation: isolate;
-
-    width: 100%;
-
-    padding-top:
-      var(--included-padding-top);
-
-    padding-bottom:
-      var(--included-padding-bottom);
-
-    overflow: hidden;
-
-    color:
-      var(--included-text);
-
-    font-family: inherit;
-
-    background:
-      radial-gradient(
-        60rem 35rem at 75% 3%,
-        rgba(185, 242, 52, .085),
-        transparent 60%
-      ),
-      radial-gradient(
-        52rem 30rem at 10% 30%,
-        rgba(37, 99, 255, .05),
-        transparent 60%
-      ),
-      linear-gradient(
-        180deg,
-        var(--included-bg-top) 0%,
-        var(--included-bg-middle) 35%,
-        var(--included-bg-bottom) 100%
-      );
-  }
-
-
-  /* =========================================================
+/* =========================================================
      BACKGROUND GRID
-     ========================================================= */
+     ========================================================= */ #whatsincluded::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .4;
+}
 
-  #whatsincluded::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    z-index: 0;
-
-    pointer-events: none;
-
-    opacity: .4;
-  }
-
-
-  /* =========================================================
+/* =========================================================
      NOISE TEXTURE
-     ========================================================= */
+     ========================================================= */ #whatsincluded::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .09;
+  mix-blend-mode: soft-light;
+}
 
-  #whatsincluded::after {
-    content: "";
+#whatsincluded *, #whatsincluded *::before, #whatsincluded *::after {
+  box-sizing: border-box;
+}
 
-    position: absolute;
-    inset: 0;
-
-    z-index: 0;
-
-    pointer-events: none;
-
-    opacity: .09;
-
-    mix-blend-mode:
-      soft-light;
-  }
-
-
-  #whatsincluded *,
-  #whatsincluded *::before,
-  #whatsincluded *::after {
-    box-sizing:
-      border-box;
-  }
-
-
-  /* =========================================================
+/* =========================================================
      CONTAINER
-     ========================================================= */
+     ========================================================= */ #whatsincluded .included-features__container {
+  position: relative;
+  z-index: 2;
+  width: min( var(--included-max-width), calc(100% - 44px));
+  margin-inline: auto;
+}
 
-  #whatsincluded
-  .included-features__container {
-    position: relative;
-
-    z-index: 2;
-
-    width:
-      min(
-        var(--included-max-width),
-        calc(100% - 44px)
-      );
-
-    margin-inline:
-      auto;
-  }
-
-
-  /* =========================================================
+/* =========================================================
      SECTION HEADING
-     ========================================================= */
+     ========================================================= */ #whatsincluded .included-features__heading {
+  width: 100%;
+  margin: 0 auto 54px;
+  text-align: center;
+}
 
-  #whatsincluded
-  .included-features__heading {
-    width: 100%;
+#whatsincluded .included-features__eyebrow {
+  font-family: 'Montserrat', Arial, sans-serif;
+  margin: 0 0 20px;
+  color: var(--included-accent);
+  font-size: 13px;
+  line-height: 1.2;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+}
 
-    margin:
-      0 auto 54px;
+#whatsincluded .included-features__title {
+  margin: 0 0 18px;
+  color: var(--included-text);
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: clamp(36px, 3.7vw, 58px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  font-weight: 800;
+}
 
-    text-align:
-      center;
-  }
+#whatsincluded .included-features__highlight {
+  display: inline-block;
+  color: var(--included-accent);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(58px, 4.8vw, 84px);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
 
+#whatsincluded .included-features__description {
+  max-width: 694px;
+  margin-inline: auto;
+  color: var(--included-muted);
+  font-size: 17px;
+  line-height: 1.5;
+  font-weight: 400;
+}
 
-  #whatsincluded
-  .included-features__eyebrow {
-    font-family:
-      'Montserrat',
-      Arial,
-      sans-serif;
+#whatsincluded .included-features__description p {
+  margin: 0;
+}
 
-    margin:
-      0 0 20px;
-
-    color:
-      var(--included-accent);
-
-    font-size:
-      13px;
-
-    line-height:
-      1.2;
-
-    font-weight:
-      700;
-
-    text-transform:
-      uppercase;
-
-    letter-spacing:
-      .18em;
-  }
-
-
-  #whatsincluded
-  .included-features__title {
-    margin:
-      0 0 18px;
-
-    color:
-      var(--included-text);
-
-    font-family:
-      'Montserrat',
-      Arial,
-      sans-serif;
-
-    font-size:
-      clamp(36px, 3.7vw, 58px);
-
-    line-height:
-      0.98;
-
-    letter-spacing:
-      -0.055em;
-
-    font-weight:
-      800;
-  }
-
-
-  #whatsincluded
-  .included-features__highlight {
-    display:
-      inline-block;
-
-    color:
-      var(--included-accent);
-
-    font-family:
-      Georgia,
-      'Times New Roman',
-      serif;
-
-    font-size:
-      clamp(58px, 4.8vw, 84px);
-
-    font-style:
-      italic;
-
-    font-weight:
-      500;
-
-    line-height:
-      0.88;
-
-    letter-spacing:
-      -0.055em;
-
-    white-space:
-      nowrap;
-  }
-
-
-  #whatsincluded
-  .included-features__description {
-    max-width:
-      694px;
-
-    margin-inline:
-      auto;
-
-    color:
-      var(--included-muted);
-
-    font-size:
-      17px;
-
-    line-height:
-      1.5;
-
-    font-weight:
-      400;
-  }
-
-
-  #whatsincluded
-  .included-features__description p {
-    margin:
-      0;
-  }
-
-
-  /* =========================================================
+/* =========================================================
      FEATURE GRID
-     ========================================================= */
+     ========================================================= */ #whatsincluded .included-features__grid {
+  display: grid;
+  gap: var(--included-card-gap);
+}
 
-  #whatsincluded
-  .included-features__grid {
-    display:
-      grid;
+#whatsincluded .included-features__grid--desktop-2 {
+  grid-template-columns: repeat( 2, minmax(0, 1fr));
+}
 
-    gap:
-      var(--included-card-gap);
-  }
+#whatsincluded .included-features__grid--desktop-3 {
+  grid-template-columns: repeat( 3, minmax(0, 1fr));
+}
 
+#whatsincluded .included-features__grid--desktop-4 {
+  grid-template-columns: repeat( 4, minmax(0, 1fr));
+}
 
-  #whatsincluded
-  .included-features__grid--desktop-2 {
-    grid-template-columns:
-      repeat(
-        2,
-        minmax(0, 1fr)
-      );
-  }
-
-
-  #whatsincluded
-  .included-features__grid--desktop-3 {
-    grid-template-columns:
-      repeat(
-        3,
-        minmax(0, 1fr)
-      );
-  }
-
-
-  #whatsincluded
-  .included-features__grid--desktop-4 {
-    grid-template-columns:
-      repeat(
-        4,
-        minmax(0, 1fr)
-      );
-  }
-
-
-  /* =========================================================
+/* =========================================================
      FEATURE CARD
-     ========================================================= */
+     ========================================================= */ #whatsincluded .included-feature-card {
+  position: relative;
+  min-width: 0;
+  min-height: var(--included-card-height);
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 14px 16px;
+  border: 1px solid color-mix( in srgb, var(--included-border) var(--included-border-opacity), transparent);
+  border-radius: var(--included-card-radius);
+  background: linear-gradient( 180deg, rgba(12, 25, 33, .94) 0%, rgba(8, 19, 26, .97) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .015), 0 6px 18px rgba(0, 0, 0, .10);
+  transform-style: preserve-3d;
+  transition: border-color .25s ease, background .25s ease, box-shadow .25s ease, transform .25s ease;
+}
 
-  #whatsincluded
-  .included-feature-card {
-    position:
-      relative;
+#whatsincluded .included-feature-card:hover {
+  border-color: color-mix( in srgb, var(--included-accent) 30%, transparent);
+  background: linear-gradient( 180deg, rgba(14, 29, 37, .98) 0%, rgba(8, 20, 27, .98) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .025), 0 10px 28px rgba(0, 0, 0, .16);
+}
 
-    min-width:
-      0;
-
-    min-height:
-      var(--included-card-height);
-
-    display:
-      flex;
-
-    align-items:
-      center;
-
-    gap:
-      11px;
-
-    padding:
-      14px 16px;
-
-    border:
-      1px solid
-      color-mix(
-        in srgb,
-        var(--included-border)
-        var(--included-border-opacity),
-        transparent
-      );
-
-    border-radius:
-      var(--included-card-radius);
-
-    background:
-      linear-gradient(
-        180deg,
-        rgba(12, 25, 33, .94) 0%,
-        rgba(8, 19, 26, .97) 100%
-      );
-
-    box-shadow:
-      inset
-      0 1px 0
-      rgba(255, 255, 255, .015),
-
-      0 6px 18px
-      rgba(0, 0, 0, .10);
-
-    transform-style:
-      preserve-3d;
-
-    transition:
-      border-color .25s ease,
-      background .25s ease,
-      box-shadow .25s ease,
-      transform .25s ease;
-  }
-
-
-  #whatsincluded
-  .included-feature-card:hover {
-    border-color:
-      color-mix(
-        in srgb,
-        var(--included-accent) 30%,
-        transparent
-      );
-
-    background:
-      linear-gradient(
-        180deg,
-        rgba(14, 29, 37, .98) 0%,
-        rgba(8, 20, 27, .98) 100%
-      );
-
-    box-shadow:
-      inset
-      0 1px 0
-      rgba(255, 255, 255, .025),
-
-      0 10px 28px
-      rgba(0, 0, 0, .16);
-  }
-
-
-  /* =========================================================
+/* =========================================================
      ICON
-     ========================================================= */
+     ========================================================= */ #whatsincluded .included-feature-card__icon {
+  flex: 0 0 var(--included-icon-size);
+  width: var(--included-icon-size);
+  height: var(--included-icon-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--included-accent);
+}
 
-  #whatsincluded
-  .included-feature-card__icon {
-    flex:
-      0 0
-      var(--included-icon-size);
+#whatsincluded .included-feature-card__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
-    width:
-      var(--included-icon-size);
+#whatsincluded .included-feature-card__icon--image {
+  overflow: hidden;
+}
 
-    height:
-      var(--included-icon-size);
+#whatsincluded .included-feature-card__icon--image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
 
-    display:
-      flex;
-
-    align-items:
-      center;
-
-    justify-content:
-      center;
-
-    color:
-      var(--included-accent);
-  }
-
-
-  #whatsincluded
-  .included-feature-card__icon svg {
-    display:
-      block;
-
-    width:
-      100%;
-
-    height:
-      100%;
-
-    fill:
-      none;
-
-    stroke:
-      currentColor;
-
-    stroke-width:
-      1.65;
-
-    stroke-linecap:
-      round;
-
-    stroke-linejoin:
-      round;
-  }
-
-
-  #whatsincluded
-  .included-feature-card__icon--image {
-    overflow:
-      hidden;
-  }
-
-
-  #whatsincluded
-  .included-feature-card__icon--image img {
-    width:
-      100%;
-
-    height:
-      100%;
-
-    display:
-      block;
-
-    object-fit:
-      contain;
-  }
-
-
-  /* =========================================================
+/* =========================================================
      CARD COPY
-     ========================================================= */
+     ========================================================= */ #whatsincluded .included-feature-card__content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  #whatsincluded
-  .included-feature-card__content {
-    min-width:
-      0;
+#whatsincluded .included-feature-card__title {
+  margin: 0 0 4px;
+  font-family: 'Montserrat', Arial, sans-serif;
+  color: var(--included-text);
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  font-size: 16px;
+}
 
-    display:
-      flex;
+#whatsincluded .included-feature-card__description {
+  margin: 0;
+  color: var(--included-muted);
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+}
 
-    flex-direction:
-      column;
-
-    justify-content:
-      center;
-  }
-
-
-  #whatsincluded
-  .included-feature-card__title {
-    margin:
-      0 0 4px;
-
-    font-family:
-      'Montserrat',
-      Arial,
-      sans-serif;
-
-    color:
-      var(--included-text);
-
-    line-height:
-      1.25;
-
-    font-weight:
-      700;
-
-    letter-spacing:
-      -0.035em;
-
-    font-size:
-      16px;
-  }
-
-
-  #whatsincluded
-  .included-feature-card__description {
-    margin:
-      0;
-
-    color:
-      var(--included-muted);
-
-    font-size:
-      14px;
-
-    line-height:
-      1.5;
-
-    font-weight:
-      400;
-  }
-
-
-  /* =========================================================
+/* =========================================================
      PAGINATION
      Hidden outside mobile
-     ========================================================= */
+     ========================================================= */ #whatsincluded .included-features__pagination {
+  display: none;
+}
 
-  #whatsincluded
-  .included-features__pagination {
-    display:
-      none;
-  }
-
-
-  /* =========================================================
+/* =========================================================
      SCROLL ANIMATION
-     ========================================================= */
-
-  @media (prefers-reduced-motion: no-preference) {
-
-    #whatsincluded.included-features--animation-ready
-    [data-included-reveal],
-
-    #whatsincluded.included-features--animation-ready
-    [data-included-card] {
-      opacity:
-        0;
-
-      transform:
-        translateY(28px);
-    }
-
-
-    #whatsincluded
-    [data-included-reveal].is-visible,
-
-    #whatsincluded
-    [data-included-card].is-visible {
-      opacity:
-        1;
-
-      transform:
-        translateY(0);
-
-      transition:
-        opacity
-        .72s
-        cubic-bezier(.22, 1, .36, 1),
-
-        transform
-        .72s
-        cubic-bezier(.22, 1, .36, 1);
-    }
-
+     ========================================================= */ @media (prefers-reduced-motion: no-preference) {
+  #whatsincluded.included-features--animation-ready [data-included-reveal], #whatsincluded.included-features--animation-ready [data-included-card] {
+    opacity: 0;
+    transform: translateY(28px);
   }
 
+  #whatsincluded [data-included-reveal].is-visible, #whatsincluded [data-included-card].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity .72s cubic-bezier(.22, 1, .36, 1), transform .72s cubic-bezier(.22, 1, .36, 1);
+  }
 
-  /* =========================================================
+}
+
+/* =========================================================
      TABLET
-     ========================================================= */
-
-  @media screen and (max-width: 989px) {
-
-    #whatsincluded
-    .included-features__grid {
-      grid-template-columns:
-        repeat(
-          2,
-          minmax(0, 1fr)
-        );
-    }
-
+     ========================================================= */ @media screen and (max-width: 989px) {
+  #whatsincluded .included-features__grid {
+    grid-template-columns: repeat( 2, minmax(0, 1fr));
   }
 
+}
 
-  /* =========================================================
+/* =========================================================
      MOBILE — FULL-WIDTH SLIDER CARDS
-     ========================================================= */
+     ========================================================= */ @media screen and (max-width: 640px) {
+  #whatsincluded {
+    padding-top: var(--included-padding-top-mobile);
+    padding-bottom: var(--included-padding-bottom-mobile);
+  }
 
-  @media screen and (max-width: 640px) {
+  #whatsincluded .included-features__container {
+    width: calc(100% - 28px);
+  }
 
-    #whatsincluded {
-      padding-top:
-        var(--included-padding-top-mobile);
+  #whatsincluded .included-features__heading {
+    margin-bottom: 36px;
+  }
 
-      padding-bottom:
-        var(--included-padding-bottom-mobile);
-    }
+  #whatsincluded .included-features__title {
+    font-size: clamp(36px, 3.7vw, 58px);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    font-weight: 800;
+    text-align: center;
+  }
 
+  #whatsincluded .included-features__highlight {
+    font-size: 0.94em;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.035em;
+  }
 
-    #whatsincluded
-    .included-features__container {
-      width:
-        calc(100% - 28px);
-    }
+  #whatsincluded .included-features__description {
+    font-size: 14px;
+  }
 
-
-    #whatsincluded
-    .included-features__heading {
-      margin-bottom:
-        36px;
-    }
-
-
-    #whatsincluded
-    .included-features__title {
-      font-size:
-        clamp(36px, 3.7vw, 58px);
-
-      line-height:
-        0.98;
-
-      letter-spacing:
-        -0.055em;
-
-      font-weight:
-        800;
-
-      text-align:
-        center;
-    }
-
-
-    #whatsincluded
-    .included-features__highlight {
-      font-size:
-        0.94em;
-
-      font-style:
-        italic;
-
-      font-weight:
-        500;
-
-      line-height:
-        1.4;
-
-      letter-spacing:
-        -0.035em;
-    }
-
-
-    #whatsincluded
-    .included-features__description {
-      font-size:
-        14px;
-    }
-
-
-    /* =====================================================
+  /* =====================================================
        MOBILE HORIZONTAL SLIDER
-       ===================================================== */
+       ===================================================== */ #whatsincluded .included-features__grid, #whatsincluded .included-features__grid--mobile-1, #whatsincluded .included-features__grid--mobile-2 {
+    display: flex;
+    grid-template-columns: none;
+    width: 100%;
+    gap: var(--included-card-gap);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 0 2px;
+    margin: 0;
+  }
 
-    #whatsincluded
-    .included-features__grid,
-    #whatsincluded
-    .included-features__grid--mobile-1,
-    #whatsincluded
-    .included-features__grid--mobile-2 {
-      display:
-        flex;
+  #whatsincluded .included-features__grid::-webkit-scrollbar {
+    display: none;
+  }
 
-      grid-template-columns:
-        none;
-
-      width:
-        100%;
-
-      gap:
-        var(--included-card-gap);
-
-      overflow-x:
-        auto;
-
-      overflow-y:
-        hidden;
-
-      scroll-snap-type:
-        x mandatory;
-
-      scroll-behavior:
-        smooth;
-
-      overscroll-behavior-x:
-        contain;
-
-      -webkit-overflow-scrolling:
-        touch;
-
-      scrollbar-width:
-        none;
-
-      padding:
-        0 0 2px;
-
-      margin:
-        0;
-    }
-
-
-    #whatsincluded
-    .included-features__grid::-webkit-scrollbar {
-      display:
-        none;
-    }
-
-
-    /* =====================================================
+  /* =====================================================
        FULL-WIDTH MOBILE CARD
-       ===================================================== */
+       ===================================================== */ #whatsincluded .included-feature-card {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 90px;
+    padding: 15px 16px;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
 
-    #whatsincluded
-    .included-feature-card {
-      flex:
-        0 0 100%;
+  #whatsincluded .included-feature-card:hover {
+    transform: none;
+  }
 
-      width:
-        100%;
+  #whatsincluded .included-feature-card__title {
+    font-size: 14px;
+  }
 
-      min-width:
-        100%;
+  #whatsincluded .included-feature-card__description {
+    font-size: 11px;
+  }
 
-      max-width:
-        100%;
-
-      min-height:
-        90px;
-
-      padding:
-        15px 16px;
-
-      scroll-snap-align:
-        start;
-
-      scroll-snap-stop:
-        always;
-    }
-
-
-    #whatsincluded
-    .included-feature-card:hover {
-      transform:
-        none;
-    }
-
-
-    #whatsincluded
-    .included-feature-card__title {
-      font-size:
-        14px;
-    }
-
-
-    #whatsincluded
-    .included-feature-card__description {
-      font-size:
-        11px;
-    }
-
-
-    /* =====================================================
+  /* =====================================================
        MOBILE PAGINATION DOTS
-       ===================================================== */
-
-    #whatsincluded
-    .included-features__pagination {
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      justify-content:
-        center;
-
-      flex-wrap:
-        wrap;
-
-      gap:
-        7px;
-
-      margin-top:
-        20px;
-    }
-
-
-    #whatsincluded
-    .included-features__dot {
-      appearance:
-        none;
-
-      -webkit-appearance:
-        none;
-
-      display:
-        block;
-
-      width:
-        7px;
-
-      height:
-        7px;
-
-      padding:
-        0;
-
-      margin:
-        0;
-
-      border:
-        0;
-
-      border-radius:
-        999px;
-
-      background:
-        var(--included-muted);
-
-      opacity:
-        .35;
-
-      cursor:
-        pointer;
-
-      transition:
-        width .25s ease,
-        opacity .25s ease,
-        background-color .25s ease;
-    }
-
-
-    #whatsincluded
-    .included-features__dot.is-active {
-      width:
-        22px;
-
-      background:
-        var(--included-accent);
-
-      opacity:
-        1;
-    }
-
+       ===================================================== */ #whatsincluded .included-features__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 20px;
   }
 
+  #whatsincluded .included-features__dot {
+    appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 999px;
+    background: var(--included-muted);
+    opacity: .35;
+    cursor: pointer;
+    transition: width .25s ease, opacity .25s ease, background-color .25s ease;
+  }
 
-  /* =========================================================
+  #whatsincluded .included-features__dot.is-active {
+    width: 22px;
+    background: var(--included-accent);
+    opacity: 1;
+  }
+
+}
+
+/* =========================================================
      REDUCED MOTION
-     ========================================================= */
-
-  @media (prefers-reduced-motion: reduce) {
-
-    #whatsincluded *,
-    #whatsincluded *::before,
-    #whatsincluded *::after {
-      animation:
-        none !important;
-
-      transition:
-        none !important;
-    }
-
-
-    #whatsincluded
-    [data-included-reveal],
-
-    #whatsincluded
-    [data-included-card] {
-      opacity:
-        1 !important;
-
-      transform:
-        none !important;
-    }
-
+     ========================================================= */ @media (prefers-reduced-motion: reduce) {
+  #whatsincluded *, #whatsincluded *::before, #whatsincluded *::after {
+    animation: none !important;
+    transition: none !important;
   }
 
+  #whatsincluded [data-included-reveal], #whatsincluded [data-included-card] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 
+}

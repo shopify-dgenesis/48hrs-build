@@ -1,1252 +1,690 @@
-
-
 /* =========================================================
    BASE
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   width: 100%;
-
-  background:
-    radial-gradient(
-      circle at 18% 25%,
-      color-mix(
-        in srgb,
-        var(--launch-accent) 7%,
-        transparent
-      ),
-      transparent 35%
-    ),
-    var(--launch-bg);
-
+  background: radial-gradient( circle at 18% 25%, color-mix( in srgb, var(--launch-accent) 7%, transparent), transparent 35%), var(--launch-bg);
   color: var(--launch-text);
-
   padding-top: var(--launch-padding-top);
   padding-bottom: var(--launch-padding-bottom);
-
   font-family: 'Montserrat', Arial, sans-serif;
 }
 
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR *,
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR *::before,
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR *::after {
+.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR *, .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR *::before, .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR *::after {
   box-sizing: border-box;
 }
 
-
 /* =========================================================
    BACKGROUND
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__background-glow {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__background-glow {
   display: none;
 }
 
-
 /* =========================================================
    CONTAINER
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__container {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__container {
   width: calc(100% - 40px);
-
   max-width: var(--launch-max-width);
-
   margin: 0 auto;
-
   display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.02fr)
-    minmax(0, 0.98fr);
-
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
   gap: 48px;
-
   align-items: stretch;
 }
 
-
 /* =========================================================
    MEDIA PANEL
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__media-panel {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__media-panel {
   position: relative;
-
   min-width: 0;
   min-height: 570px;
-
   overflow: hidden;
-
   border: 1px solid var(--launch-border);
-
   border-radius: 25px;
-
   background: var(--launch-panel);
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
-  padding:
-86px
-    46px
-    94px;
+  padding: 86px 46px 94px;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__media-dots {
   position: absolute;
-
-  inset:
-    10px
-    auto
-    10px
-    10px;
-
+  inset: 10px auto 10px 10px;
   width: 260px;
-
   opacity: 0.65;
-
-  background-image:
-    radial-gradient(
-      circle,
-      color-mix(
-        in srgb,
-        var(--launch-accent) 20%,
-        transparent
-      ) 1.25px,
-      transparent 1.5px
-    );
-
+  background-image: radial-gradient( circle, color-mix( in srgb, var(--launch-accent) 20%, transparent) 1.25px, transparent 1.5px);
   background-size: 24px 24px;
-
-  -webkit-mask-image:
-    linear-gradient(
-      90deg,
-      #000 0%,
-      rgba(0, 0, 0, 0.7) 50%,
-      transparent 100%
-    );
-
-  mask-image:
-    linear-gradient(
-      90deg,
-      #000 0%,
-      rgba(0, 0, 0, 0.7) 50%,
-      transparent 100%
-    );
+  -webkit-mask-image: linear-gradient( 90deg, #000 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+  mask-image: linear-gradient( 90deg, #000 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
 }
-
 
 /* =========================================================
    MEDIA BADGE
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__media-badge {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__media-badge {
   position: absolute;
-
   z-index: 3;
-
   left: 30px;
   top: 26px;
-
   min-height: 52px;
-
   display: inline-flex;
-
   align-items: center;
-
   gap: 14px;
-
-  padding:
-    12px
-    26px;
-
-  border:
-    1px solid
-    var(--launch-border);
-
+  padding: 12px 26px;
+  border: 1px solid var(--launch-border);
   border-radius: 100px;
-
   background: var(--launch-panel);
-
   color: var(--launch-text);
-
   font-size: 13px;
-
   line-height: 1;
-
   font-weight: 800;
-
   text-transform: uppercase;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__bolt {
   display: inline-flex;
-
   flex-shrink: 0;
-
   color: var(--launch-accent);
 }
 
-
 /* =========================================================
    PRODUCT IMAGE
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__product-visual {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__product-visual {
   position: relative;
-
   z-index: 2;
-
   width: 100%;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__main-image {
   display: block;
-
   width: 100%;
-
   max-width: 720px;
-
   height: auto;
-
   object-fit: contain;
-
-  filter:
-    drop-shadow(
-      0
-      24px
-      38px
-      rgba(0, 0, 0, 0.4)
-    );
+  filter: drop-shadow( 0 24px 38px rgba(0, 0, 0, 0.4));
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__placeholder {
   width: 100%;
-
   min-height: 390px;
-
-  border:
-    1px dashed
-    var(--launch-border);
-
+  border: 1px dashed var(--launch-border);
   border-radius: 18px;
-
   display: flex;
-
   flex-direction: column;
-
   justify-content: center;
   align-items: center;
-
   color: var(--launch-muted);
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__placeholder-svg {
   width: 100%;
-
   max-height: 320px;
-
   opacity: 0.4;
 }
 
-
 /* =========================================================
    REVIEW CARD
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__review-card {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__review-card {
   position: absolute;
-
   z-index: 4;
-
   bottom: 20px;
   left: 30px;
-
   max-width: calc(100% - 60px);
-
   display: flex;
-
   align-items: center;
-
   gap: 20px;
-
-  padding:
-    14px
-    24px;
-
-  border:
-    1px solid
-    var(--launch-border);
-
+  padding: 14px 24px;
+  border: 1px solid var(--launch-border);
   border-radius: 18px;
-
   background: var(--launch-panel);
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__review-avatars {
   display: flex;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__review-avatar {
   width: 38px;
   height: 38px;
-
   margin-left: -7px;
-
   overflow: hidden;
-
   border-radius: 50%;
-
-  border:
-    2px solid
-    var(--launch-panel);
-
+  border: 2px solid var(--launch-panel);
   background: #263142;
-
   display: flex;
-
   justify-content: center;
   align-items: center;
-
   font-size: 11px;
-
   font-weight: 800;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__review-avatar:first-child {
   margin-left: 0;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__review-avatar img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__review-content {
   display: flex;
-
   align-items: center;
-
   gap: 9px;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__stars {
   color: #ffb800;
-
   font-size: 13px;
-
   line-height: 1;
-
   letter-spacing: 1px;
-
   white-space: nowrap;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__review-copy {
   display: flex;
-
   align-items: center;
-
   gap: 5px;
-
   color: var(--launch-muted);
-
   font-size: 12px;
-
   white-space: nowrap;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__review-copy strong {
   color: var(--launch-text);
 }
 
-
 /* =========================================================
    CONTENT
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__content {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__content {
   min-width: 0;
-gap:25px;
+  gap: 25px;
   display: flex;
-
   flex-direction: column;
-
   justify-content: center;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__eyebrow {
-
   color: var(--launch-accent);
-
   font-size: 14px;
-
   line-height: 1.2;
-
-
   letter-spacing: 0.03em;
-
   text-transform: uppercase;
 }
 
-
 /* =========================================================
    HEADING
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-wrap {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-wrap {
   width: 100%;
 }
-
 
 /*
   LINE 1
   Launch Your Shopify
-*/
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading {
+*/ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading {
   width: 100%;
-
   max-width: none;
-
   margin: 0;
-
   color: var(--launch-text);
-
-  font-family:
-    'Montserrat',
-    Arial,
-    sans-serif;
-
-  font-size:
-    clamp(
-      36px,
-      3.7vw,
-      58px
-    );
-
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: clamp( 36px, 3.7vw, 58px);
   line-height: 0.98;
-
   letter-spacing: -0.055em;
-
   font-weight: 800;
-
   white-space: nowrap;
 }
-
 
 /*
   LINE 2 CONTAINER
-*/
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-second-line {
+*/ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-second-line {
   width: 100%;
-
   display: flex;
-
   align-items: baseline;
-
   justify-content: flex-start;
-
   gap: 12px;
-
   margin-top: 10px;
-
   white-space: nowrap;
 }
-
 
 /*
   "Store in"
 
   SAME FONT + COLOR + WEIGHT
   AS "Launch Your Shopify"
-*/
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-prefix {
+*/ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-prefix {
   color: var(--launch-text);
-
-  font-family:
-    'Montserrat',
-    Arial,
-    sans-serif;
-
-  font-size:
-    clamp(
-      36px,
-      3.7vw,
-      58px
-    );
-
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: clamp( 36px, 3.7vw, 58px);
   line-height: 0.98;
-
   letter-spacing: -0.055em;
-
   font-style: normal;
-
   font-weight: 800;
-
   white-space: nowrap;
 }
-
 
 /*
   "48 Hours"
-*/
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__highlight-heading {
+*/ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__highlight-heading {
   color: var(--launch-accent);
-
-  font-family:
-    Georgia,
-    'Times New Roman',
-    serif;
-
-  font-size:
-    clamp(
-      58px,
-      4.8vw,
-      84px
-    );
-
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp( 58px, 4.8vw, 84px);
   font-style: italic;
-
   font-weight: 500;
-
   line-height: 0.88;
-
   letter-spacing: -0.055em;
-
   white-space: nowrap;
 }
 
-
-/* Lightning */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-bolt {
+/* Lightning */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-bolt {
   display: inline-flex;
-
   align-items: center;
-
   flex-shrink: 0;
-
   color: var(--launch-accent);
 }
 
-
 /* =========================================================
    RULE
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__rule {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__rule {
   width: 100%;
-
   height: 1px;
-
-  margin:
-    14px
-    0
-    15px;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--launch-accent),
-      transparent
-    );
-
+  margin: 14px 0 15px;
+  background: linear-gradient( 90deg, var(--launch-accent), transparent);
   opacity: 0.7;
 }
 
-
 /* =========================================================
    DESCRIPTION
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__description {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__description {
   color: var(--launch-muted);
-
   font-size: 15px;
-
   line-height: 1.6;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__description p {
   margin: 0;
 }
 
-
 /* =========================================================
    FEATURES
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__features {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__features {
   display: grid;
-
-  grid-template-columns:
-    repeat(
-      3,
-      minmax(0, 1fr)
-    );
-
+  grid-template-columns: repeat( 3, minmax(0, 1fr));
   margin-top: 24px;
-
   margin-bottom: 27px;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__feature {
   position: relative;
-
   min-width: 0;
-
   display: grid;
-
-  grid-template-columns:
-    43px
-    minmax(0, 1fr);
-
+  grid-template-columns: 43px minmax(0, 1fr);
   gap: 11px;
-
   padding-right: 15px;
-
   margin-right: 15px;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__feature:not(:last-child)::after {
   content: '';
-
   position: absolute;
-
   right: 0;
   top: 7px;
-
   width: 1px;
-
   height: 38px;
-
   background: var(--launch-border);
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__feature:last-child {
   margin-right: 0;
-
   padding-right: 0;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__feature-icon {
   width: 43px;
   height: 43px;
-
   border-radius: 50%;
-
   background: var(--launch-card);
-
   color: var(--launch-accent);
-
   display: flex;
-
   align-items: center;
   justify-content: center;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__feature-copy h3 {
-  margin:
-    0
-    0
-    4px;
-
+  margin: 0 0 4px;
   color: var(--launch-text);
-
   font-size: 12px;
-
   line-height: 1.2;
-
   font-weight: 900;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__feature-copy p {
   margin: 0;
-
   color: var(--launch-muted);
-
   font-size: 11px;
-
   line-height: 1.4;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__shopify-icon {
   font-size: 19px;
-
   line-height: 1;
-
   font-weight: 900;
 }
-
 
 /* =========================================================
    PRICE CARD
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-card {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-card {
   display: flex;
-    grid-template-columns: max-content 135px max-content;
-    justify-content: center;
-    align-items: center;
-    column-gap: 60px;
-    /* min-height: 136px; */
-    padding: 1px 35px;
-    border: 1px solid var(--launch-border);
-    border-radius: 18px;
-    overflow: hidden;
-    background: var(--launch-card);
+  grid-template-columns: max-content 135px max-content;
+  justify-content: center;
+  align-items: center;
+  column-gap: 60px;
+  /* min-height: 136px; */ padding: 1px 35px;
+  border: 1px solid var(--launch-border);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--launch-card);
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-primary {
   min-width: 0;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   gap: 18px;
-
-  padding:
-    24px
-    0;
+  padding: 24px 0;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-bag {
   position: relative;
-
   width: 60px;
   height: 60px;
-
   flex: 0 0 60px;
-
   display: flex;
-
   justify-content: center;
   align-items: center;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-icon {
   display: block;
-
   width: 100%;
   height: 100%;
-
   object-fit: contain;
 }
 
-
-/* Fallback Shopify-style bag shown until a custom price icon is selected */
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-bag--fallback {
+/* Fallback Shopify-style bag shown until a custom price icon is selected */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-bag--fallback {
   width: 52px;
   height: 60px;
-
   flex-basis: 52px;
-
   transform: rotate(7deg);
-
   background: var(--launch-accent);
-
   color: #ffffff;
-
   font-size: 26px;
-
   font-weight: 900;
-
-  clip-path:
-    polygon(
-      16% 19%,
-      85% 19%,
-      100% 100%,
-      0 100%
-    );
+  clip-path: polygon( 16% 19%, 85% 19%, 100% 100%, 0 100%);
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-bag--fallback::before {
   content: '';
-
   position: absolute;
-
   width: 24px;
   height: 20px;
-
   left: 14px;
   top: -6px;
-
-  border:
-    3px solid
-    var(--launch-accent);
-
+  border: 3px solid var(--launch-accent);
   border-bottom: 0;
-
-  border-radius:
-    20px
-    20px
-    0
-    0;
+  border-radius: 20px 20px 0 0;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-bag--fallback span {
   transform: rotate(-7deg);
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-details {
   min-width: 0;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price {
   color: var(--launch-accent);
-
-  font-size:
-    clamp(
-      38px,
-      3vw,
-      55px
-    );
-
+  font-size: clamp( 38px, 3vw, 55px);
   line-height: 0.9;
-
   font-weight: 900;
-
   letter-spacing: -0.055em;
-
   white-space: nowrap;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-caption {
   margin-top: 10px;
-
   color: var(--launch-text);
-
   font-size: 11px;
-
   line-height: 1.35;
-
   font-weight: 900;
-
   text-transform: uppercase;
-
   white-space: nowrap;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-divider {
   width: 1px;
-
   height: 95px;
-
   background: var(--launch-border);
 }
 
-
 /* =========================================================
    BENEFITS
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__benefits {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__benefits {
   min-width: 0;
-
   display: flex;
-
   flex-direction: column;
-
   align-items: flex-start;
-
   gap: 11px;
-
-  padding:
-    22px
-    0;
+  padding: 22px 0;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__benefit {
   width: 100%;
-
   min-width: 0;
-
   display: flex;
-
   align-items: center;
-
   gap: 9px;
-
   color: var(--launch-text);
-
   font-size: 11px;
-
   line-height: 1.2;
-
   font-weight: 600;
-
   white-space: nowrap;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__benefit-check {
-  flex:
-    0
-    0
-    15px;
-
+  flex: 0 0 15px;
   width: 15px;
-
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
-
   color: var(--launch-accent);
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__benefit-text {
   display: block;
-
   white-space: nowrap;
-
   word-break: keep-all;
-
   overflow-wrap: normal;
 }
 
-
 /* =========================================================
    BUTTONS
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__actions {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__actions {
   display: flex;
-
   flex-direction: column;
-
   gap: 8px;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__button {
   width: 100%;
-
   min-height: 56px;
-
   border-radius: 9px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   gap: 16px;
-
-  padding:
-    12px
-    24px;
-
+  padding: 12px 24px;
   text-decoration: none;
-
   text-align: center;
-
   font-size: 15px;
-
   line-height: 1.2;
-
   font-weight: 900;
-
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease,
-    background-color 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__button:hover {
   transform: translateY(-2px);
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__button--primary {
   background: var(--launch-accent);
-
   color: #071008;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__button--primary:hover {
   opacity: 0.92;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__button--secondary {
   min-height: 48px;
-
-  border:
-    1px solid
-    color-mix(
-      in srgb,
-      var(--launch-text) 65%,
-      transparent
-    );
-
+  border: 1px solid color-mix( in srgb, var(--launch-text) 65%, transparent);
   background: transparent;
-
   color: var(--launch-text);
-
   font-size: 12px;
 }
 
-
 /* =========================================================
    AVAILABILITY
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__availability {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__availability {
   display: flex;
-
   align-items: center;
-
   gap: 9px;
-
   color: var(--launch-muted);
-
   font-size: 11px;
-
   line-height: 1.3;
-      justify-content: center;
+  justify-content: center;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__availability-dot {
   width: 8px;
   height: 8px;
-
   flex-shrink: 0;
-
   border-radius: 50%;
-
   background: var(--launch-accent);
-
-  box-shadow:
-    0 0 0 4px
-    color-mix(
-      in srgb,
-      var(--launch-accent) 12%,
-      transparent
-    );
+  box-shadow: 0 0 0 4px color-mix( in srgb, var(--launch-accent) 12%, transparent);
 }
-
-
-
 
 /* =========================================================
    TRUST BAR
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-bar {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-bar {
   width: calc(100% - 40px);
   max-width: var(--launch-max-width);
   margin: 48px auto 0;
-
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-
   border: 1px solid var(--launch-border);
   border-radius: 12px;
-
   background: var(--launch-panel);
-
   overflow: hidden;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-item {
   position: relative;
   min-width: 0;
   display: flex;
   align-items: center;
-
   gap: 14px;
-
   min-height: 126px;
-
-  padding:
-    28px
-    34px;
+  padding: 28px 34px;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-item:not(:last-child)::after {
   content: '';
-
   position: absolute;
-
   top: 50%;
   right: 0;
-
   width: 1px;
   height: 36px;
-
   transform: translateY(-50%);
-
   background: var(--launch-border);
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-icon {
   width: 36px;
   height: 36px;
-
   flex: 0 0 36px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border: 1px solid var(--launch-border);
   border-radius: 50%;
-
   background: var(--launch-card);
-
   color: var(--launch-accent);
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-copy {
   min-width: 0;
-
   display: flex;
   flex-direction: column;
-
   gap: 3px;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-copy strong {
   display: block;
-
   margin: 0;
-
   color: var(--launch-text);
-
   font-size: 14px;
   line-height: 1.2;
-
   font-weight: 800;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-copy span {
   display: block;
-
   color: var(--launch-muted);
-
   font-size: 12px;
   line-height: 1.35;
-
   font-weight: 500;
 }
 
-
 /* =========================================================
    TRUST SLIDER PAGINATION
-========================================================= */
-
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-pagination {
+========================================================= */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-pagination {
   display: none;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-dot {
   appearance: none;
   -webkit-appearance: none;
-
   position: relative;
-
   width: 15px;
   height: 28px;
-
   margin: 0;
   padding: 0;
-
   border: 0;
   border-radius: 999px;
-
   background: transparent;
-
   cursor: pointer;
 }
 
-
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-dot::before {
   content: '';
-
   position: absolute;
-
   top: 50%;
   left: 50%;
-
   width: 8px;
   height: 8px;
-
   border-radius: 999px;
-
   background: color-mix(in srgb, var(--launch-muted) 45%, transparent);
-
   transform: translate(-50%, -50%);
-
-  transition:
-    width 0.25s ease,
-    background-color 0.25s ease,
-    opacity 0.25s ease;
+  transition: width 0.25s ease, background-color 0.25s ease, opacity 0.25s ease;
 }
-
 
 .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-dot.is-active::before {
   width: 10px;
@@ -1254,55 +692,31 @@ gap:25px;
   background: var(--launch-accent);
 }
 
-
 /* =========================================================
    SMALL DESKTOP
-========================================================= */
-
-@media screen and (max-width: 1250px) {
-
+========================================================= */ @media screen and (max-width: 1250px) {
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__container {
-    grid-template-columns:
-      minmax(0, 0.95fr)
-      minmax(0, 1.05fr);
-
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
     gap: 30px;
   }
 
-
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading,
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-prefix {
-    font-size:
-      clamp(
-        28px,
-        3vw,
-        42px
-      );
+  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading, .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-prefix {
+    font-size: clamp( 28px, 3vw, 42px);
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__highlight-heading {
-    font-size:
-      clamp(
-        48px,
-        4.8vw,
-        68px
-      );
+    font-size: clamp( 48px, 4.8vw, 68px);
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-second-line {
     gap: 9px;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-card {
     column-gap: 24px;
-
     padding-left: 22px;
     padding-right: 22px;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-primary {
     gap: 14px;
@@ -1310,102 +724,60 @@ gap:25px;
 
 }
 
-
 /* =========================================================
    TABLET
-========================================================= */
-
-@media screen and (max-width: 989px) {
-
+========================================================= */ @media screen and (max-width: 989px) {
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-bar {
     width: calc(100% - 30px);
-
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-item {
     min-height: 108px;
-
-    padding:
-      24px
-      28px;
+    padding: 24px 28px;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-item::after {
     display: none;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-item:nth-child(odd) {
     border-right: 1px solid var(--launch-border);
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-item:nth-child(-n + 2) {
     border-bottom: 1px solid var(--launch-border);
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__container {
     width: calc(100% - 30px);
-
     grid-template-columns: 1fr;
-
     gap: 45px;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__content {
     order: 1;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__media-panel {
     order: 2;
-
     min-height: 620px;
-
-    padding:
-      95px
-      35px
-      115px;
+    padding: 95px 35px 115px;
   }
 
-
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading,
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-prefix {
-    font-size:
-      clamp(
-        36px,
-        6vw,
-        52px
-      );
+  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading, .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-prefix {
+    font-size: clamp( 36px, 6vw, 52px);
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__highlight-heading {
-    font-size:
-      clamp(
-        56px,
-        8vw,
-        78px
-      );
+    font-size: clamp( 56px, 8vw, 78px);
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-card {
-    grid-template-columns:
-      max-content
-      1px
-      max-content;
-
+    grid-template-columns: max-content 1px max-content;
     justify-content: center;
-
     column-gap: 30px;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__benefit {
     font-size: 12px;
@@ -1413,361 +785,233 @@ gap:25px;
 
 }
 
-
 /* =========================================================
    MOBILE
-========================================================= */
-
-@media screen and (max-width: 749px) {
-
-  /* Trust bar: one card per view, swipe slider on mobile only */
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-bar {
+========================================================= */ @media screen and (max-width: 749px) {
+  /* Trust bar: one card per view, swipe slider on mobile only */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-bar {
     width: calc(100% - 26px);
-
     display: flex;
     grid-template-columns: none;
-
     overflow-x: auto;
     overflow-y: hidden;
-
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-
     border-radius: 14px;
-
     scrollbar-width: none;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-bar::-webkit-scrollbar {
     display: none;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-pagination {
     width: calc(100% - 26px);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     gap: 2px;
-
     margin: 8px auto 0;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-dot {
     display: block;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-item {
     flex: 0 0 100%;
     width: 100%;
     min-width: 100%;
     min-height: 0;
-
     justify-content: center;
     scroll-snap-align: start;
     scroll-snap-stop: always;
-
-    padding:
-      20px
-      22px;
+    padding: 20px 22px;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-item::after {
     display: none;
   }
 
-
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-item:nth-child(odd),
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-item:nth-child(-n + 2) {
+  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-item:nth-child(odd), .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-item:nth-child(-n + 2) {
     border-right: 0;
     border-bottom: 0;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-item:not(:last-child) {
     border-right: 1px solid var(--launch-border);
     border-bottom: 0;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-copy strong {
     font-size: 13px;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__trust-copy span {
     font-size: 11px;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__container {
     width: calc(100% - 26px);
-
     gap: 35px;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__eyebrow {
     margin-bottom: 15px;
-
     font-size: 12px;
   }
 
-
   /*
     Launch Your Shopify
-  */
-
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading {
-    font-size:
-      clamp(
-        25px,
-        7.5vw,
-        38px
-      );
-
+  */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading {
+    font-size: clamp( 25px, 7.5vw, 38px);
     line-height: 1;
-
     letter-spacing: -0.05em;
-
     white-space: nowrap;
   }
-
 
   /*
     Second line:
     Store in 48 Hours
-  */
-
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-second-line {
+  */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-second-line {
     gap: 6px;
-
     margin-top: 9px;
     justify-content: center;
   }
-  
-
 
   /*
     Store in
-  */
-
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-prefix {
-    font-size:
-      clamp(
-        25px,
-        7.5vw,
-        38px
-      );
-
+  */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-prefix {
+    font-size: clamp( 25px, 7.5vw, 38px);
     line-height: 1;
-
     letter-spacing: -0.05em;
-
     white-space: nowrap;
   }
-
 
   /*
     48 Hours
-  */
-
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__highlight-heading {
-    font-size:
-      clamp(
-        37px,
-        10.5vw,
-        54px
-      );
-
+  */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__highlight-heading {
+    font-size: clamp( 37px, 10.5vw, 54px);
     line-height: 0.9;
-
     white-space: nowrap;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-bolt svg {
     width: 23px;
-
     height: 23px;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__description {
     font-size: 14px;
   }
 
-
-  /* Features */
-
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__features {
+  /* Features */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__features {
     grid-template-columns: 1fr;
-
     gap: 20px;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__feature {
-    grid-template-columns:
-      45px
-      1fr;
-
+    grid-template-columns: 45px 1fr;
     margin: 0;
-
     padding: 0;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__feature:not(:last-child)::after {
     display: none;
   }
 
-
-  /* Price */
-
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-card {
+  /* Price */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-card {
     grid-template-columns: 1fr;
-
     justify-content: stretch;
-
     column-gap: 0;
-
     padding-left: 0;
     padding-right: 0;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-divider {
     width: calc(100% - 44px);
-
     height: 1px;
-
     margin: 0 auto;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__price-primary {
     justify-content: center;
-
-    padding:
-      15px
-      0px;
-      gap:8px;
+    padding: 15px 0px;
+    gap: 8px;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__benefits {
     width: max-content;
-
     max-width: calc(100% - 40px);
-
     margin: 0 auto;
-
-    padding:
-      20px
-      0
-      26px;
+    padding: 20px 0 26px;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__benefit {
     font-size: 12px;
-
     white-space: nowrap;
   }
 
-
-  /* Media */
-
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__media-panel {
+  /* Media */ .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__media-panel {
     min-height: 430px;
-
     border-radius: 18px;
-
-    padding:
-      90px
-      18px
-      120px;
+    padding: 90px 18px 120px;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__media-badge {
     left: 18px;
-
     top: 18px;
-
     max-width: calc(100% - 36px);
-
-    padding:
-      10px
-      17px;
-
+    padding: 10px 17px;
     font-size: 11px;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__review-card {
     left: 16px;
-
     bottom: 16px;
-
     max-width: calc(100% - 32px);
-
-    padding:
-      12px
-      15px;
+    padding: 12px 15px;
   }
-.launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__review-content {
+
+  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__review-content {
     display: flex;
     align-items: left;
     gap: 9px;
     width: 100%;
     flex-direction: column;
-}
-.launch48--template--21336439652430__shopify_48_hour_launch_CDH4Rf .launch48__review-card{
- width: 100%;
-}
-  .launch48__heading{
-  text-align: center;}
-  .launch48--template--21336439652430__shopify_48_hour_launch_CDH4Rf .launch48__heading-second-line{
-  justify-content: center;
+  }
+
+  .launch48--template--21336439652430__shopify_48_hour_launch_CDH4Rf .launch48__review-card {
+    width: 100%;
+  }
+
+  .launch48__heading {
+    text-align: center;
+  }
+
+  .launch48--template--21336439652430__shopify_48_hour_launch_CDH4Rf .launch48__heading-second-line {
+    justify-content: center;
+  }
 
 }
-
-}
-
 
 /* =========================================================
    SMALL MOBILE
-========================================================= */
-
-@media screen and (max-width: 390px) {
-
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading,
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-prefix {
-      font-size: clamp(36px, 3.7vw, 58px);
+========================================================= */ @media screen and (max-width: 390px) {
+  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading, .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-prefix {
+    font-size: clamp(36px, 3.7vw, 58px);
     line-height: 0.98;
     letter-spacing: -0.055em;
     font-weight: 800;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__highlight-heading {
     font-size: 37px;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-second-line {
     gap: 5px;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__benefit {
     font-size: 11px;
@@ -1775,35 +1019,24 @@ gap:25px;
 
 }
 
-
 /* =========================================================
    VERY SMALL MOBILE
-========================================================= */
-
-@media screen and (max-width: 350px) {
-
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading,
-  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-prefix {
+========================================================= */ @media screen and (max-width: 350px) {
+  .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading, .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-prefix {
     font-size: 22px;
   }
-
 
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__highlight-heading {
     font-size: 32px;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-second-line {
     gap: 4px;
   }
 
-
   .launch48--template--21367318315086__shopify_48_hour_launch_KRiqaR .launch48__heading-bolt svg {
     width: 18px;
-
     height: 18px;
   }
 
 }
-
-

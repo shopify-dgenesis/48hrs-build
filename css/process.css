@@ -1,917 +1,515 @@
+/* Dark radial surface from Process Scroll through every following section. */ #shopify-section-template--21367318315086__process_scroll_MRgxzC, #shopify-section-template--21367318315086__process_scroll_MRgxzC ~ .shopify-section {
+  background: radial-gradient(circle at 18% 22%, rgba(185, 242, 52, .14) 0%, rgba(154, 200, 62, .065) 18%, transparent 42%), radial-gradient(circle at 82% 72%, rgba(36, 139, 128, .13) 0%, transparent 38%), #061318 !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+}
 
-  /* Dark radial surface from Process Scroll through every following section. */
-  #shopify-section-template--21367318315086__process_scroll_MRgxzC,
-  #shopify-section-template--21367318315086__process_scroll_MRgxzC ~ .shopify-section {
-    background:
-      radial-gradient(circle at 18% 22%, rgba(185, 242, 52, .14) 0%, rgba(154, 200, 62, .065) 18%, transparent 42%),
-      radial-gradient(circle at 82% 72%, rgba(36, 139, 128, .13) 0%, transparent 38%),
-      #061318 !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    background-attachment: fixed !important;
+@media (max-width: 749px) {
+  #shopify-section-template--21367318315086__process_scroll_MRgxzC, #shopify-section-template--21367318315086__process_scroll_MRgxzC ~ .shopify-section {
+    background-attachment: scroll !important;
+    background-size: 100% 900px !important;
+    background-repeat: repeat-y !important;
   }
 
-  @media (max-width: 749px) {
-    #shopify-section-template--21367318315086__process_scroll_MRgxzC,
-    #shopify-section-template--21367318315086__process_scroll_MRgxzC ~ .shopify-section {
-      background-attachment: scroll !important;
-      background-size: 100% 900px !important;
-      background-repeat: repeat-y !important;
-    }
-  }
+}
 
-  #howitworks {
-    --process-accent: #b9f234;
-    --process-background: #061014;
-    --process-card-background: #0c151c;
-    --process-text: #f4f7f1;
-    --process-muted: #91a0a6;
-    --process-border: #263139;
-    --process-max-width: 1400px;
-    --process-visual-height: 440px;
-    --process-sticky-top: 120px;
-    --process-step-height: 188px;
+#howitworks {
+  --process-accent: #b9f234;
+  --process-background: #061014;
+  --process-card-background: #0c151c;
+  --process-text: #f4f7f1;
+  --process-muted: #91a0a6;
+  --process-border: #263139;
+  --process-max-width: 1400px;
+  --process-visual-height: 440px;
+  --process-sticky-top: 120px;
+  --process-step-height: 188px;
+  position: relative;
+  width: 100%;
+  overflow: clip;
+  padding-top: 52px;
+  padding-bottom: 52px;
+  background: transparent;
+  color: var(--process-text);
+}
 
-    position: relative;
-    width: 100%;
-    overflow: clip;
+/* Blend the Launch48 base into the shared image instead of a hard seam. */ #howitworks::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  height: clamp(180px, 18vw, 340px);
+  pointer-events: none;
+  background: linear-gradient( to bottom, #061318 0%, rgba(6, 19, 24, 0.98) 15%, rgba(6, 19, 24, 0.9) 32%, rgba(6, 19, 24, 0.7) 52%, rgba(6, 19, 24, 0.4) 72%, rgba(6, 19, 24, 0.16) 88%, rgba(6, 19, 24, 0) 100%);
+}
 
-    padding-top: 52px;
-    padding-bottom: 52px;
+#howitworks .process-container {
+  position: relative;
+  z-index: 1;
+}
 
-    background: transparent;
+#howitworks *, #howitworks *::before, #howitworks *::after {
+  box-sizing: border-box;
+}
 
-    color: var(--process-text);
-  }
-
-  /* Blend the Launch48 base into the shared image instead of a hard seam. */
-  #howitworks::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 0;
-    height: clamp(180px, 18vw, 340px);
-    pointer-events: none;
-    background: linear-gradient(
-      to bottom,
-      #061318 0%,
-      rgba(6, 19, 24, 0.98) 15%,
-      rgba(6, 19, 24, 0.9) 32%,
-      rgba(6, 19, 24, 0.7) 52%,
-      rgba(6, 19, 24, 0.4) 72%,
-      rgba(6, 19, 24, 0.16) 88%,
-      rgba(6, 19, 24, 0) 100%
-    );
-  }
-
-  #howitworks .process-container {
-    position: relative;
-    z-index: 1;
-  }
-
-  #howitworks *,
-  #howitworks *::before,
-  #howitworks *::after {
-    box-sizing: border-box;
-  }
-
-
-  /* =========================================================
+/* =========================================================
      CONTAINER
-     ========================================================= */
+     ========================================================= */ #howitworks .process-container {
+  width: min( var(--process-max-width), calc(100% - 44px));
+  margin-inline: auto;
+}
+
+#howitworks .process-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+  gap: 74px;
+  align-items: start;
+}
+
+/* =========================================================
+     LEFT VISUAL
+     ========================================================= */ #howitworks .process-visual-wrap {
+  position: sticky;
+  top: var(--process-sticky-top);
+  height: calc(var(--process-visual-height) + 100px);
+  display: grid;
+  place-items: center;
+  align-self: start;
+  z-index: 3;
+}
+
+#howitworks .process-visual {
+  position: relative;
+  width: 90%;
+  height: var(--process-visual-height);
+  overflow: hidden;
+  border: 1px solid var(--process-border);
+  border-radius: 24px;
+  background: linear-gradient( 160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.28);
+}
+
+#howitworks .process-visual::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background: radial-gradient( circle at 50% 70%, color-mix( in srgb, var(--process-accent) 14%, transparent), transparent 44%);
+  filter: blur(12px);
+}
+
+/* =========================================================
+     SCREEN CARDS
+     ========================================================= */ #howitworks .screen-card {
+  position: absolute;
+  inset: 46px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 16px;
+  background: var(--process-card-background);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(18px) scale(0.975);
+  transition: opacity 0.45s ease, visibility 0.45s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+#howitworks .screen-card.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  z-index: 2;
+}
+
+#howitworks .mock-top {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+#howitworks .mock-top strong {
+  margin: 0;
+  color: var(--process-text);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+#howitworks .mock-dot {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--process-accent);
+  box-shadow: 0 0 15px color-mix( in srgb, var(--process-accent) 60%, transparent);
+}
+
+#howitworks .screen-card-media {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+#howitworks .screen-card-image, #howitworks .process-placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  border-radius: inherit;
+}
+
+#howitworks .process-placeholder {
+  padding: 30px;
+  fill: rgba(255, 255, 255, 0.1);
+  background: linear-gradient( 145deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+}
+
+/* =========================================================
+     RIGHT CONTENT
+     ========================================================= */ #howitworks .process-copy {
+  padding-top: 40px;
+}
+
+#howitworks .process-eyebrow {
+  display: flex;
+  font-family: 'Montserrat', Arial, sans-serif;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 20px;
+  color: var(--process-accent);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+#howitworks .process-heading {
+  margin: 0 0 18px;
+  color: var(--process-text);
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 65px;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  font-weight: 800;
+}
+
+#howitworks .process-heading-accent {
+  font-family: Georgia, 'Times New Roman', serif;
+  display: inline-block;
+  color: var(--process-accent);
+  font-size: 0.94em;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+#howitworks .process-lead {
+  max-width: 650px;
+  margin: 0;
+  color: var(--process-muted);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* =========================================================
+     CTA BUTTON
+     ========================================================= */ #howitworks .process-cta-wrap {
+  margin-top: 26px;
+  text-align: center;
+}
+
+#howitworks .process-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 12px 30px;
+  border: 1px solid color-mix( in srgb, var(--process-accent) 80%, white);
+  border-radius: 8px;
+  background: var(--process-accent);
+  color: #061014;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  text-decoration: none;
+  box-shadow: 0 10px 30px color-mix( in srgb, var(--process-accent) 16%, transparent);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+#howitworks .process-cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  box-shadow: 0 14px 34px color-mix( in srgb, var(--process-accent) 24%, transparent);
+}
+
+#howitworks .process-cta:focus-visible {
+  outline: 2px solid var(--process-text);
+  outline-offset: 4px;
+}
+
+/* =========================================================
+     PROCESS LIST
+     ========================================================= */ #howitworks .process-list {
+  position: relative;
+  margin-top: 46px;
+}
+
+/* Base timeline */ #howitworks .process-timeline {
+  position: absolute;
+  left: 0;
+  top: 24px;
+  width: 1px;
+  height: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Active timeline */ #howitworks .process-timeline-progress {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: block;
+  width: 2px;
+  height: 100%;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top center;
+  background: linear-gradient( 180deg, color-mix( in srgb, var(--process-accent) 78%, white) 0%, var(--process-accent) 60%, color-mix( in srgb, var(--process-accent) 88%, transparent) 100%);
+  box-shadow: 0 0 10px color-mix( in srgb, var(--process-accent) 35%, transparent), 0 0 22px color-mix( in srgb, var(--process-accent) 17%, transparent);
+}
+
+/* =========================================================
+     PROCESS STEP
+     ========================================================= */ #howitworks .process-step {
+  position: relative;
+  z-index: 1;
+  min-height: var(--process-step-height);
+  padding: 10px 0 52px 74px;
+  opacity: 0.34;
+  transition: opacity 0.3s ease;
+}
+
+#howitworks .process-step.is-passed {
+  opacity: 0.7;
+}
+
+#howitworks .process-step.is-active {
+  opacity: 1;
+}
+
+/* Number */ #howitworks .step-num {
+  position: absolute;
+  left: -24px;
+  top: 0;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: var(--process-background);
+  color: #a6b2b6;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+#howitworks .process-step.is-passed .step-num {
+  border-color: color-mix( in srgb, var(--process-accent) 45%, transparent);
+  color: color-mix( in srgb, var(--process-accent) 75%, white);
+}
+
+#howitworks .process-step.is-active .step-num {
+  border-color: var(--process-accent);
+  color: var(--process-accent);
+  box-shadow: 0 0 0 7px color-mix( in srgb, var(--process-accent) 6%, transparent);
+}
+
+/* Step title */ #howitworks .process-step h3 {
+  margin: 0 0 10px;
+  color: #aab4b7;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 31px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  transition: color 0.3s ease;
+}
+
+#howitworks .process-step.is-passed h3 {
+  color: #d4dcde;
+}
+
+#howitworks .process-step.is-active h3 {
+  color: var(--process-text);
+}
+
+/* Description */ #howitworks .process-step-description {
+  max-width: 470px;
+  margin: 0;
+  color: #68777d;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.7;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+#howitworks .process-step.is-passed .process-step-description {
+  color: #7f8e93;
+}
+
+#howitworks .process-step.is-active .process-step-description {
+  color: var(--process-muted);
+}
+
+/* =========================================================
+     TABLET
+     ========================================================= */ @media screen and (max-width: 989px) {
+  #howitworks {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
 
   #howitworks .process-container {
-    width: min(
-      var(--process-max-width),
-      calc(100% - 44px)
-    );
-
-    margin-inline: auto;
+    width: min( calc(100% - 32px), var(--process-max-width));
   }
 
   #howitworks .process-shell {
-    display: grid;
-
-    grid-template-columns:
-      minmax(0, 0.94fr)
-      minmax(0, 1.06fr);
-
-    gap: 74px;
-
-    align-items: start;
+    grid-template-columns: 1fr;
+    gap: 50px;
   }
 
-
-  /* =========================================================
-     LEFT VISUAL
-     ========================================================= */
-
   #howitworks .process-visual-wrap {
-    position: sticky;
-    top: var(--process-sticky-top);
-
-    height: calc(var(--process-visual-height) + 100px);
-
-    display: grid;
-    place-items: center;
-
-    align-self: start;
-
-    z-index: 3;
+    position: relative;
+    top: auto;
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   #howitworks .process-visual {
-    position: relative;
-
-    width: 90%;
-    height: var(--process-visual-height);
-
-    overflow: hidden;
-
-    border:
-      1px
-      solid
-      var(--process-border);
-
-    border-radius: 24px;
-
-    background:
-      linear-gradient(
-        160deg,
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.015)
-      );
-
-    box-shadow:
-      0 40px 120px rgba(0, 0, 0, 0.28);
-  }
-
-  #howitworks .process-visual::before {
-    content: "";
-
-    position: absolute;
-    inset: -20%;
-
-    pointer-events: none;
-
-    background:
-      radial-gradient(
-        circle at 50% 70%,
-        color-mix(
-          in srgb,
-          var(--process-accent) 14%,
-          transparent
-        ),
-        transparent 44%
-      );
-
-    filter: blur(12px);
-  }
-
-
-  /* =========================================================
-     SCREEN CARDS
-     ========================================================= */
-
-  #howitworks .screen-card {
-    position: absolute;
-
-    inset: 46px;
-
-    display: flex;
-    flex-direction: column;
-
-    min-height: 0;
-
-    padding: 18px;
-
-    overflow: hidden;
-
-    border: 1px solid rgba(255, 255, 255, 0.13);
-
-    border-radius: 16px;
-
-    background: var(--process-card-background);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform:
-      translateY(18px)
-      scale(0.975);
-
-    transition:
-      opacity 0.45s ease,
-      visibility 0.45s ease,
-      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-
-    pointer-events: none;
-  }
-
-  #howitworks .screen-card.is-active {
-    opacity: 1;
-    visibility: visible;
-
-    transform:
-      translateY(0)
-      scale(1);
-
-    pointer-events: auto;
-
-    z-index: 2;
-  }
-
-  #howitworks .mock-top {
-    flex: 0 0 auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 16px;
-
-    margin-bottom: 14px;
-  }
-
-  #howitworks .mock-top strong {
-    margin: 0;
-
-    color: var(--process-text);
-
-    font-size: 13px;
-    font-weight: 700;
-    line-height: 1.3;
-
-    letter-spacing: -0.01em;
-  }
-
-  #howitworks .mock-dot {
-    flex: 0 0 auto;
-
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: var(--process-accent);
-
-    box-shadow:
-      0 0 15px
-      color-mix(
-        in srgb,
-        var(--process-accent) 60%,
-        transparent
-      );
-  }
-
-  #howitworks .screen-card-media {
-    position: relative;
-
-    flex: 1 1 auto;
-
     width: 100%;
-    min-height: 0;
-
-    overflow: hidden;
-
-    border-radius: 10px;
-
-    background: rgba(0, 0, 0, 0.18);
+    height: 380px;
   }
-
-  #howitworks .screen-card-image,
-  #howitworks .process-placeholder {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: contain;
-    object-position: center;
-
-    border-radius: inherit;
-  }
-
-  #howitworks .process-placeholder {
-    padding: 30px;
-
-    fill: rgba(255, 255, 255, 0.1);
-
-    background:
-      linear-gradient(
-        145deg,
-        rgba(255, 255, 255, 0.04),
-        rgba(255, 255, 255, 0.015)
-      );
-  }
-
-
-  /* =========================================================
-     RIGHT CONTENT
-     ========================================================= */
 
   #howitworks .process-copy {
-    padding-top: 40px;
+    padding-top: 0;
   }
 
+}
+
+/* =========================================================
+     MOBILE
+     ========================================================= */ @media screen and (max-width: 767px) {
   #howitworks .process-eyebrow {
-    display: flex;
-    font-family: 'Montserrat', Arial, sans-serif;
-    align-items: center;
-
-    gap: 10px;
-
-    margin: 0 0 20px;
-
-    color: var(--process-accent);
-
-    font-size: 11px;
-    font-weight: 700;
-
-    line-height: 1.4;
-
-    letter-spacing: 0.18em;
-
-    text-transform: uppercase;
+    justify-content: center;
   }
 
-  
+  #howitworks .process-visual-wrap {
+    display: none;
+  }
+
+}
+
+@media screen and (max-width: 640px) {
+  #howitworks .process-copy {
+    padding: 10px;
+  }
+
+  #howitworks .process-container {
+    width: calc(100% - 28px);
+  }
 
   #howitworks .process-heading {
-    margin:
-      0
-      0
-      18px;
-
-    color: var(--process-text);
-
-    font-family: 'Montserrat', Arial, sans-serif;
-
-    font-size: 65px;
-
-    line-height: 0.98;
-
-    letter-spacing: -0.055em;
-
-    font-weight: 800;
-  }
-
-  #howitworks .process-heading-accent {
-    font-family: Georgia, 'Times New Roman', serif;
-
-    display: inline-block;
-
-    color: var(--process-accent);
-
-    font-size: 0.94em;
-
-    font-style: italic;
-
-    font-weight: 500;
-
-    letter-spacing: -0.035em;
-  }
-
-  #howitworks .process-lead {
-    max-width: 650px;
-
-    margin: 0;
-
-    color: var(--process-muted);
-
-    font-size: 17px;
-
-    font-weight: 400;
-
-    line-height: 1.5;
-  }
-
-
-  /* =========================================================
-     CTA BUTTON
-     ========================================================= */
-
-  #howitworks .process-cta-wrap {
-    margin-top: 26px;
-
+    font-size: 44px;
+    line-height: 1;
     text-align: center;
   }
 
-  #howitworks .process-cta {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    min-height: 54px;
-
-    padding:
-      12px
-      30px;
-
-    border:
-      1px
-      solid
-      color-mix(
-        in srgb,
-        var(--process-accent) 80%,
-        white
-      );
-
-    border-radius: 8px;
-
-    background: var(--process-accent);
-
-    color: #061014;
-
-    font-family: 'Montserrat', Arial, sans-serif;
-
+  #howitworks .process-lead {
     font-size: 15px;
-
-    font-weight: 500;
-
-    line-height: 1;
-
-    letter-spacing: -0.015em;
-
-    text-decoration: none;
-
-    box-shadow:
-      0 10px 30px
-      color-mix(
-        in srgb,
-        var(--process-accent) 16%,
-        transparent
-      );
-
-    transition:
-      transform 0.25s ease,
-      box-shadow 0.25s ease,
-      filter 0.25s ease;
   }
 
-  #howitworks .process-cta:hover {
-    transform: translateY(-2px);
-
-    filter: brightness(1.04);
-
-    box-shadow:
-      0 14px 34px
-      color-mix(
-        in srgb,
-        var(--process-accent) 24%,
-        transparent
-      );
+  #howitworks .process-cta-wrap {
+    margin-top: 22px;
   }
 
-  #howitworks .process-cta:focus-visible {
-    outline: 2px solid var(--process-text);
-
-    outline-offset: 4px;
+  #howitworks .process-cta {
+    min-height: 50px;
+    padding-inline: 26px;
+    font-size: 14px;
   }
 
-
-  /* =========================================================
-     PROCESS LIST
-     ========================================================= */
-
-  #howitworks .process-list {
-    position: relative;
-
-    margin-top: 46px;
+  #howitworks .process-visual {
+    height: 380px;
+    border-radius: 20px;
   }
 
-
-  /* Base timeline */
-
-  #howitworks .process-timeline {
-    position: absolute;
-
-    left: 0;
-
-    top: 24px;
-
-    width: 1px;
-
-    height: 0;
-
-    z-index: 0;
-
-    pointer-events: none;
-
-    background: rgba(255, 255, 255, 0.12);
+  #howitworks .screen-card {
+    inset: 25px;
+    padding: 14px;
   }
-
-
-  /* Active timeline */
-
-  #howitworks .process-timeline-progress {
-    position: absolute;
-
-    top: 0;
-
-    left: 50%;
-
-    display: block;
-
-    width: 2px;
-
-    height: 100%;
-
-    transform:
-      translateX(-50%)
-      scaleY(0);
-
-    transform-origin: top center;
-
-    background:
-      linear-gradient(
-        180deg,
-
-        color-mix(
-          in srgb,
-          var(--process-accent) 78%,
-          white
-        )
-        0%,
-
-        var(--process-accent)
-        60%,
-
-        color-mix(
-          in srgb,
-          var(--process-accent) 88%,
-          transparent
-        )
-        100%
-      );
-
-    box-shadow:
-      0 0 10px
-      color-mix(
-        in srgb,
-        var(--process-accent) 35%,
-        transparent
-      ),
-
-      0 0 22px
-      color-mix(
-        in srgb,
-        var(--process-accent) 17%,
-        transparent
-      );
-  }
-
-
-  /* =========================================================
-     PROCESS STEP
-     ========================================================= */
 
   #howitworks .process-step {
-    position: relative;
-
-    z-index: 1;
-
-    min-height: var(--process-step-height);
-
-    padding:
-      10px
-      0
-      52px
-      74px;
-
-    opacity: 0.34;
-
-    transition:
-      opacity 0.3s ease;
+    min-height: 164px;
+    padding-left: 55px;
+    padding-bottom: 40px;
   }
-
-  #howitworks .process-step.is-passed {
-    opacity: 0.7;
-  }
-
-  #howitworks .process-step.is-active {
-    opacity: 1;
-  }
-
-
-  /* Number */
-
-  #howitworks .step-num {
-    position: absolute;
-
-    left: -24px;
-
-    top: 0;
-
-    z-index: 2;
-
-    width: 48px;
-
-    height: 48px;
-
-    display: grid;
-
-    place-items: center;
-
-    border:
-      1px
-      solid
-      rgba(255, 255, 255, 0.22);
-
-    border-radius: 50%;
-
-    background: var(--process-background);
-
-    color: #a6b2b6;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    line-height: 1;
-
-    transition:
-      color 0.3s ease,
-      border-color 0.3s ease,
-      box-shadow 0.3s ease,
-      background 0.3s ease;
-  }
-
-  #howitworks .process-step.is-passed .step-num {
-    border-color:
-      color-mix(
-        in srgb,
-        var(--process-accent) 45%,
-        transparent
-      );
-
-    color:
-      color-mix(
-        in srgb,
-        var(--process-accent) 75%,
-        white
-      );
-  }
-
-  #howitworks .process-step.is-active .step-num {
-    border-color: var(--process-accent);
-
-    color: var(--process-accent);
-
-    box-shadow:
-      0 0 0 7px
-      color-mix(
-        in srgb,
-        var(--process-accent) 6%,
-        transparent
-      );
-  }
-
-
-  /* Step title */
 
   #howitworks .process-step h3 {
-    margin: 0 0 10px;
-
-    color: #aab4b7;
-
-    font-family: 'Montserrat', Arial, sans-serif;
-
-    font-size: 31px;
-
-    font-weight: 500;
-
-    line-height: 1.15;
-
-    letter-spacing: -0.025em;
-
-    transition:
-      color 0.3s ease;
+    font-size: 26px;
   }
-
-  #howitworks .process-step.is-passed h3 {
-    color: #d4dcde;
-  }
-
-  #howitworks .process-step.is-active h3 {
-    color: var(--process-text);
-  }
-
-
-  /* Description */
 
   #howitworks .process-step-description {
-    max-width: 470px;
-
-    margin: 0;
-
-    color: #68777d;
-
-   font-size: 17px;
-    font-weight: 400;
-    line-height: 1.7;
-    line-height: 1.5;
-
-    transition:
-      color 0.3s ease;
+    font-size: 14px;
   }
 
-  #howitworks .process-step.is-passed .process-step-description {
-    color: #7f8e93;
+  #howitworks .step-num {
+    left: -20px;
+    width: 40px;
+    height: 40px;
+    font-size: 11px;
   }
 
-  #howitworks .process-step.is-active .process-step-description {
-    color: var(--process-muted);
+  #howitworks .process-timeline {
+    left: 0;
   }
 
+}
 
-  /* =========================================================
-     TABLET
-     ========================================================= */
-
-  @media screen and (max-width: 989px) {
-
-    #howitworks {
-      padding-top:
-        64px;
-
-      padding-bottom:
-        64px;
-    }
-
-    #howitworks .process-container {
-      width:
-        min(
-          calc(100% - 32px),
-          var(--process-max-width)
-        );
-    }
-
-    #howitworks .process-shell {
-      grid-template-columns: 1fr;
-
-      gap: 50px;
-    }
-
-    #howitworks .process-visual-wrap {
-      position: relative;
-
-      top: auto;
-
-      width: 100%;
-
-      height: auto;
-
-      display: block;
-    }
-
-    #howitworks .process-visual {
-      width: 100%;
-
-      height:
-        380px;
-    }
-
-    #howitworks .process-copy {
-      padding-top: 0;
-    }
-  }
-
-
-  /* =========================================================
-     MOBILE
-     ========================================================= */
-
-  @media screen and (max-width: 767px) {
-
-    #howitworks .process-eyebrow {
-      justify-content: center;
-    }
-
-    #howitworks .process-visual-wrap {
-      display: none;
-    }
-
-  }
-
-
-  @media screen and (max-width: 640px) {
-
-    #howitworks .process-copy {
-      padding: 10px;
-    }
-
-    #howitworks .process-container {
-      width: calc(100% - 28px);
-    }
-
-    #howitworks .process-heading {
-      font-size:
-        44px;
-
-      line-height: 1;
-
-      text-align: center;
-    }
-
-    #howitworks .process-lead {
-      font-size:
-        15px;
-    }
-
-    #howitworks .process-cta-wrap {
-      margin-top:
-        22px;
-    }
-
-    #howitworks .process-cta {
-      min-height:
-        50px;
-
-      padding-inline:
-        26px;
-
-      font-size:
-        14px;
-    }
-
-    #howitworks .process-visual {
-      height:
-        380px;
-
-      border-radius:
-        20px;
-    }
-
-    #howitworks .screen-card {
-      inset:
-        25px;
-
-      padding:
-        14px;
-    }
-
-    #howitworks .process-step {
-      min-height:
-        164px;
-
-      padding-left:
-        55px;
-
-      padding-bottom:
-        40px;
-    }
-
-    #howitworks .process-step h3 {
-      font-size:
-        26px;
-    }
-
-    #howitworks .process-step-description {
-      font-size:
-        14px;
-    }
-
-    #howitworks .step-num {
-      left: -20px;
-
-      width: 40px;
-
-      height: 40px;
-
-      font-size: 11px;
-    }
-
-    #howitworks .process-timeline {
-      left: 0;
-    }
-
-  }
-
-
-  /* =========================================================
+/* =========================================================
      REDUCED MOTION
-     ========================================================= */
-
-  @media (prefers-reduced-motion: reduce) {
-
-    #howitworks *,
-    #howitworks *::before,
-    #howitworks *::after {
-      scroll-behavior: auto !important;
-
-      animation-duration: 0.01ms !important;
-
-      animation-iteration-count: 1 !important;
-
-      transition-duration: 0.01ms !important;
-    }
-
+     ========================================================= */ @media (prefers-reduced-motion: reduce) {
+  #howitworks *, #howitworks *::before, #howitworks *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 
-
+}
