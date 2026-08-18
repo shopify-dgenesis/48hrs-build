@@ -481,6 +481,17 @@ footer>a:last-child {
   color: var(--lime)
 }
 
+/* Keep article text white when the shared site styles are loaded. */
+.article-hero h1,
+.article-body h2,
+.article-body h3,
+.article-body strong,
+.article-body li,
+.article-body summary,
+footer strong {
+  color: #fff;
+}
+
 @media(max-width:900px) {
   .site-header nav {
     display: none
