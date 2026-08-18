@@ -63,8 +63,8 @@
       </div>
       <div class="package-notes"><span>◉ No recurring fees</span><span>◉ One-time payment</span><span>◉ 30-day support</span><span>◉ Clear handoff</span></div>
       <div class="package-slider-pagination" data-pricing-pagination aria-label="Choose a pricing package">
-        <button type="button" data-pricing-dot aria-label="Show Foundation package"></button>
-        <button class="is-active" type="button" data-pricing-dot aria-label="Show Launch package" aria-current="true"></button>
+        <button class="is-active" type="button" data-pricing-dot aria-label="Show Foundation package" aria-current="true"></button>
+        <button type="button" data-pricing-dot aria-label="Show Launch package"></button>
         <button type="button" data-pricing-dot aria-label="Show Customize package"></button>
       </div>
     </section>
@@ -90,7 +90,6 @@
       const dots = [...pagination.querySelectorAll('[data-pricing-dot]')];
       const mobile = matchMedia('(max-width: 749px)');
       const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-      const featuredIndex = Math.max(0, cards.findIndex(card => card.classList.contains('featured')));
       let animationFrame;
 
       const setActive = (activeIndex) => {
@@ -126,9 +125,8 @@
       }));
 
       const setInitialSlide = () => {
-        const index = mobile.matches ? featuredIndex : 0;
-        slider.scrollLeft = mobile.matches ? cards[index].offsetLeft - cards[0].offsetLeft : 0;
-        setActive(index);
+        slider.scrollLeft = 0;
+        setActive(0);
       };
       if (typeof mobile.addEventListener === 'function') mobile.addEventListener('change', setInitialSlide);
       else mobile.addListener(setInitialSlide);
