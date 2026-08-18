@@ -25,3 +25,7 @@
 
 @media(max-width:950px){.blog-hero__grid{grid-template-columns:1fr}.blog-grid{grid-template-columns:repeat(2,1fr)}.blog-newsletter{grid-template-columns:auto 1fr}.blog-newsletter form{grid-column:1/-1}}
 @media(max-width:620px){.blog-shell{width:min(100% - 30px,500px)}.blog-hero__grid{padding:45px 0 20px}.blog-hero h1{font-size:40px}.blog-hero__lead{font-size:15px}.blog-hero__art{min-height:280px;transform:scale(.9)}.hero-laptop{right:5%;width:78%}.speed-card{left:0}.growth-chart{right:-15%}.blog-toolbar{gap:14px}.blog-toolbar select{min-width:150px}.blog-grid{grid-template-columns:1fr}.blog-card__image{height:220px}.blog-newsletter{grid-template-columns:1fr;text-align:center}.newsletter-icon{margin:auto}.blog-newsletter form{grid-column:auto;display:grid;gap:10px}.blog-newsletter input,.blog-newsletter button{border-radius:6px}}
+
+.blog-hero {
+  border-bottom: 0;
+}
