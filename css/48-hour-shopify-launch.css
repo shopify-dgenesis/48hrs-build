@@ -68,6 +68,7 @@
 }
 
 .launch-guide-page .guide-hero h2 {
+  margin: 13px 0 0;
   color: #f4f7f1;
   font-family: Montserrat, Arial, sans-serif;
   font-size: clamp(36px, 3.7vw, 58px);
@@ -86,6 +87,7 @@
 }
 
 .launch-guide-page .guide-hero h2 em {
+  display: block;
   font-size: .94em;
   font-weight: 500;
   line-height: .88;

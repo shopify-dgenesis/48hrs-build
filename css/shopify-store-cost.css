@@ -349,27 +349,35 @@
   margin: 0 0 5px;
   color: #fff;
 font-size: 23px;
+font-family: Montserrat, Arial, sans-serif;
+    color: var(--pricing-text);
     line-height: 1.25;
     font-weight: 700;
     letter-spacing: -.035em;
-    font-family: Montserrat, Arial, sans-serif;
-    line-height: 1.08;
 }
 article.basic li, article.growing li, article.advanced li{
+margin-bottom: 10px;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 17px;
     line-height: 1.5;
     font-weight: 400;
-    margin-bottom: 10px;
 }
 .range-grid small
 {
     font-size: 10px;
     line-height: 1.5;
+        margin-top: 13px;
+    color: var(--pricing-accent);
+    font-size: 10px;
+    line-height: 1.3;
+    font-weight: 600;
 }
 .range-grid p {
   display: block;
-  color: var(--cost-muted);
- line-height: 1.5;
+color: var(--pricing-muted);
+    font-size: 17px;
+    line-height: 1.5;
+    font-weight: 400;
 }
 
 .range-grid>article>strong {
@@ -497,15 +505,18 @@ font-size: 11px;
 }
 
 .saving-grid h3 {
-  margin: 0 0 5px;
-  color: #fff;
-  font-size: 12px;
+font-family: Montserrat, Arial, sans-serif;
+    color: var(--included-text);
+    font-weight: 700;
+    letter-spacing: -.035em;
+    font-size: 16px;
+        margin: 2px;
 }
 
 .saving-grid p {
   margin: 0;
   color: var(--cost-muted);
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.6;
 }
 
@@ -535,8 +546,9 @@ font-size: 11px;
   padding: 15px 45px 15px 20px;
   color: #fff;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 500;
   list-style: none;
+      font-size: 17px;
 }
 
 .faq-list summary:after {
@@ -577,6 +589,8 @@ font-size: 11px;
   color: #fff;
   font-size: 38px;
   line-height: 1.1;
+      letter-spacing: -.055em;
+          font-family: Montserrat, Arial, sans-serif;
 }
 
 .final-cta p {
