@@ -67,19 +67,29 @@
   line-height: 1.6;
 }
 
-.launch-guide-page .guide-hero h1 {
-  font-size: clamp(46px, 4.8vw, 70px);
-  font-weight: 700;
-  line-height: 1.04;
+.launch-guide-page .guide-hero h2 {
+  color: #f4f7f1;
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: clamp(36px, 3.7vw, 58px);
+  font-weight: 800;
+  line-height: .98;
+  letter-spacing: -.055em;
 }
 
-.launch-guide-page .guide-hero h1 em,
+.launch-guide-page .guide-hero h2 em,
 .launch-guide-page .section-heading h2 em,
 .launch-guide-page .launch-faster h2 em,
 .launch-guide-page .launch-contact h2 em {
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
   font-weight: 400;
+}
+
+.launch-guide-page .guide-hero h2 em {
+  font-size: .94em;
+  font-weight: 500;
+  line-height: .88;
+  letter-spacing: -.055em;
 }
 
 .launch-guide-page .guide-lead {
@@ -175,4 +185,5 @@
 
 @media(max-width:1000px){.guide-hero__grid,.resource-grid,.launch-contact__grid{grid-template-columns:1fr}.overview-grid,.review-grid{grid-template-columns:repeat(3,1fr)}.roadmap-grid{grid-template-columns:repeat(2,1fr);gap:30px 0}.roadmap-card:nth-child(2){border-right:0}.launch-faster{grid-template-columns:1fr}.launch-faster ul{max-width:600px}.launch-faster>a{justify-self:start}}
 @media(max-width:650px){.guide-shell{width:min(100% - 30px,520px)}.guide-hero{padding-top:45px}.guide-hero__grid{gap:40px}.guide-hero h1{font-size:42px}.guide-trust{display:grid;gap:10px}.guide-stats{gap:8px}.guide-stats article{padding:14px 8px}.progress-panel{padding:20px}.progress-panel__main{align-items:center}.progress-ring{width:110px;height:110px}.progress-ring strong{font-size:27px}.overview-grid,.review-grid,.roadmap-grid,.faq-grid{grid-template-columns:1fr}.roadmap-grid{gap:32px}.roadmap-card{border-right:0;border-bottom:1px solid var(--lg-line)}.overview-grid article,.review-grid article{min-height:0}.resource-grid{gap:30px}.launch-faster{padding:25px 20px}.launch-faster ul{grid-template-columns:repeat(2,1fr);text-align:left}.launch-contact h2{font-size:31px}.launch-contact__grid>div>div{display:grid}.launch-contact form>div{grid-template-columns:1fr}}
+@media(max-width:650px){.launch-guide-page .guide-hero h2 em{font-size:.8em}}
 @media print{.shopify-section-nehemiah-header,.guide-hero,.guide-overview,.review-section,.resource-section,.launch-faster,.faq-section,.launch-contact{display:none!important}.launch-guide-page{color:#000;background:#fff}.roadmap-section{padding:0}.roadmap-grid{border-color:#aaa;background:#fff}.roadmap-card{break-inside:avoid;border-color:#aaa}.task-list{background:#f4f4f4}.task-list label,.roadmap-card>p{color:#222}.roadmap-card h3{color:#000}}

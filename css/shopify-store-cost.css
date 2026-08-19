@@ -71,20 +71,24 @@
   color: var(--cost-lime);
 }
 
-.cost-hero h1 {
+.cost-hero h2 {
   margin: 0;
-  color: #fff;
-    font-size: clamp(40px, 5vw, 62px);
-    line-height: 1.05;
-    letter-spacing: -.05em;
+  color: #f4f7f1;
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: clamp(36px, 3.7vw, 58px);
+  line-height: .98;
+  font-weight: 800;
+  letter-spacing: -.055em;
 }
 
-.cost-hero h1 em {
+.cost-hero h2 em {
   color: var(--cost-lime);
-  font-style: normal;
-  font-family: Georgia, serif;
-    font-weight: 400;
-        font-style: italic;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: .94em;
+  font-style: italic;
+  font-weight: 500;
+  line-height: .88;
+  letter-spacing: -.055em;
 }
 
 .hero-lead {
@@ -684,8 +688,8 @@ font-size: 11px;
     padding-top: 30px;
   }
 
-  .cost-hero h1 {
-    font-size: 42px;
+  .cost-hero h2 em {
+    font-size: .8em;
   }
 
   .trust-row {
