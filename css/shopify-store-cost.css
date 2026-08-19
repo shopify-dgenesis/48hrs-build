@@ -548,7 +548,10 @@ font-family: Montserrat, Arial, sans-serif;
   cursor: pointer;
   font-weight: 500;
   list-style: none;
-      font-size: 17px;
+font-family: Montserrat, Arial, sans-serif;
+    font-size: 19px;
+    line-height: 1.5;
+    min-width: 0;
 }
 
 .faq-list summary:after {
@@ -564,9 +567,12 @@ font-family: Montserrat, Arial, sans-serif;
 }
 
 .faq-list p {
-  margin: 0;
-  padding: 0 20px 18px;
-  color: var(--cost-muted);
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0 20px 18px;
+    color: var(--cost-muted);
+    font-family: var(--font-body-family);
 }
 
 .final-cta {
