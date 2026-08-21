@@ -551,6 +551,8 @@ font-size: 11px;
   color: #091208;
   text-decoration: none;
   font-weight: 800;
+      font-size: 11px;
+    width: 100%;
 }
 
 .saving-grid {
