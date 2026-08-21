@@ -40,7 +40,13 @@ body.checklist-page {
 .checklist-page strong,
 .checklist-page label,
 .checklist-page li {
-  color: #fff;
+  color: var(--pricing-muted);
+    font-size: 17px;
+    line-height: 1.5;
+    font-weight: 400;
+    font-family: inherit;
+    /* font-family: var(--font-body-family); */
+    font-family: var(--font-body-family);
 }
 
 .checklist-page .nehemiah-header__shell {
@@ -52,7 +58,7 @@ body.checklist-page {
 }
 
 .checklist-shell {
-  width: min(1160px, calc(100% - 48px));
+  width: min(1300px, calc(100% - 48px));
   margin-inline: auto;
 }
 
@@ -382,17 +388,22 @@ body.checklist-page {
 }
 
 .checklist-card h3 {
-  margin: 0 0 9px;
-  font-size: 20px;
-  letter-spacing: -.03em;
+font-family: Montserrat, Arial, sans-serif;
+    color: var(--pricing-text);
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -.035em;
+    font-size: calc(var(--font-heading-scale) * 2.4rem);
+    margin: 0 0 10px;
 }
 
 .checklist-card > p {
   min-height: 46px;
   margin: 0;
   color: var(--checklist-muted);
-  font-size: 13px;
-  line-height: 1.6;
+font-size: 17px;
+    line-height: 1.5;
+    font-weight: 400;
 }
 
 .checklist-card ul {
@@ -452,7 +463,7 @@ body.checklist-page {
   border: 0;
   color: var(--checklist-lime);
   background: none;
-  font: 700 12px Montserrat, sans-serif;
+  font: 500 16px Montserrat, sans-serif;
   cursor: pointer;
 }
 
@@ -484,18 +495,21 @@ body.checklist-page {
 }
 
 .launch-reminder h2 {
-    margin: 0 0 10px;
+    margin: 0 0 18px;
+    color: var(--faq-text);
     font-family: Montserrat, Arial, sans-serif;
-    color: var(--pricing-text);
-    line-height: 1.25;
-    font-weight: 700;
-    letter-spacing: -.035em;
+    font-size: clamp(36px, 3.7vw, 65px);
+    line-height: .98;
+    letter-spacing: -.055em;
+    font-weight: 800;
 }
 
 .launch-reminder__copy p {
-  color: #c9d3d2;
-  font-size: 12px;
-  line-height: 1.6;
+    max-width: 420px;
+    margin: 0;
+    color: var(--faq-muted);
+    font-size: 17px;
+    line-height: 1.5;
 }
 
 .launch-reminder__copy a {
@@ -538,13 +552,19 @@ body.checklist-page {
 }
 
 .launch-reminder__list strong {
-  font-size: 13px;
+    font-family: Montserrat, Arial, sans-serif;
+    color: var(--pricing-text);
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -.035em;
+    font-size: calc(var(--font-heading-scale) * 2.4rem);
+    margin: 0 0 10px;
 }
 
 .launch-reminder__list span {
   margin-top: 5px;
   color: #c9d3d2;
-  font-size: 11px;
+  font-size: 16px;
 }
 
 .checklist-help {
@@ -571,14 +591,20 @@ body.checklist-page {
 }
 
 .checklist-help h2 {
-  margin: 0;
-  font: 23px/1.1 Georgia, serif;
+    font: 23px / 1.1 Georgia, serif;
+    font-family: Montserrat, Arial, sans-serif;
+    color: var(--pricing-text);
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -.035em;
+    font-size: calc(var(--font-heading-scale) * 2.4rem);
+    margin: 0 0 10px;
 }
 
 .checklist-help p {
   margin: 9px 0 0;
   color: var(--checklist-muted);
-  font-size: 11px;
+  font-size: 16px;
   line-height: 1.5;
 }
 

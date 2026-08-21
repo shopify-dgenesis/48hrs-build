@@ -29,3 +29,7 @@
 .blog-hero {
   border-bottom: 0;
 }
+
+.blog-shell {
+  max-width: 1300px;
+}

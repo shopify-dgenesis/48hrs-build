@@ -142,6 +142,10 @@ body {
   font-weight: var(--font-body-weight);
 }
 
+body.contact-page {
+  font-family: Montserrat, Arial, sans-serif;
+}
+
 @media screen and (min-width: 750px) {
   body {
     font-size: 1.6rem;

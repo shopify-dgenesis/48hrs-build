@@ -22,7 +22,7 @@
   --text: #f4f6f7;
   --muted: #aab2b7;
   --border: #344248;
-  --max: 1460px
+  --max: 1300px
 }
 
 * {
@@ -210,7 +210,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
-  max-width: var(--max);
+  max-width: 1300px;
   margin: 62px auto 0
 }
 

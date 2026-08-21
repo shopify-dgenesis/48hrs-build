@@ -143,7 +143,7 @@ body.cost-guide-page {
 .trust-row small {
   grid-column: 2;
   color: var(--cost-muted);
-  font-size: 9px;
+  font-size:11px;
 }
 
 .investment-card {
@@ -274,6 +274,7 @@ body.cost-guide-page {
 .cost-page .launch-panel p,
 .cost-page .cost-note {
   font-size: 16px;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .cost-page .breakdown-grid strong,
@@ -339,11 +340,11 @@ body.cost-guide-page {
 .breakdown-grid h3 {
   margin: 16px 0 12px;
   color: #fff;
-  font-size: 18px;
-  font-weight: 700;
+font-family: Montserrat, Arial, sans-serif;
+    line-height: 1.25;
+    font-weight: 700;
     letter-spacing: -.035em;
-    font-family: Montserrat, Arial, sans-serif;
-    line-height: 1.08;
+    font-size: calc(var(--font-heading-scale) * 2.4rem);
 }
 
 .breakdown-grid p {

@@ -225,6 +225,7 @@
   color: var(--faq-muted);
   font-size: 16px;
   line-height: 1.5;
+      font-family: var(--font-body-family);
 }
 
 #faq .launch-faq__answer-inner p + p {

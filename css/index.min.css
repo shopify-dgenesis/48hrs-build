@@ -3492,7 +3492,7 @@ html.js.mockup-motion-ready #MainContent>.shopify-section[data-mockup-reveal].is
   --header-muted: #b5c1c5;
   --header-border: #243239;
   --header-button-text: #0b1407;
-  --header-container: 1180px;
+  --header-container: 1300px;
   position: relative;
   width: 100%;
   z-index: 1;
@@ -4840,7 +4840,7 @@ html.js.mockup-motion-ready #MainContent>.shopify-section[data-mockup-reveal].is
   --process-text: #f4f7f1;
   --process-muted: #91a0a6;
   --process-border: #263139;
-  --process-max-width: 1400px;
+  --process-max-width: 1300px;
   --process-visual-height: 440px;
   --process-sticky-top: 120px;
   --process-step-height: 188px;
@@ -5825,11 +5825,12 @@ html.js.mockup-motion-ready #MainContent>.shopify-section[data-mockup-reveal].is
 
 #pricingpackage .pricing-card__title {
   margin: 0 0 10px;
-  font-family: Montserrat, Arial, sans-serif;
-  color: var(--pricing-text);
-  line-height: 1.25;
-  font-weight: 700;
-  letter-spacing: -.035em
+font-family: Montserrat, Arial, sans-serif;
+    color: var(--pricing-text);
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -.035em;
+    font-size: calc(var(--font-heading-scale) * 2.4rem);
 }
 
 #pricingpackage .pricing-card__description {
@@ -6804,7 +6805,8 @@ html.js.mockup-motion-ready #MainContent>.shopify-section[data-mockup-reveal].is
   margin: 0;
   color: var(--faq-muted);
   font-size: 16px;
-  line-height: 1.5
+  line-height: 1.5;
+      font-family: var(--font-body-family);
 }
 
 #faq .launch-faq__answer-inner p+p {

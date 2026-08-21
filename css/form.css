@@ -3,7 +3,7 @@
 }
 
 .intake-shell {
-  width: min(1440px, 100%);
+  width: min(1300px, 100%);
   margin: auto;
   display: grid;
   grid-template-columns: 330px 1fr;
