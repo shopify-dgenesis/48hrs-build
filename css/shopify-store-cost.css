@@ -786,9 +786,11 @@ font-family: Montserrat, Arial, sans-serif;
   .cost-hero {
     padding-top: 30px;
   }
-
+  .cost-hero h2 {
+    text-align: center;
+  }
   .cost-hero h2 em {
-    font-size: .8em;
+    font-size: 34px;
   }
 
   .trust-row {
