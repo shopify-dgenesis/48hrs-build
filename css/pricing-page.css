@@ -164,7 +164,8 @@ body {
   font-style: italic;
   font-weight: 500;
   line-height: .88;
-  letter-spacing: -.055em
+  letter-spacing: -.055em;
+          margin-top: 10px;
 }
 
 .price-page-hero>p:last-child {
@@ -820,7 +821,7 @@ details p {
     gap: 12px;
     margin: -8px 0 14px;
     color: var(--pp-muted);
-    font-size: 10px
+    font-size: 12px;
   }
 
   .table-scroll-controls>div {
@@ -888,6 +889,9 @@ details p {
 }
 
 @media(max-width:749px) {
+  summary {
+  font-size: 14px;
+}
   .package-section {
     display: flex;
     flex-direction: column;
