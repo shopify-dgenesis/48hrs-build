@@ -703,6 +703,9 @@ font-family: Montserrat, Arial, sans-serif;
 }
 
 @media (max-width: 640px) {
+  .checklist-hero h2 {
+    text-align: center;
+  }
   .checklist-shell {
     width: min(100% - 30px, 500px);
   }
