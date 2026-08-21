@@ -773,6 +773,12 @@ font-family: Montserrat, Arial, sans-serif;
 }
 
 @media (max-width: 700px) {
+  .final-cta h2{
+        font-size: 21px;
+  }
+  .launch-panel a{
+    font-size: 10px;
+  }
   .cost-wrap {
     width: calc(100% - 28px);
   }
