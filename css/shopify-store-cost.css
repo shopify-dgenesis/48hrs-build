@@ -773,6 +773,12 @@ font-family: Montserrat, Arial, sans-serif;
 }
 
 @media (max-width: 700px) {
+  .cost-page .breadcrumbs, .cost-page .section-heading > p, .cost-page .label{
+        font-size: 11px;
+  }
+  .cost-page .launch-panel p{
+    font-size: 14px;
+  }
   .final-cta h2{
         font-size: 21px;
   }
@@ -835,7 +841,8 @@ font-family: Montserrat, Arial, sans-serif;
   }
 
   .launch-panel h2 {
-    font-size: 29px;
+       font-size: 33px;
+    text-align: center;
   }
 
   .launch-benefits {
