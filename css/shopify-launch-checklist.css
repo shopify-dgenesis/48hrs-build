@@ -137,6 +137,7 @@ body.checklist-page {
   color: #e6eeee;
   font-size: 17px;
   line-height: 1.7;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .checklist-benefits {
@@ -308,6 +309,7 @@ body.checklist-page {
 
 .checklist-intro > p:not(.checklist-kicker) {
   color: var(--checklist-muted);
+      font-family: Helvetica, Arial, sans-serif;
 }
 
 .checklist-progress {
@@ -404,6 +406,7 @@ font-family: Montserrat, Arial, sans-serif;
 font-size: 17px;
     line-height: 1.5;
     font-weight: 400;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .checklist-card ul {
@@ -510,6 +513,7 @@ font-size: 17px;
     color: var(--faq-muted);
     font-size: 17px;
     line-height: 1.5;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .launch-reminder__copy a {
@@ -549,6 +553,7 @@ font-size: 17px;
 .launch-reminder__list span {
   display: block;
   margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .launch-reminder__list strong {
@@ -592,12 +597,13 @@ font-size: 17px;
 
 .checklist-help h2 {
     font: 23px / 1.1 Georgia, serif;
-    font-family: Montserrat, Arial, sans-serif;
+font-family: Montserrat, Arial, sans-serif;
     color: var(--pricing-text);
     line-height: 1.25;
     font-weight: 700;
     letter-spacing: -.035em;
     font-size: calc(var(--font-heading-scale) * 2.4rem);
+    margin: 0 0 10px;
     margin: 0 0 10px;
 }
 
@@ -606,6 +612,7 @@ font-size: 17px;
   color: var(--checklist-muted);
   font-size: 16px;
   line-height: 1.5;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .checklist-help ul {

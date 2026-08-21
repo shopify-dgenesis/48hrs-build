@@ -273,7 +273,7 @@ body.cost-guide-page {
 .cost-page .saving-grid p,
 .cost-page .launch-panel p,
 .cost-page .cost-note {
-  font-size: 16px;
+  font-size: 17px;
   font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -282,6 +282,7 @@ body.cost-guide-page {
 .cost-page .range-grid small,
 .cost-page .estimate-note {
   font-size: 13px;
+      font-family: Helvetica, Arial, sans-serif;
 }
 
 .section-heading {
@@ -418,7 +419,7 @@ font-family: Montserrat, Arial, sans-serif;
 .range-grid h3 {
   margin: 0 0 5px;
   color: #fff;
-font-size: 23px;
+font-size: 25px;
 font-family: Montserrat, Arial, sans-serif;
     color: var(--pricing-text);
     line-height: 1.25;

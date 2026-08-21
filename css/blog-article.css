@@ -217,9 +217,9 @@ a {
   background: transparent
 }
 
-.article-body p {
+/* .article-body p {
   color: #b7c1c7
-}
+} */
 
 .article-body .lead {
   margin-top: 0;
@@ -233,6 +233,14 @@ a {
   font-size: clamp(31px, 4vw, 46px);
   line-height: 1.1;
   letter-spacing: -.04em
+}
+
+article h2 {
+  font-family: Montserrat, Arial, sans-serif;
+}
+
+article p {
+  font-family: var(--font-body-family);
 }
 
 .article-body h3 {
@@ -360,8 +368,13 @@ tbody tr:last-child td {
 }
 
 .timeline p {
-  margin: 0;
-  font-size: 13px
+    margin: 0;
+    font-size: 16px;
+    font-size: 17px;
+    line-height: 1.5;
+    /* margin-top: 20px; */
+    font-family: var(--font-body-family);
+    color: #b7c1c7;
 }
 
 .check-grid {
@@ -377,7 +390,9 @@ tbody tr:last-child td {
   border-radius: 9px;
   background: var(--panel);
   color: #dce2e4;
-  font-size: 12px
+  font-size: 17px;
+      font-family: var(--font-body-family);
+    color: #9daab0;
 }
 
 .check-grid span:before {
