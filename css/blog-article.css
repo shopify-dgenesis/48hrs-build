@@ -551,7 +551,7 @@ footer strong {
   }
 
   .article-hero h1 {
-    font-size: 42px
+    font-size: 36px
   }
 
   .dek {
@@ -586,9 +586,12 @@ footer strong {
   .number-grid, .check-grid {
     grid-template-columns: 1fr
   }
-
+.cta-panel a{
+  font-size: 11px;
+}
   .article-body h2, .cta-panel h2 {
-    font-size: 31px
+    font-size: 31px;
+    text-align: center;
   }
 
   th, td {
