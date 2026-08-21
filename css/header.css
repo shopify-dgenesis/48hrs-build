@@ -66,7 +66,7 @@
 /* =========================================================
      CONTAINER
      ========================================================= */ #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__container {
-  width: min( var(--header-container), calc( 100% - 44px));
+  width: 1300px;
   min-height: 82px;
   margin: 0 auto;
   display: grid;

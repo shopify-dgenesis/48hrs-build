@@ -22,7 +22,8 @@
   --pp-lime: #b9f234;
   --pp-text: #f5f7f7;
   --pp-muted: #98a5ad;
-  --pp-max: 1320px
+  --pp-max: 1300px;
+  --pricing-max-width: 1300px
 }
 
 * {
@@ -39,6 +40,87 @@ body {
 .price-page {
   background: var(--pp-bg);
   min-height: 100vh
+}
+
+.price-page .cost-section.faq-section {
+  padding: 60px 24px;
+}
+
+.price-page .cost-wrap {
+  width: min(var(--pp-max), 100%);
+  margin: 0 auto;
+}
+
+.price-page .faq-section .section-heading {
+  text-align: center;
+}
+
+.price-page .faq-section .section-heading p {
+  margin: 0 0 10px;
+  color: var(--pp-lime);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .18em;
+}
+
+.price-page .faq-section .section-heading h2 {
+  margin: 0;
+  color: var(--pp-text);
+  font-size: clamp(36px, 3.7vw, 58px);
+  line-height: .98;
+  letter-spacing: -.055em;
+}
+
+.price-page .faq-section .section-heading span {
+  display: block;
+  margin-top: 14px;
+  color: var(--pp-muted);
+}
+
+.price-page .faq-list {
+  max-width: 850px;
+  margin: 25px auto 0;
+  overflow: hidden;
+  border: 1px solid var(--pp-border);
+  border-radius: 9px;
+  background: var(--pp-panel);
+}
+
+.price-page .faq-list details {
+  border-bottom: 1px solid var(--pp-border);
+}
+
+.price-page .faq-list details:last-child {
+  border-bottom: 0;
+}
+
+.price-page .faq-list summary {
+  position: relative;
+  padding: 15px 45px 15px 20px;
+  color: var(--pp-text);
+  cursor: pointer;
+  font-size: 19px;
+  line-height: 1.5;
+  list-style: none;
+}
+
+.price-page .faq-list summary::after {
+  content: '+';
+  position: absolute;
+  right: 20px;
+  color: var(--pp-lime);
+}
+
+.price-page .faq-list details[open] summary::after {
+  content: '−';
+}
+
+.price-page .faq-list details p {
+  margin: 0;
+  padding: 0 20px 18px;
+  color: var(--pp-muted);
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .price-page-hero {

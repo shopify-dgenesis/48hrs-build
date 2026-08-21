@@ -23,11 +23,25 @@
   --cost-muted: #9aa8ae;
   --cost-lime: #b9f234;
   --cost-line: #253740;
-  --cost-max: 1320px;
+  --cost-max: 1300px;
 }
 
 * {
   box-sizing: border-box;
+}
+
+body.cost-guide-page {
+  margin: 0;
+  background: var(--cost-bg);
+  font-family: Montserrat, Arial, sans-serif;
+}
+
+.cost-guide-page .nehemiah-header__shell {
+  background: #06161b;
+}
+
+.cost-guide-page .nehemiah-header__nav-trigger.is-active::after {
+  transform: scaleX(1);
 }
 
 .cost-page, .cost-footer {
@@ -37,7 +51,8 @@
 }
 
 .cost-wrap {
-  width: min(var(--cost-max), calc(100% - 48px));
+  width: calc(100% - 48px);
+  max-width: 1300px;
   margin: auto;
 }
 
@@ -212,6 +227,60 @@
 
 .cost-section {
   padding: 52px 0;
+}
+
+/* Keep the shared launch FAQ visually continuous with the cost page. */
+.cost-page .shopify-section-launch-faq,
+.cost-page #faq {
+  background: transparent;
+}
+
+.cost-page #faq {
+  --launch-bg: var(--cost-bg);
+}
+
+.cost-page #faq .launch-faq__container {
+  width: calc(100% - 44px);
+  max-width: 1300px;
+}
+
+.cost-page #faq .launch-faq__heading {
+  font-size: clamp(36px, 3.7vw, 65px);
+}
+
+.cost-page #faq .launch-faq__lead,
+.cost-page #faq .launch-faq__question {
+  font-size: 17px;
+}
+
+.cost-page #faq .launch-faq__answer-inner,
+.cost-page #faq .launch-faq__answer-inner p {
+  font-size: 16px;
+}
+
+/* Match the readable type scale used across the pricing and launch pages. */
+.cost-page .breadcrumbs,
+.cost-page .section-heading > p,
+.cost-page .label {
+  font-size: 13px;
+}
+
+.cost-page .hero-lead,
+.cost-page .investment-card > p,
+.cost-page .section-heading > span,
+.cost-page .breakdown-grid p,
+.cost-page .range-grid p,
+.cost-page .saving-grid p,
+.cost-page .launch-panel p,
+.cost-page .cost-note {
+  font-size: 16px;
+}
+
+.cost-page .breakdown-grid strong,
+.cost-page .breakdown-grid small,
+.cost-page .range-grid small,
+.cost-page .estimate-note {
+  font-size: 13px;
 }
 
 .section-heading {
