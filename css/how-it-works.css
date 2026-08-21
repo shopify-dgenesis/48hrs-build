@@ -444,6 +444,7 @@ body {
 
 .timeline-grid p {
   color: #d1d7da;
+  font-family: var(--font-body-family);
 }
 
 .build-cta {
@@ -706,7 +707,7 @@ body {
     width: 100%;
     margin: 8px 0 0;
     line-height: 1.5;
-    text-align: center
+    text-align: center;
   }
 
   .timeline-grid article:nth-child(3):after {
