@@ -368,7 +368,7 @@ body {
   grid-template-columns: minmax(0, 2fr) minmax(280px, .9fr);
   gap: 22px;
   max-width: var(--pp-max);
-  margin: 45px auto 50px;
+  margin: 45px auto 40px;
   padding: 0 24px
 }
 
