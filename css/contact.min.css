@@ -3572,7 +3572,7 @@ html.js.mockup-motion-ready #MainContent>.shopify-section[data-mockup-reveal].is
 }
 
 #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__container {
-  width: min(var(--header-container), calc(100% - 44px));
+  width: 1300px;
   min-height: 82px;
   margin: 0 auto;
   display: grid;
@@ -4361,7 +4361,8 @@ html.js.mockup-motion-ready #MainContent>.shopify-section[data-mockup-reveal].is
   margin: 0;
   color: var(--consult-muted);
   font-size: 15px;
-  line-height: 1.6
+  line-height: 1.6;
+  font-family: var(--font-body-family);
 }
 
 #section2 .consultation-grid {
@@ -4417,7 +4418,9 @@ html.js.mockup-motion-ready #MainContent>.shopify-section[data-mockup-reveal].is
   color: var(--consult-muted);
   font-size: 13px;
   line-height: 1.5;
-  text-align: left
+  text-align: left;
+      font-family: var(--font-body-family);
+    margin-top: 10px;
 }
 
 #section2 .consultation-column--schedule, #section2 .consultation-column--details {

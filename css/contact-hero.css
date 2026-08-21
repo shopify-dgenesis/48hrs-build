@@ -267,6 +267,7 @@
 
   #section1 .dream-contact__description p {
     white-space: normal;
+        font-family: var(--font-body-family);
   }
 
   #section1 .dream-contact__features {
