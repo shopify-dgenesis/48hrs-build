@@ -779,7 +779,7 @@ font-family: Montserrat, Arial, sans-serif;
 @media (max-width: 700px) {
   .launch-panel a, .final-cta a {
   width: 100%;
-  font-size: 11px;
+  font-size: 14px;
   }
   .cost-page .breadcrumbs, .cost-page .section-heading > p, .cost-page .label{
         font-size: 11px;
@@ -790,9 +790,7 @@ font-family: Montserrat, Arial, sans-serif;
   .final-cta h2{
         font-size: 21px;
   }
-  .launch-panel a{
-    font-size: 10px;
-  }
+
   .cost-wrap {
     width: calc(100% - 28px);
   }
