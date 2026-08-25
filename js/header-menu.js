@@ -11,6 +11,9 @@
       toggle.setAttribute('aria-label', 'Open navigation menu');
       panel.classList.remove('is-open');
       panel.hidden = true;
+      panel.querySelectorAll('.nehemiah-header__mobile-dropdown[open]').forEach((dropdown) => {
+        dropdown.removeAttribute('open');
+      });
     };
 
     toggle.addEventListener('click', () => {
@@ -22,6 +25,14 @@
     });
 
     panel.querySelectorAll('[data-mobile-link]').forEach((link) => link.addEventListener('click', closeMenu));
+    panel.querySelectorAll('.nehemiah-header__mobile-dropdown').forEach((dropdown) => {
+      const summary = dropdown.querySelector('summary');
+      if (!summary) return;
+      summary.setAttribute('aria-expanded', String(dropdown.open));
+      dropdown.addEventListener('toggle', () => {
+        summary.setAttribute('aria-expanded', String(dropdown.open));
+      });
+    });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
         closeMenu();
