@@ -180,7 +180,7 @@ p.guide-eyebrow, p.guide-eyebrow{
 .launch-guide-page .progress-groups span,
 .launch-guide-page .progress-panel footer,
 .launch-guide-page .readiness div span {
-  font-size: 16px;
+  font-size: 13px;
     line-height: 1.5;
     margin-top: 5px;
     font-family: var(--font-body-family);
