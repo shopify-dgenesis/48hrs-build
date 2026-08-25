@@ -518,8 +518,8 @@ body {
 
 .benefits small {
   font-size: small;
-    font-family: var(--font-body-family);
-    color: #91a0a6;
+  font-family: var(--font-body-family);
+  color: #91a0a6;
 }
 
 .cta-action {
