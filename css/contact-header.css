@@ -346,7 +346,7 @@
      TABLET / MOBILE
      ========================================================= */ @media screen and (max-width: 989px) {
   #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__container {
-    width: 1300px;
+    width: calc(100% - 32px);
     min-height: 72px;
     grid-template-columns: 1fr auto;
     gap: 20px;
