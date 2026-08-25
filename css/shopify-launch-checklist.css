@@ -309,7 +309,7 @@ body.checklist-page {
 
 .checklist-intro > p:not(.checklist-kicker) {
   color: var(--checklist-muted);
-      font-family: Helvetica, Arial, sans-serif;
+      /* font-family: Helvetica, Arial, sans-serif; */
 }
 
 .checklist-progress {
@@ -513,6 +513,7 @@ font-size: 17px;
     color: var(--faq-muted);
     font-size: 17px;
     line-height: 1.5;
+        color: #91a0a6;
     font-family: Helvetica, Arial, sans-serif;
 }
 

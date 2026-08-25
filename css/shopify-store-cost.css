@@ -226,7 +226,8 @@ body.cost-guide-page {
 }
 
 .cost-section {
-  padding: 52px 0;
+  padding: 40px 0;
+
 }
 
 /* Keep the shared launch FAQ visually continuous with the cost page. */
@@ -385,9 +386,9 @@ font-family: Montserrat, Arial, sans-serif;
   font-size: 24px;
 }
 
-.ranges-section {
+/* .ranges-section {
   padding-top: 15px;
-}
+} */
 
 .range-grid {
   display: grid;
@@ -649,7 +650,7 @@ font-family: Montserrat, Arial, sans-serif;
 }
 
 .final-cta {
-  padding: 0 0 30px;
+  padding: 20px 0 30px;
 }
 
 .final-cta .cost-wrap {
@@ -732,6 +733,10 @@ font-family: Montserrat, Arial, sans-serif;
   color: var(--cost-lime);
 }
 
+.cost-slider-pagination {
+  display: none;
+}
+
 @media (max-width: 1000px) {
   .cost-hero__grid {
     grid-template-columns: 1fr;
@@ -812,11 +817,83 @@ font-family: Montserrat, Arial, sans-serif;
   }
 
   .mini-costs {
-    grid-template-columns: 1fr;
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding: 0 0 14px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mini-costs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mini-costs > div {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
   }
 
   .breakdown-grid, .range-grid, .saving-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding: 0 0 14px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .breakdown-grid::-webkit-scrollbar,
+  .range-grid::-webkit-scrollbar,
+  .saving-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .breakdown-grid > article,
+  .range-grid > article,
+  .saving-grid > article {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+
+  .cost-slider-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    margin-top: 4px;
+  }
+
+  .cost-slider-pagination button {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .cost-slider-pagination button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #536269;
+    transform: translate(-50%, -50%);
+    transition: width .25s ease, background-color .25s ease;
+  }
+
+  .cost-slider-pagination button.is-active::before {
+    width: 22px;
+    background: var(--cost-lime);
   }
 
   .breakdown-grid article {
