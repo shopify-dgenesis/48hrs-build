@@ -5825,12 +5825,11 @@ html.js.mockup-motion-ready #MainContent>.shopify-section[data-mockup-reveal].is
 
 #pricingpackage .pricing-card__title {
   margin: 0 0 10px;
-font-family: Montserrat, Arial, sans-serif;
-    color: var(--pricing-text);
-    line-height: 1.25;
-    font-weight: 700;
-    letter-spacing: -.035em;
-    font-size: calc(var(--font-heading-scale) * 2.4rem);
+  font-family: Montserrat, Arial, sans-serif;
+  color: var(--pricing-text);
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -.035em
 }
 
 #pricingpackage .pricing-card__description {
@@ -7034,7 +7033,7 @@ font-family: Montserrat, Arial, sans-serif;
   max-width: 520px;
   margin: 26px 0 0;
   color: var(--launch-subheading);
-  font-size: 14px;
+    color: #91a0a6;
   line-height: 1.6
 }
 

@@ -201,7 +201,7 @@ body {
 .section-heading>p:last-child {
   margin: 23px auto 0;
   color: #d4d9dc;
-  font-size: 14px;
+  
 }
 
 .process-cards {
@@ -517,7 +517,9 @@ body {
 }
 
 .benefits small {
-  color: #fff
+  font-size: small;
+    font-family: var(--font-body-family);
+    color: #91a0a6;
 }
 
 .cta-action {

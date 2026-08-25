@@ -671,6 +671,9 @@ font-family: Montserrat, Arial, sans-serif;
     position: relative;
     z-index: 2;
   }
+  .gcheck p{
+    font-size: 17px;
+}
 
   .launch-art {
     min-height: 380px;
