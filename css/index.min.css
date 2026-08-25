@@ -5228,6 +5228,11 @@ html.js.mockup-motion-ready #MainContent>.shopify-section[data-mockup-reveal].is
 @media screen and (max-width:767px) {
   .launch48__benefit-text{
 font-weight: 100;
+font-size: 15px;
+  }
+  .launch48__price-card{
+    display: flex;
+    flex-direction: column;
   }
   .launch48__benefit{
     gap:5px;
