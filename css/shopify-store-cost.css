@@ -552,8 +552,7 @@ font-size: 11px;
   color: #091208;
   text-decoration: none;
   font-weight: 800;
-      font-size: 11px;
-    width: 100%;
+    
 }
 
 .saving-grid {
@@ -778,6 +777,10 @@ font-family: Montserrat, Arial, sans-serif;
 }
 
 @media (max-width: 700px) {
+  .launch-panel a, .final-cta a {
+  width: 100%;
+  font-size: 11px;
+  }
   .cost-page .breadcrumbs, .cost-page .section-heading > p, .cost-page .label{
         font-size: 11px;
   }
