@@ -339,6 +339,13 @@ body {
   color: var(--pp-lime)
 }
 
+.quote-callout>span img {
+  display: block;
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
 .quote-callout strong {
   color: var(--pp-lime);
 }
@@ -441,6 +448,13 @@ td:first-child {
 .includes-panel b {
   color: var(--pp-lime);
   font-size: 28px
+}
+
+.includes-panel b img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 .includes-panel span {
