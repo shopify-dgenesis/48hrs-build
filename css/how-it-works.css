@@ -260,6 +260,13 @@ body {
   stroke-linejoin: round
 }
 
+.card-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .shopify-s {
   stroke-width: 4
 }
@@ -435,6 +442,13 @@ body {
   background: #081319;
   color: var(--lime);
   font-size: 28px
+}
+
+.timeline-icon img {
+  display: block;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
 }
 
 .timeline-grid h3 {
