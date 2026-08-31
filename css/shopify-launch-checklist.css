@@ -358,6 +358,40 @@ body.checklist-page {
   gap: 28px;
 }
 
+.checklist-start {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.checklist-start a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 210px;
+  min-height: 54px;
+  padding: 14px 28px;
+  border-radius: 10px;
+  background: var(--checklist-lime);
+  color: #07111d;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.checklist-start a:hover,
+.checklist-start a:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(185, 242, 52, .2);
+}
+
+.checklist-start a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
 .checklist-card {
   display: flex;
   flex-direction: column;
