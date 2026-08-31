@@ -345,6 +345,26 @@
 /* =========================================================
      TABLET / MOBILE
      ========================================================= */ @media screen and (max-width: 989px) {
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-link {
+    box-sizing: border-box;
+    width: 100%;
+    padding-inline: 0;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-link::after {
+    flex: 0 0 16px;
+    width: 16px;
+    text-align: center;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-dropdown > summary {
+    padding-inline: 0;
+  }
+
+  #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__mobile-dropdown > summary span {
+    display: none;
+  }
+
   #nehemiah-header-sections--21367313334350__nehemiah_header_FWDbLd .nehemiah-header__container {
     width: calc(100% - 32px);
     min-height: 72px;

@@ -16,13 +16,17 @@
       });
     };
 
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener('click', (event) => {
+      // Some standalone pages include a legacy page bundle that also binds this
+      // button. Own the click during capture so those handlers cannot toggle the
+      // menu a second time and immediately undo this state change.
+      event.stopImmediatePropagation();
       const willOpen = toggle.getAttribute('aria-expanded') !== 'true';
       toggle.setAttribute('aria-expanded', String(willOpen));
       toggle.setAttribute('aria-label', willOpen ? 'Close navigation menu' : 'Open navigation menu');
       panel.classList.toggle('is-open', willOpen);
       panel.hidden = !willOpen;
-    });
+    }, { capture: true });
 
     panel.querySelectorAll('[data-mobile-link]').forEach((link) => link.addEventListener('click', closeMenu));
     panel.querySelectorAll('.nehemiah-header__mobile-dropdown').forEach((dropdown) => {
