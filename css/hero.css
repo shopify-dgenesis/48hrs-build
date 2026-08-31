@@ -623,9 +623,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--launch-border);
-  border-radius: 50%;
-  background: var(--launch-card);
+  border: 0;
+  background: transparent;
   color: var(--launch-accent);
 }
 
