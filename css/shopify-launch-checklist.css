@@ -410,19 +410,6 @@ body.checklist-page {
   transform: translateY(-3px);
 }
 
-.checklist-card__icon {
-  display: grid;
-  width: 68px;
-  height: 68px;
-  margin-bottom: 22px;
-  border-radius: 50%;
-  border: 1px solid rgba(185, 242, 52, .28);
-  color: var(--checklist-lime);
-  background: rgba(185, 242, 52, .08);
-  place-items: center;
-  font-size: 29px;
-}
-
 .checklist-card h3 {
 font-family: Montserrat, Arial, sans-serif;
     color: var(--pricing-text);
