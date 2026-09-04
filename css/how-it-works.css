@@ -463,7 +463,7 @@ body {
 
 .build-cta {
   display: grid;
-  grid-template-columns: 230px 1fr 330px;
+  grid-template-columns: 1fr 330px;
   align-items: center;
   gap: 28px;
   max-width: var(--max);
@@ -473,28 +473,6 @@ body {
   border: 1px solid var(--border);
   border-radius: 15px;
   background: linear-gradient(135deg, rgba(255, 255, 255, .025), rgba(255, 255, 255, .005))
-}
-
-.cta-orbit {
-  display: grid;
-  place-items: center;
-  width: 160px;
-  height: 160px;
-  border: 1px solid rgba(185, 242, 52, .15);
-  border-radius: 50%;
-  box-shadow: 0 0 0 25px rgba(185, 242, 52, .035), 0 0 0 50px rgba(185, 242, 52, .02)
-}
-
-.cta-orbit span {
-  display: grid;
-  place-items: center;
-  width: 54px;
-  height: 70px;
-  background: var(--lime);
-  color: #17220c;
-  font-size: 30px;
-  font-weight: 800;
-  transform: rotate(7deg)
 }
 
 .build-cta h2 {
@@ -746,10 +724,6 @@ body {
     margin: 28px 14px 0;
     padding: 60px 20px;
     text-align: center
-  }
-
-  .cta-orbit {
-    margin: auto
   }
 
   .cta-action {
